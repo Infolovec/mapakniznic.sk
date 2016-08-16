@@ -36,7 +36,7 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
 
 })
 
-mapaKniznicApp.controller('mapCtrl', function($scope, libraries, geoutils, maputils) {
+mapaKniznicApp.controller('mapCtrl', function($scope, libraries, maputils) {
   var map = L.map('map')
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: '&copy; prispievatelia <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,  © <a href="http://mapbox.com">Mapbox</a>',
