@@ -6,22 +6,28 @@ mapaKniznicApp.factory("maputils", function() {
     return(10)
   }
 
-  
+  var getLibraryStatus = function(openingHours){
+    try {
+      var oh = new opening_hours(openingHours);
+      if (oh.getState(new Date()))
+        return 'open'
+      else
+        return 'closed'
+    } catch (e) {
+      // console.log('failed to parse opening hours: ' + openingHours)
+      return 'unknown'
+    }
+  }
 
   service.markers = []
   
   service.createMarker = function(map, library, lat, lon) {
-    var openingHoursColor = '#FFA500'
-    try {
-      var oh = new opening_hours(library.tags.opening_hours);
-      if (oh.getState(new Date()))
-        openingHoursColor = 'green'
-      else
-        openingHoursColor = 'grey'
-    } catch (e) {
-      console.log('failed to parse opening hours: ' + library.tags.opening_hours)
-    }
-
+    var libraryStatus = getLibraryStatus(library.tags.opening_hours)
+    var openingHoursColor = 'grey'
+    if(libraryStatus == 'open')
+      openingHoursColor = 'green'
+    else if(libraryStatus == 'closed')
+      openingHoursColor = 'red'
 
     var marker = L.circleMarker([lat, lon], {
       fillColor: openingHoursColor,
