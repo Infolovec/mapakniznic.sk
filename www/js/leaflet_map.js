@@ -15,9 +15,9 @@ function LeafletMap() {
     this._map.on('zoomend', this._updateMarkersSizeAccordingToZoom.bind(this))
   }
 
-  this.addMarker = function(marker){
-    this._markers.push(marker)
-    marker.addTo(this._map)
+  this.addMarker = function(libraryMarker){
+    this._markers.push(libraryMarker)
+    libraryMarker.addTo(this._map)
   }
 
   this.refreshView = function(){
@@ -29,23 +29,9 @@ function LeafletMap() {
   }
 
   this._updateMarkersSizeAccordingToZoom = function(){
-    var that = this
-
     var mapZoom = this._map.getZoom()
-    if (mapZoom < 14) {
-      var labelFontSizePercent = 120
-      var labelOpacity = 0.0
-    } else {
-      var labelFontSizePercent = 120 - (18 - mapZoom) * 5
-      var labelOpacity = 1.0 - (18 - mapZoom) * 0.075
-    }
-
-    var cssMarkerLabels = $('.markerLabel')
-    cssMarkerLabels.each(function(i, label) {
-      $(label).css({
-        opacity: labelOpacity,
-        'font-size': labelFontSizePercent + '%'
-      })
+    this._markers.forEach(function(libraryMarker){
+      libraryMarker.updateStyle(mapZoom)
     })
   }
   

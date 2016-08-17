@@ -81,7 +81,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
     var library = new Library()
     library.load(rawLibraryDataEntry)
     var libraryMarker = library.createMarker()
-    leafletMap.addMarker(libraryMarker.getLeafletMarker())
+    leafletMap.addMarker(libraryMarker)
     libraries.push(library)
   })
 

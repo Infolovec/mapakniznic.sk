@@ -1,13 +1,15 @@
 function LibraryMarker() {
-  this.initialize = function(lat, lon, defaultColor){
+  this.initialize = function(lat, lon, defaultColor, labelText){
     this._marker =  L.circleMarker([lat, lon], {})
     this._defaultColor = defaultColor
     
-    this._marker.bindLabel(this.name, {
+    this.uniqueLabelClass = 'L'+ parseInt(Math.random() * 100000)
+
+    this._marker.bindLabel(labelText, {
       noHide: true,
-      className: 'markerLabel',
+      className: this.uniqueLabelClass,
       opacity: 1.0,
-      clickable: true
+      clickable: true,
     })   
 
     this.setDefaultStyle()
@@ -22,6 +24,8 @@ function LibraryMarker() {
   }
 
   this.setHighlightStyle = function(){
+    
+
     this._marker.setStyle({
       fillColor: this._defaultColor, 
       color: this._defaultColor, 
@@ -33,7 +37,22 @@ function LibraryMarker() {
       this._marker.setStyle({radius: 0})
   }  
 
-  this.getLeafletMarker = function(){
-    return(this._marker)
+  this.addTo = function(map){
+    this._marker.addTo(map)
   } 
+
+  this.updateStyle = function(mapZoom){
+    if (mapZoom < 14) {
+      var labelFontSizePercent = 120
+      var labelOpacity = 0.0
+    } else {
+      var labelFontSizePercent = 120 - (18 - mapZoom) * 5
+      var labelOpacity = 1.0 - (18 - mapZoom) * 0.075
+    }
+    $('.' + this.uniqueLabelClass).css({
+       'opacity': labelOpacity,
+       'font-size': labelFontSizePercent + '%'
+     })   
+
+  }
 }
