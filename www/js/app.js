@@ -44,8 +44,9 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
   $scope.clearSearch = function(){
     searchFoundLibraries = []
      $scope.search.query = ''
-    highlightFoundLibraries()
+    updateLibraryMarkersAppearance()
   }
+
   $scope.doSearch = function(){
     if($scope.search.query.length > 2){
       searchFoundLibraries = libraries.filter(function(library){
@@ -56,23 +57,24 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
     } else 
       searchFoundLibraries = []
 
-    highlightFoundLibraries()
+    updateLibraryMarkersAppearance()
   }
 
-  var highlightFoundLibraries = function(){
+  var updateLibraryMarkersAppearance = function(){
     if(searchFoundLibraries.length > 0){
       libraries.forEach(function(library){
-        library.marker.hide()
+        library.marker.setStyle('hide')
       })    
       searchFoundLibraries.forEach(function(library){
-        library.marker.setHighlightStyle()
+        library.marker.setStyle('highlight')
       })
     } else {
       libraries.forEach(function(library){
-        library.marker.setDefaultStyle()
+        library.marker.setStyle('normal')
       })          
     }
 
+    leafletMap.refreshMarkersAppearance();
   }
 
   var leafletMap = new LeafletMap()
@@ -85,5 +87,5 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
     libraries.push(library)
   })
 
-  leafletMap.refreshView();
+  updateLibraryMarkersAppearance()
 })

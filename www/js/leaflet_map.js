@@ -12,7 +12,7 @@ function LeafletMap() {
     }).addTo(this._map);
 
     this._map.setView([48.1380, 17.1431], 12);
-    this._map.on('zoomend', this._updateMarkersSizeAccordingToZoom.bind(this))
+    this._map.on('zoomend', this.refreshMarkersAppearance.bind(this))
   }
 
   this.addMarker = function(libraryMarker){
@@ -20,20 +20,14 @@ function LeafletMap() {
     libraryMarker.addTo(this._map)
   }
 
-  this.refreshView = function(){
-    this._updateMarkersSizeAccordingToZoom()
+  this.refreshMarkersAppearance = function(){
+    var mapZoom = this._map.getZoom()
+    this._markers.forEach(function(libraryMarker){
+      libraryMarker.updateAppearance(mapZoom)
+    })
   }
 
   this._radiusForCurrentZoomLevel = function() {
     return (this._map.getZoom() - 5)
   }
-
-  this._updateMarkersSizeAccordingToZoom = function(){
-    var mapZoom = this._map.getZoom()
-    this._markers.forEach(function(libraryMarker){
-      libraryMarker.updateStyle(mapZoom)
-    })
-  }
-  
-
 }
