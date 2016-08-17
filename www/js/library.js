@@ -17,36 +17,8 @@ function Library() {
   this.createMarker = function(){
     var openingHoursColor = this._openingHoursColor()
 
-    this.marker =  L.circleMarker([this.lat, this.lon], {})
-
-    this.marker.setDefaultStyle = function(){
-      this.setStyle({fillColor: openingHoursColor, 
-        color: 'grey',
-        radius: 7,
-        fillOpacity: 0.8
-      })
-    }
-    this.marker.setDefaultStyle()
-
-    this.marker.setHighlightStyle = function(){
-      this.setStyle({
-        fillColor: 'blue', 
-        color: 'blue', 
-        fillOpacity: 0.5, 
-        radius: 20})
-    }
-
-     this.marker.hide = function(){
-      this.setStyle({radius: 0})
-    }   
-      
-    var uniqueLabelClass = this.type + '_' + this.osmID
-    this.marker.bindLabel(this.name, {
-      noHide: true,
-      className: 'markerLabel ' + uniqueLabelClass,
-      opacity: 1.0,
-      clickable: true
-    })
+    this.marker =  new LibraryMarker()
+    this.marker.initialize(this.lat, this.lon, openingHoursColor, this.name)
 
     return this.marker
   }

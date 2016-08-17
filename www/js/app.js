@@ -53,10 +53,10 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
         var ln = removeDiacritics.replace(library.name.toLowerCase())
         return(q.indexOf(ln) > -1 || ln.indexOf(q) > -1)
       })
-      highlightFoundLibraries()
-    } else {
+    } else 
       searchFoundLibraries = []
-    }
+
+    highlightFoundLibraries()
   }
 
   var highlightFoundLibraries = function(){
@@ -80,8 +80,8 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
   rawLibraryData.getAll().forEach(function(rawLibraryDataEntry) {
     var library = new Library()
     library.load(rawLibraryDataEntry)
-    var marker = library.createMarker()
-    leafletMap.addMarker(marker)
+    var libraryMarker = library.createMarker()
+    leafletMap.addMarker(libraryMarker.getLeafletMarker())
     libraries.push(library)
   })
 
