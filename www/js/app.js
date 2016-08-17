@@ -48,10 +48,42 @@ mapaKniznicApp.controller('mapCtrl', function($scope, libraries) {
 
   map.setView([48.1380, 17.1431], 12);
 
+  var markers = []
   libraries.getAll().forEach(function(rawLibraryData) {
     var library = new Library()
     library.load(rawLibraryData)
     var marker = library.createMarker()
     marker.addTo(map)
+    markers.push(marker)
   })
+
+  var radiusForCurrentZoomLevel = function() {
+    return (map.getZoom() - 5)
+  }
+
+  var cssMarkerLabels = $('.markerLabel')
+
+  var updateMarkersSize = function() {
+    $(markers).each(function(i, marker) {
+      marker.setRadius(radiusForCurrentZoomLevel())
+    })
+
+    if (map.getZoom() < 14) {
+      var labelFontSizePercent = 120
+      var labelOpacity = 0.0
+    } else {
+      var labelFontSizePercent = 120 - (18 - map.getZoom()) * 5
+      var labelOpacity = 1.0 - (18 - map.getZoom()) * 0.075
+    }
+
+    cssMarkerLabels.each(function(i, label) {
+      $(label).css({
+        opacity: labelOpacity,
+        'font-size': labelFontSizePercent + '%'
+      })
+    })
+  }
+
+  map.on('zoomend', updateMarkersSize)
+  updateMarkersSize();
 })
