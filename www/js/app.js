@@ -36,7 +36,7 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
 
 })
 
-mapaKniznicApp.controller('mapCtrl', function($scope, libraries, maputils) {
+mapaKniznicApp.controller('mapCtrl', function($scope, libraries) {
   var map = L.map('map')
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: '&copy; prispievatelia <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,  © <a href="http://mapbox.com">Mapbox</a>',
@@ -48,15 +48,10 @@ mapaKniznicApp.controller('mapCtrl', function($scope, libraries, maputils) {
 
   map.setView([48.1380, 17.1431], 12);
 
-  libraries.getAll().forEach(function(library) {
-    if (library.type == 'node') {
-      var lat = library.lat
-      var lon = library.lon
-    } else {
-      var lat = library.center.lat
-      var lon = library.center.lon      
-    }
-
-    maputils.createMarker(map, library, lat, lon)
+  libraries.getAll().forEach(function(rawLibraryData) {
+    var library = new Library()
+    library.load(rawLibraryData)
+    var marker = library.createMarker()
+    marker.addTo(map)
   })
 })
