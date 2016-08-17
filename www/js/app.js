@@ -74,7 +74,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
       })          
     }
 
-    leafletMap.refreshMarkersAppearance();
+    leafletMap.refreshMarkersAppearance(searchFoundLibraries);
   }
 
   var leafletMap = new LeafletMap()
