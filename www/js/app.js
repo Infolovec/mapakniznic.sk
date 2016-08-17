@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var mapaKniznicApp = angular.module('mapaKniznicApp', ['ionic'])
+var mapaKniznicApp = angular.module('mapaKniznicApp', ['ionic', 'txx.diacritics'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,15 +36,53 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
 
 })
 
-mapaKniznicApp.controller('mapCtrl', function($scope, libraries) {
+mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiacritics) {
+  $scope.search = {query: ''}
+  var searchFoundLibraries = []
+  var libraries = []
+
+  $scope.clearSearch = function(){
+    searchFoundLibraries = []
+     $scope.search.query = ''
+    highlightFoundLibraries()
+  }
+  $scope.doSearch = function(){
+    if($scope.search.query.length > 2){
+      searchFoundLibraries = libraries.filter(function(library){
+        var q = removeDiacritics.replace($scope.search.query.toLowerCase())
+        var ln = removeDiacritics.replace(library.name.toLowerCase())
+        return(q.indexOf(ln) > -1 || ln.indexOf(q) > -1)
+      })
+      highlightFoundLibraries()
+    } else {
+      searchFoundLibraries = []
+    }
+  }
+
+  var highlightFoundLibraries = function(){
+    if(searchFoundLibraries.length > 0){
+      libraries.forEach(function(library){
+        library.marker.hide()
+      })    
+      searchFoundLibraries.forEach(function(library){
+        library.marker.setHighlightStyle()
+      })
+    } else {
+      libraries.forEach(function(library){
+        library.marker.setDefaultStyle()
+      })          
+    }
+
+  }
+
   var leafletMap = new LeafletMap()
   leafletMap.initialize()
-
-  libraries.getAll().forEach(function(rawLibraryData) {
+  rawLibraryData.getAll().forEach(function(rawLibraryDataEntry) {
     var library = new Library()
-    library.load(rawLibraryData)
+    library.load(rawLibraryDataEntry)
     var marker = library.createMarker()
     leafletMap.addMarker(marker)
+    libraries.push(library)
   })
 
   leafletMap.refreshView();

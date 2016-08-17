@@ -30,9 +30,9 @@ function LeafletMap() {
 
   this._updateMarkersSizeAccordingToZoom = function(){
     var that = this
-    $(this._markers).each(function(i, marker) {
-      marker.setRadius(that._radiusForCurrentZoomLevel())
-    })
+    // $(this._markers).each(function(i, marker) {
+    //   marker.setRadius(that._radiusForCurrentZoomLevel())
+    // })
 
     var mapZoom = this._map.getZoom()
     if (mapZoom < 14) {
