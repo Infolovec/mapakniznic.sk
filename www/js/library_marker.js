@@ -23,7 +23,11 @@ function LibraryMarker() {
   this.addTo = function(map){
     this._supportHightlightMarker.addTo(map)
     this._marker.addTo(map)
-    
+    this._marker.on('click',this._markerClicked);
+
+    $('.' + this.uniqueLabelClass).click({
+      marker: this._marker
+    }, this._markerClicked);    
   } 
 
   this.setStyle = function(style){
@@ -66,5 +70,9 @@ function LibraryMarker() {
       this._marker.setStyle({radius: 0})
       this._supportHightlightMarker.setStyle({radius: 0})
     }
+  }
+
+  this._markerClicked = function(event){
+    console.log('clicked')
   }
 }
