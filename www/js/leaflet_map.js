@@ -11,17 +11,16 @@ function LeafletMap() {
       accessToken: 'pk.eyJ1IjoicGV0ZXJ2b2p0ZWsiLCJhIjoiY2lpc3V5eGNrMDA5dHc5bTAwejVuamZpYiJ9.Af2Lk6oEDNcJqGZ4Obbq_A'
     }).addTo(this._map);
 
-    this.goToMapDefaultZoomAndPosition()
     this._map.on('zoomend', this.refreshMarkersAppearance.bind(this))
+
+    if (!this._map.restoreView()) {
+      this._map.setView([48.1380, 17.1431], 12);
+    }
   }
 
   this.addMarker = function(libraryMarker){
     this._markers.push(libraryMarker)
     libraryMarker.addTo(this._map)
-  }
-
-  this.goToMapDefaultZoomAndPosition = function(){
-    this._map.setView([48.1380, 17.1431], 12);
   }
 
   this.refreshMarkersAppearance = function(librariesToFitView){
@@ -44,6 +43,19 @@ function LeafletMap() {
   }
 
   this.focusTo = function(libraryMarker){
-    this._map.setView([libraryMarker.lat, libraryMarker.lon], 14)
+    // var mapZoom = this._map.getZoom()
+    // if(mapZoom < 14)
+    //   mapZoom = 14
+
+    var group = new L.featureGroup([libraryMarker._marker]);
+    this._map.fitBounds(group.getBounds(),{
+        paddingBottomRight: L.point(window.innerWidth/4, window.innerHeight/2),
+        maxZoom: 14
+      });
+
+    // var that = this
+    // setTimeout(function(){
+    //   that._map.panBy(L.point(window.innerHeight/6, window.innerWidth/4), {animate: true})
+    // }, 10)
   }
 }

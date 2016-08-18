@@ -12,7 +12,7 @@ function Library() {
 
     this.type = rawLibraryData.type
     this.osmID = rawLibraryData.id
-    this.name = rawLibraryData.tags.name || 'N/A'
+    this.name = rawLibraryData.tags.name
     this.openingHours = rawLibraryData.tags.opening_hours
   }
 
