@@ -1,6 +1,6 @@
 function LibraryMarker() {
   this.initialize = function(lat, lon, defaultColor, labelText){
-    this._marker =  L.circleMarker([lat, lon], {})
+    this._marker =  L.circleMarker([lat, lon], {zIzndex: 1})
     this._defaultColor = defaultColor
     this.setStyle('normal')
 
@@ -12,10 +12,18 @@ function LibraryMarker() {
       opacity: 1.0,
       clickable: true,
     })   
+
+    this._supportHightlightMarker = L.circleMarker([lat, lon], {
+      radius: 0, 
+      zIndex: 0,
+      color: 'yellow',
+      fillColor: 'yellow'})
   }
 
   this.addTo = function(map){
+    this._supportHightlightMarker.addTo(map)
     this._marker.addTo(map)
+    
   } 
 
   this.setStyle = function(style){
@@ -42,17 +50,21 @@ function LibraryMarker() {
       this._marker.setStyle({
         fillColor: this._defaultColor, 
         color: this._defaultColor, 
-        fillOpacity: 0.8, 
+        fillOpacity: 1.0, 
         radius: 7
       })  
+
+      this._supportHightlightMarker.setStyle({radius: 30, fillOpacity: 0.6, opacity: 0.8})
     } else if(this._style == 'normal'){
       this._marker.setStyle({fillColor: this._defaultColor, 
         color: 'grey',
         radius: 7,
         fillOpacity: 0.8
       })
+      this._supportHightlightMarker.setStyle({radius: 0})
     } else if(this._style == 'hide'){
       this._marker.setStyle({radius: 0})
+      this._supportHightlightMarker.setStyle({radius: 0})
     }
   }
 }
