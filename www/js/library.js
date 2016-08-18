@@ -14,6 +14,18 @@ function Library() {
     this.osmID = rawLibraryData.id
     this.name = rawLibraryData.tags.name
     this.openingHours = rawLibraryData.tags.opening_hours
+    this.address = rawLibraryData.tags['addr:street'] + ' ' + rawLibraryData.tags['addr:streetnumber']
+
+    this._setOpeningHoursStatus()
+    if(this._openingHoursStatus == 'open'){
+      this.openingHoursForHumans = 'Knižnica má práve otvorené<br />'
+      this.openingHoursForHumans += this.openingHours
+    } else if(this._openingHoursStatus == 'closed'){
+      this.openingHoursForHumans = 'Knižnica má práve zatvorené<br />'
+      this.openingHoursForHumans += this.openingHours
+    } else {
+      this.openingHoursForHumans = 'Otváracie hodiny nie sú známe'
+    }
   }
 
   this.createMarker = function(){
@@ -25,16 +37,23 @@ function Library() {
     return this.marker
   }
 
-  this._openingHoursColor = function(){
+  this._setOpeningHoursStatus = function(){
     try {
       var oh = new opening_hours(this.openingHours);
       if (oh.getState(new Date()))
-        return 'green'
+        this._openingHoursStatus = 'open'
       else
-        return 'red'
+         this._openingHoursStatus = 'closed'
     } catch (e) {
       // console.log('failed to parse opening hours: ' + openingHours)
-      return 'grey'
+       this._openingHoursStatus = 'unknown'
     }
+  }
+  this._openingHoursColor = function(){
+    if(this._openingHoursStatus == 'open')
+      return 'green'
+    else if(this._openingHoursStatus == 'closed')
+      return 'red'
+    else return 'grey'
   }
 }

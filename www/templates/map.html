@@ -23,8 +23,12 @@
           ng-click="hideLibraryDetail()">
               <i class="icon ion-close-circled"></i>
           </button>
-          <div class="name">{{library.name}}</div>
-          <div class="openingHours">{{library.openingHours}}</div>
+          <div class="info">
+            <div class="name">{{library.name}}</div>
+            <div class="address">{{library.address}}</div>
+            <div class="openingHours" ng-bind-html="library.openingHoursForHumans"></div>
+          </div>
+
       </div>
 	</ion-content>
 </ion-view>

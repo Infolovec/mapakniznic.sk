@@ -17,12 +17,16 @@
   padding: 10px;
 }
 
-.libraryDetail .name {
+.libraryDetail .info {
+  margin-top: 10px;
+}
+
+.libraryDetail .info .name {
   font-size: 120%;
   font-weight: 500;
 }
 
-.button.closeLibraryDetail {
+.libraryDetail .button.closeLibraryDetail {
   float: right;
   color: white;
 }
