@@ -24,10 +24,7 @@ function LibraryMarker() {
     this._supportHightlightMarker.addTo(map)
     this._marker.addTo(map)
     this._marker.on('click',this._markerClicked);
-
-    $('.' + this.uniqueLabelClass).click({
-      marker: this._marker
-    }, this._markerClicked);    
+    $('.' + this.uniqueLabelClass).click({}, this._markerClicked);    
   } 
 
   this.setStyle = function(style){

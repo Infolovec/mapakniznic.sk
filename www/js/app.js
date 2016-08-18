@@ -58,6 +58,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
       searchFoundLibraries = []
 
     updateLibraryMarkersAppearance()
+    $('#searchField').blur()
   }
 
   var updateLibraryMarkersAppearance = function(){

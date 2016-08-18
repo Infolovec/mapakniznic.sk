@@ -2,10 +2,11 @@
 <div class="bar bar-header item-input-inset bar-balanced">
   <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon"></i>
-    <input type="search" 
+    <input id="searchField" 
+    type="search" 
 		placeholder="Nájdi knižnicu"
 		ng-model="search.query"
-		ng-model-options="{ debounce: 500 }"
+		ng-model-options="{ debounce: 800 }"
 		ng-change="doSearch()">
   </label>
   <button class="button button-clear" ng-click="clearSearch()">
@@ -13,7 +14,7 @@
   </button>
 </div>
 
-	<ion-content scroll="false">
+	<ion-content scroll="false" data-tap-disabled="true">
       <div id="map">&nbsp;</div>
 	</ion-content>
 </ion-view>
