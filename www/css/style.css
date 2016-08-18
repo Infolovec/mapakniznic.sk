@@ -30,3 +30,7 @@
   float: right;
   color: white;
 }
+
+#clearSearch i.icon::before {
+    font-size: 22px;
+}

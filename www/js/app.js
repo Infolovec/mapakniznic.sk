@@ -38,11 +38,11 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
 
 mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiacritics) {
   $scope.search = {query: ''}
-  var searchFoundLibraries = []
+  $scope.searchFoundLibraries = []
   $scope.libraries = []
 
   $scope.clearSearch = function(){
-    searchFoundLibraries = []
+    $scope.searchFoundLibraries = []
     $scope.search.query = ''
     updateLibraryMarkersAppearance()
     $scope.hideLibraryDetail()
@@ -51,13 +51,13 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
   $scope.doSearch = function(){
     $scope.hideLibraryDetail()
     if($scope.search.query.length > 2){
-      searchFoundLibraries = $scope.libraries.filter(function(library){
+      $scope.searchFoundLibraries = $scope.libraries.filter(function(library){
         var q = removeDiacritics.replace($scope.search.query.toLowerCase())
         var ln = removeDiacritics.replace(library.name.toLowerCase())
         return(q.indexOf(ln) > -1 || ln.indexOf(q) > -1)
       })
     } else 
-      searchFoundLibraries = []
+      $scope.searchFoundLibraries = []
 
     updateLibraryMarkersAppearance()
     $('#searchField').blur() // hide smartphone keyboard
@@ -77,11 +77,11 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
   manuallySelectedLibrary = null
 
   var updateLibraryMarkersAppearance = function(){
-    if(searchFoundLibraries.length > 0){
+    if($scope.searchFoundLibraries.length > 0){
       $scope.libraries.forEach(function(library){
         library.marker.setStyle('hide')
       })    
-      searchFoundLibraries.forEach(function(library){
+      $scope.searchFoundLibraries.forEach(function(library){
         library.marker.setStyle('highlight')
       })
     } else {
@@ -90,7 +90,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
       })          
     }
 
-    librariesToFitView = searchFoundLibraries
+    librariesToFitView = $scope.searchFoundLibraries
     if(manuallySelectedLibrary){
       manuallySelectedLibrary.marker.setStyle('highlight')
       librariesToFitView = null

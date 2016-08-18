@@ -9,8 +9,11 @@
 		ng-model-options="{ debounce: 800 }"
 		ng-change="doSearch()">
   </label>
-  <button class="button button-clear" ng-click="clearSearch()">
-    Zrušiť
+  <button ng-show="search.query.length > 0" 
+    class="button button-clear" 
+    id="clearSearch" 
+    ng-click="clearSearch()">
+    <span>{{searchFoundLibraries.length}} knižníc</span> <i class="icon ion-close-circled"></i>
   </button>
 </div>
 
