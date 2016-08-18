@@ -66,6 +66,10 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
     return($scope.visibleLibraryUID == library.uid)
   }
 
+  $scope.hideLibraryDetail = function(){
+    $scope.visibleLibraryUID = null
+  }
+
   var updateLibraryMarkersAppearance = function(){
     if(searchFoundLibraries.length > 0){
       $scope.libraries.forEach(function(library){
@@ -90,6 +94,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
     library.load(rawLibraryDataEntry)
     var libraryMarker = library.createMarker()
     libraryMarker.setClickCallback(function(){
+      leafletMap.focusTo(libraryMarker)
       $scope.$apply(function(){
         $scope.visibleLibraryUID = library.uid
       })
@@ -99,8 +104,6 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
 
     $scope.libraries.push(library)
   })
-
-  
 
   updateLibraryMarkersAppearance()
 })

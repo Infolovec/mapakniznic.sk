@@ -42,4 +42,8 @@ function LeafletMap() {
   this._radiusForCurrentZoomLevel = function() {
     return (this._map.getZoom() - 5)
   }
+
+  this.focusTo = function(libraryMarker){
+    this._map.setView([libraryMarker.lat, libraryMarker.lon], 14)
+  }
 }

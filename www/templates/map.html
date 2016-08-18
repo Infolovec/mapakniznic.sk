@@ -1,5 +1,5 @@
 <ion-view>
-<div class="bar bar-header item-input-inset bar-balanced">
+<div class="bar bar-header item-input-inset bar-positive">
   <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon"></i>
     <input id="searchField" 
@@ -19,7 +19,12 @@
       <div class="libraryDetail" 
       ng-repeat="library in libraries" 
       ng-show="isDetailVisible(library)">
+          <button class="button button-clear closeLibraryDetail"
+          ng-click="hideLibraryDetail()">
+              <i class="icon ion-close-circled"></i>
+          </button>
           <div class="name">{{library.name}}</div>
+
       </div>
 	</ion-content>
 </ion-view>

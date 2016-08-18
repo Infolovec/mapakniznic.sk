@@ -3,7 +3,6 @@
   top: 40px;
   bottom: 0;
   width: 100%;
-  z-index: 10;
 }
 
 .libraryDetail {
@@ -12,6 +11,17 @@
   height: 50%;
   width: 100%;
   z-index: 11;  
-  background-color:rgba(90, 224, 57, 0.75);
+  background-color:rgba(87, 121, 247, 0.72);
+  color: white;
+  padding: 10px;
+}
+
+.libraryDetail .name {
+  font-size: 120%;
+  font-weight: 500;
+}
+
+.button.closeLibraryDetail {
+  float: right;
   color: white;
 }
