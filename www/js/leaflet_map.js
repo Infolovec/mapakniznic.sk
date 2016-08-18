@@ -4,7 +4,7 @@ function LeafletMap() {
   this.initialize = function(){
     this._map = L.map('map')
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-      attribution: '&copy; prispievatelia <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,  © <a href="http://mapbox.com">Mapbox</a>',
+      attribution: '&copy; prisp. <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,  © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18,
       minZoom: 10,
       id: 'mapbox.streets',
@@ -34,19 +34,15 @@ function LeafletMap() {
         return library.marker._marker
       })
       var group = new L.featureGroup(leafletMarkers);
-      this._map.fitBounds(group.getBounds(), {maxZoom: 14});
+      this._map.fitBounds(group.getBounds(), {maxZoom: 15});
     }
-  }
-
-  this._radiusForCurrentZoomLevel = function() {
-    return (this._map.getZoom() - 5)
   }
 
   this.focusTo = function(libraryMarker){
     var group = new L.featureGroup([libraryMarker._marker]);
     this._map.fitBounds(group.getBounds(),{
         paddingBottomRight: L.point(window.innerWidth/4, window.innerHeight/2),
-        maxZoom: 14
+        maxZoom: 15
       });
   }
 }
