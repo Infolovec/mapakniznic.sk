@@ -1,14 +1,13 @@
 function LibraryMarker() {
-  this.initialize = function(lat, lon, defaultColor, labelText){
+  this.initialize = function(uid, lat, lon, defaultColor, labelText){
     this._marker =  L.circleMarker([lat, lon], {zIzndex: 1})
     this._defaultColor = defaultColor
     this.setStyle('normal')
-
-    this.uniqueLabelClass = 'L'+ parseInt(Math.random() * 100000)
+    this.uid = uid
 
     this._marker.bindLabel(labelText, {
       noHide: true,
-      className: this.uniqueLabelClass,
+      className: this.uid,
       opacity: 1.0,
       clickable: true,
     })   
@@ -24,7 +23,7 @@ function LibraryMarker() {
     this._supportHightlightMarker.addTo(map)
     this._marker.addTo(map)
     this._marker.on('click',this._markerClicked);
-    $('.' + this.uniqueLabelClass).click({}, this._markerClicked);    
+    $('.' + this.uid).click({}, this._markerClicked);    
   } 
 
   this.setStyle = function(style){
@@ -38,14 +37,14 @@ function LibraryMarker() {
     if (doShowLabel) {
       var labelFontSizePercent = 120 - (18 - mapZoom) * 5
       var labelOpacity = 1.0 - (18 - mapZoom) * 0.075
+      $('.' + this.uid).show()
+      $('.' + this.uid).css({
+        'opacity': labelOpacity,
+        'font-size': labelFontSizePercent + '%'
+      })  
     } else {
-      var labelFontSizePercent = 120
-      var labelOpacity = 0.0
+      $('.' + this.uid).hide()
     }
-    $('.' + this.uniqueLabelClass).css({
-       'opacity': labelOpacity,
-       'font-size': labelFontSizePercent + '%'
-     })  
 
     if(this._style == 'highlight'){
       this._marker.setStyle({
@@ -69,7 +68,7 @@ function LibraryMarker() {
     }
   }
 
-  this._markerClicked = function(event){
-    console.log('clicked')
+  this.setClickCallback = function(callback){
+    this._markerClicked = callback
   }
 }

@@ -3,4 +3,15 @@
   top: 40px;
   bottom: 0;
   width: 100%;
+  z-index: 10;
+}
+
+.libraryDetail {
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  z-index: 11;  
+  background-color:rgba(90, 224, 57, 0.75);
+  color: white;
 }

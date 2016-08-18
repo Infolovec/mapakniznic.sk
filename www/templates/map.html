@@ -15,6 +15,11 @@
 </div>
 
 	<ion-content scroll="false" data-tap-disabled="true">
-      <div id="map">&nbsp;</div>
+      <div id="map"></div>
+      <div class="libraryDetail" 
+      ng-repeat="library in libraries" 
+      ng-show="isDetailVisible(library)">
+          <div class="name">{{library.name}}</div>
+      </div>
 	</ion-content>
 </ion-view>

@@ -1,4 +1,6 @@
 function Library() {
+  this.uid = 'L'+ parseInt(Math.random() * 100000)
+
   this.load = function(rawLibraryData){
     if (rawLibraryData.type == 'node') {
       this.lat = rawLibraryData.lat
@@ -18,7 +20,7 @@ function Library() {
     var openingHoursColor = this._openingHoursColor()
 
     this.marker =  new LibraryMarker()
-    this.marker.initialize(this.lat, this.lon, openingHoursColor, this.name)
+    this.marker.initialize(this.uid, this.lat, this.lon, openingHoursColor, this.name)
 
     return this.marker
   }

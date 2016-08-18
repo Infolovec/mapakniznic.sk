@@ -39,7 +39,7 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
 mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiacritics) {
   $scope.search = {query: ''}
   var searchFoundLibraries = []
-  var libraries = []
+  $scope.libraries = []
 
   $scope.clearSearch = function(){
     searchFoundLibraries = []
@@ -49,7 +49,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
 
   $scope.doSearch = function(){
     if($scope.search.query.length > 2){
-      searchFoundLibraries = libraries.filter(function(library){
+      searchFoundLibraries = $scope.libraries.filter(function(library){
         var q = removeDiacritics.replace($scope.search.query.toLowerCase())
         var ln = removeDiacritics.replace(library.name.toLowerCase())
         return(q.indexOf(ln) > -1 || ln.indexOf(q) > -1)
@@ -58,19 +58,24 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
       searchFoundLibraries = []
 
     updateLibraryMarkersAppearance()
-    $('#searchField').blur()
+    $('#searchField').blur() // hide smartphone keyboard
+  }
+
+  $scope.visibleLibraryUID = null
+  $scope.isDetailVisible = function(library){
+    return($scope.visibleLibraryUID == library.uid)
   }
 
   var updateLibraryMarkersAppearance = function(){
     if(searchFoundLibraries.length > 0){
-      libraries.forEach(function(library){
+      $scope.libraries.forEach(function(library){
         library.marker.setStyle('hide')
       })    
       searchFoundLibraries.forEach(function(library){
         library.marker.setStyle('highlight')
       })
     } else {
-      libraries.forEach(function(library){
+      $scope.libraries.forEach(function(library){
         library.marker.setStyle('normal')
       })          
     }
@@ -84,9 +89,18 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
     var library = new Library()
     library.load(rawLibraryDataEntry)
     var libraryMarker = library.createMarker()
+    libraryMarker.setClickCallback(function(){
+      $scope.$apply(function(){
+        $scope.visibleLibraryUID = library.uid
+      })
+      
+    })
     leafletMap.addMarker(libraryMarker)
-    libraries.push(library)
+
+    $scope.libraries.push(library)
   })
+
+  
 
   updateLibraryMarkersAppearance()
 })
