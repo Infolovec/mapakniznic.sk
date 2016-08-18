@@ -43,11 +43,13 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
 
   $scope.clearSearch = function(){
     searchFoundLibraries = []
-     $scope.search.query = ''
+    $scope.search.query = ''
     updateLibraryMarkersAppearance()
+    $scope.hideLibraryDetail()
   }
 
   $scope.doSearch = function(){
+    $scope.hideLibraryDetail()
     if($scope.search.query.length > 2){
       searchFoundLibraries = $scope.libraries.filter(function(library){
         var q = removeDiacritics.replace($scope.search.query.toLowerCase())
@@ -68,7 +70,11 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
 
   $scope.hideLibraryDetail = function(){
     $scope.visibleLibraryUID = null
+    manuallySelectedLibrary = null
+    updateLibraryMarkersAppearance()
   }
+
+  manuallySelectedLibrary = null
 
   var updateLibraryMarkersAppearance = function(){
     if(searchFoundLibraries.length > 0){
@@ -84,7 +90,13 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
       })          
     }
 
-    leafletMap.refreshMarkersAppearance(searchFoundLibraries);
+    librariesToFitView = searchFoundLibraries
+    if(manuallySelectedLibrary){
+      manuallySelectedLibrary.marker.setStyle('highlight')
+      librariesToFitView = null
+    }
+    
+    leafletMap.refreshMarkersAppearance(librariesToFitView);
   }
 
   var leafletMap = new LeafletMap()
@@ -94,14 +106,16 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
     library.load(rawLibraryDataEntry)
     var libraryMarker = library.createMarker()
     libraryMarker.setClickCallback(function(){
-      leafletMap.focusTo(libraryMarker)
+      manuallySelectedLibrary = library
+      
       $scope.$apply(function(){
         $scope.visibleLibraryUID = library.uid
       })
-      
+      updateLibraryMarkersAppearance()
+      leafletMap.focusTo(libraryMarker)
     })
-    leafletMap.addMarker(libraryMarker)
 
+    leafletMap.addMarker(libraryMarker)
     $scope.libraries.push(library)
   })
 

@@ -34,7 +34,7 @@ function LeafletMap() {
         return library.marker._marker
       })
       var group = new L.featureGroup(leafletMarkers);
-      this._map.fitBounds(group.getBounds());
+      this._map.fitBounds(group.getBounds(), {maxZoom: 14});
     }
   }
 
@@ -43,19 +43,10 @@ function LeafletMap() {
   }
 
   this.focusTo = function(libraryMarker){
-    // var mapZoom = this._map.getZoom()
-    // if(mapZoom < 14)
-    //   mapZoom = 14
-
     var group = new L.featureGroup([libraryMarker._marker]);
     this._map.fitBounds(group.getBounds(),{
         paddingBottomRight: L.point(window.innerWidth/4, window.innerHeight/2),
         maxZoom: 14
       });
-
-    // var that = this
-    // setTimeout(function(){
-    //   that._map.panBy(L.point(window.innerHeight/6, window.innerWidth/4), {animate: true})
-    // }, 10)
   }
 }
