@@ -27,12 +27,12 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
     .state('map', {
-    url: "/map",
+    url: "/",
     controller: 'mapCtrl',
     templateUrl: "templates/map.html"
   })
 
-  $urlRouterProvider.otherwise('/map');
+  $urlRouterProvider.otherwise('/');
 
 })
 
