@@ -36,7 +36,7 @@ function LibraryMarker() {
     var radius = mapZoom - 4
 
     if(this._style == 'highlight'){
-      this._supportHightlightMarker.setStyle({radius: 30, fillOpacity: 0.6, opacity: 0.4})
+      this._supportHightlightMarker.setStyle({radius: 30, fillOpacity: 0.6, opacity: 0.9})
       this._marker.setStyle({
         fillColor: this._defaultColor, 
         color: 'white', 

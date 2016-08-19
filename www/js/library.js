@@ -17,15 +17,21 @@ function Library() {
     this.address = rawLibraryData.tags['addr:street'] + ' ' + rawLibraryData.tags['addr:streetnumber']
 
     this._setOpeningHoursStatus()
+
+
     if(this._openingHoursStatus == 'open'){
-      this.openingHoursForHumans = 'Knižnica má práve otvorené<br />'
-      this.openingHoursForHumans += this.openingHours
+      this.openingHoursForHumans = 'Knižnica je otvorená<br />'
+      this.openingHoursForHumans += this._openingHoursInSVK()
     } else if(this._openingHoursStatus == 'closed'){
-      this.openingHoursForHumans = 'Knižnica má práve zatvorené<br />'
-      this.openingHoursForHumans += this.openingHours
+      this.openingHoursForHumans = 'Knižnica je zatvorená<br />'
+      this.openingHoursForHumans += this._openingHoursInSVK()
     } else {
       this.openingHoursForHumans = 'Otváracie hodiny nie sú známe'
     }
+  }
+
+  this._openingHoursInSVK = function(){
+    return(this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi"))
   }
 
   this.createMarker = function(){
