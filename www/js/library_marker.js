@@ -60,4 +60,8 @@ function LibraryMarker() {
   this.setClickCallback = function(callback){
     this._markerClicked = callback
   }
+
+  this.click = function(){
+    this._markerClicked()
+  }
 }

@@ -37,7 +37,7 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
 
 })
 
-mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $location, rawLibraryData, removeDiacritics) {
+mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $location, rawLibraryData, removeDiacritics) {
   $scope.search = {query: ''}
   $scope.searchFoundLibraries = []
   $scope.libraries = []
@@ -103,16 +103,18 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $location, r
   var leafletMap = new LeafletMap()
   leafletMap.initialize()
   rawLibraryData.getAll().forEach(function(rawLibraryDataEntry) {
-    var library = new Library()
+    var library = new Library(removeDiacritics)
     library.load(rawLibraryDataEntry)
+    
     var libraryMarker = library.createMarker()
     libraryMarker.setClickCallback(function(){
       manuallySelectedLibrary = library
       
-      $scope.$apply(function(){
-        $scope.visibleLibraryUID = library.uid
-        $location.path('/'+library.nameForURL(removeDiacritics));
-      })
+        $timeout(function(){
+          $scope.visibleLibraryUID = library.uid
+          $location.path('/'+library.nameForURL);
+        })
+
       updateLibraryMarkersAppearance()
       leafletMap.focusTo(libraryMarker)
     })
@@ -123,6 +125,13 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $location, r
 
   updateLibraryMarkersAppearance()
 
-  if($stateParams.libraryName)
-    console.log($stateParams.libraryName)
+  if($stateParams.libraryName){
+    var preselectedLibrary = $scope.libraries.find(function(library){
+      return ($stateParams.libraryName == library.nameForURL)
+    })
+    if(preselectedLibrary){
+      preselectedLibrary.marker.click()
+    }
+  }
+    
 })

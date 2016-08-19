@@ -1,4 +1,4 @@
-function Library() {
+function Library(removeDiacritics) {
   this.uid = 'L'+ parseInt(Math.random() * 100000)
 
   this.load = function(rawLibraryData){
@@ -13,6 +13,9 @@ function Library() {
     this.type = rawLibraryData.type
     this.osmID = rawLibraryData.id
     this.name = rawLibraryData.tags.name
+    this.nameForURL = removeDiacritics.replace(this.name.toLowerCase()).replace(/[^a-z0-9]/gi,'-').replace(/(-)+/g,'-');
+
+
     this.openingHours = rawLibraryData.tags.opening_hours
     this.address = rawLibraryData.tags['addr:street'] + ' ' + rawLibraryData.tags['addr:streetnumber']
 
@@ -32,10 +35,6 @@ function Library() {
   this._openingHoursInSVK = function(){
     return(this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi"))
   }
-
-  this.nameForURL = function(removeDiacritics){
-    return removeDiacritics.replace(this.name.toLowerCase()).replace(/[^a-z0-9]/gi,'-');
- }
 
   this.createMarker = function(){
     var openingHoursColor = this._openingHoursColor()
