@@ -1,5 +1,9 @@
-<ion-view>
+<ion-view ng-click="changeSideMenuVisibility($event)">
 <div class="bar bar-header item-input-inset" id="mapHeader">
+  <button class="button button-outline icon ion-navicon-round" 
+  id="menuButton"
+  ng-class="showSideMenu ? 'active' : ''">
+  </button>
   <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon"></i>
     <input id="searchField" 
@@ -19,6 +23,16 @@
 
 	<ion-content scroll="false" data-tap-disabled="true">
       <div id="map"></div>
+      <div id="sideMenu" ng-show="showSideMenu">
+        <div class="list">
+          <div class="item ">
+            <i class="icon ion-information-circled"></i> O projekte
+          </div>
+          <div class="item ">
+            <i class="icon ion-android-share-alt"></i> Zdieľať odkaz na knižnicu
+          </div>
+        </div>
+      </div>
       <div class="libraryDetail" 
       ng-repeat="library in libraries" 
       ng-show="isDetailVisible(library)">

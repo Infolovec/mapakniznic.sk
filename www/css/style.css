@@ -6,6 +6,24 @@
   z-index: 0;
 }
 
+.bar #menuButton {
+  color: #2d2d2d;
+  height: 32px;
+  margin-right: 10px;
+  background-color: rgba(254, 255, 213, 0.73);
+}
+
+.bar #menuButton.active {
+  background-color: rgba(110, 111, 50, 0.73);
+}
+
+#sideMenu {
+  position: absolute;
+  top: 44px;
+  left:0;
+  z-index: 3;
+}
+
 .libraryDetail {
   position: absolute;
   bottom: 0;
@@ -53,3 +71,4 @@
 #mapHeader button#clearSearch {
   color: #2d2d2d;
 }
+

@@ -133,5 +133,12 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
       preselectedLibrary.marker.click()
     }
   }
-    
+
+   $scope.showSideMenu = false
+  $scope.changeSideMenuVisibility = function(event){
+    if (event.target.id == 'menuButton') 
+      $scope.showSideMenu = !$scope.showSideMenu
+    else 
+      $scope.showSideMenu = false
+  }
 })
