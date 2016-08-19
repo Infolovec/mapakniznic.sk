@@ -27,16 +27,17 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
     .state('map', {
-    url: "/",
+    url: "/:libraryName",
     controller: 'mapCtrl',
-    templateUrl: "templates/map.html"
+    templateUrl: "templates/map.html",
+    reloadOnSearch: false // do not reload controller on libraryName change
   })
 
   $urlRouterProvider.otherwise('/');
 
 })
 
-mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiacritics) {
+mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $location, rawLibraryData, removeDiacritics) {
   $scope.search = {query: ''}
   $scope.searchFoundLibraries = []
   $scope.libraries = []
@@ -110,6 +111,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
       
       $scope.$apply(function(){
         $scope.visibleLibraryUID = library.uid
+        $location.path('/'+library.nameForURL(removeDiacritics));
       })
       updateLibraryMarkersAppearance()
       leafletMap.focusTo(libraryMarker)
@@ -120,4 +122,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, rawLibraryData, removeDiac
   })
 
   updateLibraryMarkersAppearance()
+
+  if($stateParams.libraryName)
+    console.log($stateParams.libraryName)
 })

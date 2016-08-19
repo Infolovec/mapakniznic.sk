@@ -18,7 +18,6 @@ function Library() {
 
     this._setOpeningHoursStatus()
 
-
     if(this._openingHoursStatus == 'open'){
       this.openingHoursForHumans = 'Knižnica je otvorená<br />'
       this.openingHoursForHumans += this._openingHoursInSVK()
@@ -33,6 +32,10 @@ function Library() {
   this._openingHoursInSVK = function(){
     return(this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi"))
   }
+
+  this.nameForURL = function(removeDiacritics){
+    return removeDiacritics.replace(this.name.toLowerCase()).replace(/[^a-z0-9]/gi,'-');
+ }
 
   this.createMarker = function(){
     var openingHoursColor = this._openingHoursColor()
