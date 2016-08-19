@@ -17,8 +17,8 @@ function LibraryMarker() {
     this._supportHightlightMarker = L.circleMarker([lat, lon], {
       radius: 0, 
       zIndex: 0,
-      color: 'blue',
-      fillColor: 'blue'})
+      color: '#feffd5',
+      fillColor: '#feffd5'})
   }
 
   this.addTo = function(map){
@@ -36,7 +36,7 @@ function LibraryMarker() {
     var radius = mapZoom - 4
 
     if(this._style == 'highlight'){
-      this._supportHightlightMarker.setStyle({radius: 30, fillOpacity: 0.2, opacity: 0.4})
+      this._supportHightlightMarker.setStyle({radius: 30, fillOpacity: 0.6, opacity: 0.4})
       this._marker.setStyle({
         fillColor: this._defaultColor, 
         color: 'white', 
