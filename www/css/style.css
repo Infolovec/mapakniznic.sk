@@ -38,6 +38,7 @@
 
 .menuPopup {
   top: 44px;
+  background-color:rgba(254, 255, 213, 0.89);
 }
 
 .menuPopup .info {
