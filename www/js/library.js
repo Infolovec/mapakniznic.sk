@@ -32,6 +32,11 @@ function Library(removeDiacritics) {
     }
   }
 
+  this.iconURL = function(){
+    var url = 'img/student-in-the-library-'+this._openingHoursStatus+'.png'
+    return(url)
+  }
+
   this._openingHoursInSVK = function(){
     return(this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi"))
   }
