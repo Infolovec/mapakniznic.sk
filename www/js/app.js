@@ -155,7 +155,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
     }
   }
 
-   $scope.showSideMenu = false
+  $scope.showSideMenu = false
   $scope.changeSideMenuVisibility = function(event){
     if (event.target.id == 'menuButton') 
       $scope.showSideMenu = !$scope.showSideMenu

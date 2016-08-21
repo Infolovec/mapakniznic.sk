@@ -15,6 +15,18 @@ function Library(removeDiacritics) {
     this.name = rawLibraryData.tags.name
     this.nameForURL = removeDiacritics.replace(this.name.toLowerCase()).replace(/[^a-z0-9]/gi,'-').replace(/(-)+/g,'-');
 
+    this.website = rawLibraryData.tags.website
+    if(this.website && this.website.indexOf('http') < 0)
+      this.website = '//'+this.website
+    this.facebook = rawLibraryData.tags['contact:facebook']
+    if(this.facebook && this.facebook.indexOf('http') < 0)
+      this.facebook = '//'+this.facebook    
+    this.twitter = rawLibraryData.tags['contact:twitter']
+    if(this.twitter && this.twitter.indexOf('http') < 0)
+      this.twitter = '//'+this.twitter       
+    this.googlePlus = rawLibraryData.tags['contact:google_plus']
+    if(this.googlePlus && this.googlePlus.indexOf('http') < 0)
+      this.googlePlus = '//'+this.googlePlus    
 
     this.openingHours = rawLibraryData.tags.opening_hours
     this.address = rawLibraryData.tags['addr:street'] + ' ' + rawLibraryData.tags['addr:streetnumber']
@@ -35,6 +47,10 @@ function Library(removeDiacritics) {
   this.iconURL = function(){
     var url = 'img/student-in-the-library-'+this._openingHoursStatus+'.png'
     return(url)
+  }
+
+  this.hasWebContact = function(){
+    return(this.website || this.facebook || this.twitter || this.googlePlus )
   }
 
   this._openingHoursInSVK = function(){
