@@ -39,10 +39,14 @@ function LeafletMap() {
   }
 
   this.focusTo = function(libraryMarker){
+    var mapZoom = this._map.getZoom()
+    var maxZoom = 15
+    if(mapZoom > 15)
+      maxZoom = mapZoom
     var group = new L.featureGroup([libraryMarker._marker]);
     this._map.fitBounds(group.getBounds(),{
         paddingBottomRight: L.point(window.innerWidth/4, window.innerHeight/2),
-        maxZoom: 15
+        maxZoom: maxZoom
       });
   }
 }
