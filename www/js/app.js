@@ -60,6 +60,9 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
     } else 
       $scope.searchFoundLibraries = []
 
+    if($scope.searchFoundLibraries.length == 1)
+      $scope.showLibraryDetail($scope.searchFoundLibraries[0])
+
     updateLibraryMarkersAppearance()
     $('#searchField').blur() // hide smartphone keyboard
   }
@@ -71,6 +74,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
 
   $scope.showLibraryDetail = function(library){
     $scope.visibleLibraryUID = library.uid
+    $location.path('/'+library.nameForURL);
     $scope.hideMenuPopup()
   }
 
@@ -96,7 +100,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
     $scope.visibleMenuPopupID = popupID
   }
 
-  manuallySelectedLibrary = null
+  var manuallySelectedLibrary = null
 
   var updateLibraryMarkersAppearance = function(){
     if($scope.searchFoundLibraries.length > 0){
@@ -133,7 +137,6 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
       
         $timeout(function(){
           $scope.showLibraryDetail(library)
-          $location.path('/'+library.nameForURL);
         })
 
       updateLibraryMarkersAppearance()
