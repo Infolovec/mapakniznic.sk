@@ -34,10 +34,10 @@ function Library(removeDiacritics) {
     this._setOpeningHoursStatus()
 
     if(this._openingHoursStatus == 'open'){
-      this.openingHoursForHumans = 'Knižnica je otvorená<br />'
+      this.openingHoursForHumans = 'Knižnica je <span class="status isOpen">otvorená</span><br />'
       this.openingHoursForHumans += this._openingHoursInSVK()
     } else if(this._openingHoursStatus == 'closed'){
-      this.openingHoursForHumans = 'Knižnica je zatvorená<br />'
+      this.openingHoursForHumans = 'Knižnica je <span class="status isClosed">zatvorená</span><br />'
       this.openingHoursForHumans += this._openingHoursInSVK()
     } else {
       this.openingHoursForHumans = 'Otváracie hodiny nie sú známe'

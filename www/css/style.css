@@ -54,6 +54,20 @@
   margin-top: 10px;
 }
 
+.libraryDetail .info .status {
+  padding: 3px 5px 3px 5px;
+  color: white;
+  border-radius: 5px;
+}
+
+.libraryDetail .info .status.isOpen {
+  background-color: green;
+}
+
+.libraryDetail .info .status.isClosed {
+  background-color: red;
+}
+
 .libraryDetail .info .name {
   font-size: 120%;
   font-weight: 500;
