@@ -29,7 +29,7 @@ end
 
 request_xml += '</osm-script>'
 
-request_url = URI.escape('http://overpass-api.de/api/interpreter?data=' + request_xml)
+request_url = URI.escape('http://api.openstreetmap.fr/oapi/interpreter?data=' + request_xml)
 json_response = `curl #{request_url}`
 
 libraries1 = JSON.parse json_response
