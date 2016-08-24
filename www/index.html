@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Mapa knižníc (v Bratislave)</title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/leaflet/leaflet.css" rel="stylesheet">
+    <link href="lib/leaflet/leaflet.label.css" rel="stylesheet">
+    <link href="css/style.css?version=1472050928" rel="stylesheet">
+    
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/leaflet/leaflet.js"></script>
+    <script src="lib/leaflet/leaflet.label.js"></script>
+    <script src="lib/leaflet/leaflet.restoreview.js"></script>
+    <script src="lib/opening_hours.js"></script>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/jquery.popupoverlay.js"></script>
+    <script src="lib/remove-diacritics.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <!--
+      TODO: uncomment when we will deploy it as mobile app
+      <script src="cordova.js"></script>-->
+
+    <!-- your app's js -->
+    <script src="js/app.js?version=1472050928"></script>
+    <script src="js/services/libraries_service.js?version=1472050928"></script>
+    <script src="js/library.js?version=1472050928"></script>
+    <script src="js/leaflet_map.js?version=1472050928"></script>
+    <script src="js/library_marker.js?version=1472050928"></script>
+  </head>
+  <body ng-app="mapaKniznicApp">
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>
