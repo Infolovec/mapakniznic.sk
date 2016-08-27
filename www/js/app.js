@@ -54,8 +54,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
     if($scope.search.query.length > 2){
       $scope.searchFoundLibraries = $scope.libraries.filter(function(library){
         var q = removeDiacritics.replace($scope.search.query.toLowerCase())
-        var ln = removeDiacritics.replace(library.name.toLowerCase())
-        return(q.indexOf(ln) > -1 || ln.indexOf(q) > -1)
+        return(library.isMatchingSearchString(q))
       })
     } else 
       $scope.searchFoundLibraries = []

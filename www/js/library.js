@@ -13,6 +13,8 @@ function Library(removeDiacritics) {
     this.type = rawLibraryData.type
     this.osmID = rawLibraryData.id
     this.name = rawLibraryData.tags.name
+    this.short_name = rawLibraryData.tags.short_name
+    this._searchName = removeDiacritics.replace((this.name + this.short_name).toLowerCase())
     this.nameForURL = removeDiacritics.replace(this.name.toLowerCase()).replace(/[^a-z0-9]/gi,'-').replace(/(-)+/g,'-');
 
     this.website = rawLibraryData.tags.website
@@ -47,6 +49,10 @@ function Library(removeDiacritics) {
   this.iconURL = function(){
     var url = 'img/student-in-the-library-'+this._openingHoursStatus+'.png'
     return(url)
+  }
+
+  this.isMatchingSearchString = function(q){
+    return(this._searchName.indexOf(q) > -1 || q.indexOf(this._searchName) > -1)
   }
 
   this.hasWebContact = function(){

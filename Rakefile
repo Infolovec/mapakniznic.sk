@@ -8,6 +8,10 @@ task :release do
   puts 'www/index.html successfully refreshed'
 end
 
+task :deploy do
+  puts `git push origin \`git subtree split --prefix www master\`:gh-pages --force`
+end
+
 task :'data' do
   require 'uri'
   require 'json'
