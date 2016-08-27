@@ -37,7 +37,7 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
 
 })
 
-mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $location, rawLibraryData, removeDiacritics) {
+mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $location, $window, rawLibraryData, removeDiacritics) {
   $scope.search = {query: ''}
   $scope.searchFoundLibraries = []
   $scope.libraries = []
@@ -74,29 +74,17 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
   $scope.showLibraryDetail = function(library){
     $scope.visibleLibraryUID = library.uid
     $location.path('/'+library.nameForURL);
-    $scope.hideMenuPopup()
   }
 
   $scope.hideLibraryDetail = function(){
     $scope.visibleLibraryUID = null
     manuallySelectedLibrary = null
-    $scope.hideMenuPopup()
     $location.path('/');
     updateLibraryMarkersAppearance()
   }
 
-  $scope.visibleMenuPopupID = null
-  $scope.isMenuPopupVisible = function(popupID){
-    return($scope.visibleMenuPopupID == popupID)
-  }
-
-  $scope.hideMenuPopup = function(){
-    $scope.visibleMenuPopupID = null
-  }
-
-  $scope.openMenuPopup = function(popupID){
-    $scope.hideLibraryDetail()
-    $scope.visibleMenuPopupID = popupID
+  $scope.openExternalLink = function(url){
+    $window.open(url, '_blank');
   }
 
   var manuallySelectedLibrary = null
