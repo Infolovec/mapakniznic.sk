@@ -54,23 +54,19 @@
   margin-top: 10px;
 }
 
-.libraryDetail .info .status {
-  padding: 3px 5px 3px 5px;
-  color: white;
-  border-radius: 5px;
-}
-
 .libraryDetail .info .webpage {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
 .libraryDetail .info .status.isOpen {
-  background-color: green;
+  color: green;
+  font-weight: 900;
 }
 
 .libraryDetail .info .status.isClosed {
-  background-color: red;
+  color: red;
+  font-weight: 900;
 }
 
 .libraryDetail .info .name {
