@@ -49,6 +49,7 @@
               <div class="name">{{library.name}}</div>
               <div class="address">{{library.address}}</div>
               <div class="openingHours" ng-bind-html="library.openingHoursForHumans"></div>
+              <div class="libraryType">Typ knižnice: <abbr ng-attr-title="{{explanationFor(library.libraryType)}}">{{library.libraryType}}</abbr></div>
               <div class="webpage" ng-show="library.hasWebContact()">
                 <button class="button button-small button-dark icon-left ion-home" ng-click="openExternalLink(library.website)" ng-show="library.website">
                  Webstránka knižnice

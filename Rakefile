@@ -22,6 +22,7 @@ task :'data' do
   library_ways = []
   library_relations = []
 
+  osm_url_to_library_type = {}
   l = File.read './data/libraries.txt'
   l.split("\n").each do |line|
     library_url, library_type = line.split"\t"
@@ -29,6 +30,7 @@ task :'data' do
     library_ways << osm_id if osm_type == 'way'
     library_nodes << osm_id if osm_type == 'node'
     library_relations << osm_id if osm_type == 'relation'
+    osm_url_to_library_type["#{osm_type}/#{osm_id}"] = library_type
   end
 
   request_xml = '<osm-script output="json">'
@@ -48,7 +50,11 @@ task :'data' do
   json_response = `curl #{request_url}`
 
   libraries1 = JSON.parse json_response
-  libraries2 = libraries1['elements']
+  libraries2 = []
+  libraries1['elements'].each do |lib|
+    lib['library_type'] = osm_url_to_library_type["#{lib['type']}/#{lib['id']}"]
+    libraries2 << lib 
+  end
 
   libraries_service_js = File.read './www/js/services/libraries_service.template.js'
   libraries_service_js.sub! 'DATA', libraries2.to_json

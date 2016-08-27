@@ -152,4 +152,8 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
     else 
       $scope.showSideMenu = false
   }
+
+  $scope.explanationFor = function(libraryType){
+      return 'TODO doplnit vysvetlenie typov kniznic'
+  }
 })

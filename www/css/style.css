@@ -54,6 +54,11 @@
   margin-top: 10px;
 }
 
+.libraryDetail .info .libraryType abbr {
+  border-bottom: 1px black dotted;
+  cursor: help;
+}
+
 .libraryDetail .info .webpage {
   margin-top: 5px;
   margin-bottom: 5px;
