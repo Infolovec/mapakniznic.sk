@@ -28,6 +28,9 @@
           <div class="item" ng-click="openExternalLink('https://github.com/Infolovec/mapakniznic.sk/wiki/O-projekte-Mapa-kni%C5%BEn%C3%ADc')">
             <i class="icon ion-information-circled"></i> O projekte
           </div>
+          <div class="item" ng-click="openMenuPopup('listOfLibraries')">
+            <i class="icon ion-information-circled"></i> Zoznam knižníc
+          </div>
           <div class="item" ng-click="openExternalLink('https://github.com/Infolovec/mapakniznic.sk/wiki/Ako-zdie%C4%BEa%C5%A5-odkaz-na-kni%C5%BEnicu')">
             <i class="icon ion-android-share-alt"></i> Zdieľať odkaz na knižnicu
           </div>
@@ -69,6 +72,26 @@
               </div>
             </div>
           </div>
+      </div>
+
+      <div id="listOfLibraries" 		
+       class="menuPopup" 		
+       ng-show="isMenuPopupVisible('listOfLibraries')">		
+            <button 		
+            class="button button-clear closeMenuPopup"		
+             ng-click="hideMenuPopup()">		
+               <i class="icon ion-close-circled"></i>		
+           </button>       		
+            <div class="info" style="height: 100%;">		
+              <h1>Zoznam knižníc</h1>		
+              <ion-scroll direction="y" style="height: 100%;">		
+                <ul ng-repeat="library in libraries | orderBy:'name'">
+                    <li ng-click="library.marker.click()">
+                      {{library.name}}
+                    </li>
+                </ul>		
+              </ion-scroll>		
+           </div>		
       </div>
 	</ion-content>
 </ion-view>

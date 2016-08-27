@@ -33,7 +33,7 @@
   background-color:rgba(254, 255, 213, 0.73);
   color: #2d2d2d;
   padding: 5px;
-  border-top: 2px solid rgb(209, 210, 169)
+  border-top: 2px solid rgb(209, 210, 169);
 }
 
 .menuPopup {
@@ -48,6 +48,14 @@
 
 .menuPopup .info h1 {
   font-size: 18px;
+}
+
+.menuPopup#listOfLibraries .info ul li {
+  padding: 3px;
+  cursor: pointer;
+}
+.menuPopup#listOfLibraries .info ul li:hover {
+  background-color: #efedb9;
 }
 
 .libraryDetail .info {

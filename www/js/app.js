@@ -72,11 +72,13 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
   }
 
   $scope.showLibraryDetail = function(library){
+    $scope.hideMenuPopup()
     $scope.visibleLibraryUID = library.uid
     $location.path('/'+library.nameForURL);
   }
 
   $scope.hideLibraryDetail = function(){
+    $scope.hideMenuPopup()
     $scope.visibleLibraryUID = null
     manuallySelectedLibrary = null
     $location.path('/');
@@ -156,4 +158,18 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
   $scope.explanationFor = function(libraryType){
       return 'TODO doplnit vysvetlenie typov kniznic'
   }
+
+  $scope.visibleMenuPopupID = null
+   $scope.isMenuPopupVisible = function(popupID){
+     return($scope.visibleMenuPopupID == popupID)
+   }
+ 
+   $scope.hideMenuPopup = function(){
+     $scope.visibleMenuPopupID = null
+   }
+ 
+   $scope.openMenuPopup = function(popupID){
+     $scope.hideLibraryDetail()
+     $scope.visibleMenuPopupID = popupID
+   }  
 })
