@@ -12,6 +12,7 @@ function Library(removeDiacritics) {
 
     this.type = rawLibraryData.type
     this.osmID = rawLibraryData.id
+    this.osmLink = 'https://www.openstreetmap.org/' + this.type + '/' + this.osmID
     this.name = rawLibraryData.tags.name
     this.short_name = rawLibraryData.tags.short_name
     this._searchName = removeDiacritics.replace((this.name + this.short_name).toLowerCase())

@@ -47,12 +47,21 @@
               <div class="address">{{library.address}}</div>
               <div class="openingHours" ng-bind-html="library.openingHoursForHumans"></div>
               <div class="webpage" ng-show="library.hasWebContact()">
-                Viac informácií: 
-                <a data-ng-href="{{library.website}}" ng-show="library.website" target="_blank">web</a>
-                <a data-ng-href="{{library.facebook}}" ng-show="library.facebook" target="_blank">Facebook</a>
-                <a data-ng-href="{{library.twitter}}" ng-show="library.twitter" target="_blank">Twitter</a>
-                <a data-ng-href="{{library.googlePlus}}" ng-show="library.googlePlus" target="_blank">Google+</a>
-                </a>
+                <button class="button button-small button-dark icon-left ion-home" ng-click="openExternalLink(library.website)" ng-show="library.website">
+                 Webstránka knižnice
+                </button>
+                <button class="button button-small button-dark icon-left ion-social-facebook" ng-click="openExternalLink(library.facebook)" ng-show="library.facebook">
+                 Facebook 
+                </button>
+                <button class="button button-small button-dark icon-left ion-social-twitter" ng-click="openExternalLink(library.twitter)" ng-show="library.twitter">
+                 Twitter 
+                </button>
+                <button class="button button-small button-dark icon-left ion-social-googleplus" ng-click="openExternalLink(library.googlePlus)" ng-show="library.googlePlus">
+                 Google+ 
+                </button>
+                <button class="button button-small button-dark icon-left ion-android-map" ng-click="openExternalLink(library.osmLink)">
+                 OpenStreetMap
+                </button>
               </div>
             </div>
           </div>

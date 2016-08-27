@@ -60,6 +60,11 @@
   border-radius: 5px;
 }
 
+.libraryDetail .info .webpage {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .libraryDetail .info .status.isOpen {
   background-color: green;
 }
