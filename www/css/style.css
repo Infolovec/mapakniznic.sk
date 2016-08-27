@@ -24,6 +24,11 @@
   z-index: 3;
 }
 
+#sideMenu .list .item i {
+  margin-right: 5px;
+}
+
+
 .libraryDetail, .menuPopup {
   position: absolute;
   bottom: 0;
@@ -51,12 +56,23 @@
 }
 
 .menuPopup#listOfLibraries .info ul li {
-  padding: 3px;
+  padding: 3px 5px 3px 5px;
   cursor: pointer;
+  color: #171717;
+  border-radius: 3px;
 }
+
+.menuPopup#listOfLibraries .info ul li:nth-child(odd) {
+  background-color: #e3e4bc;
+}
+
 .menuPopup#listOfLibraries .info ul li:hover {
-  background-color: #efedb9;
+  /* background-color: #d1d2a9; */
+  background-color: #585858;
+  color: #e3e4bc;
 }
+
+
 
 .libraryDetail .info {
   margin-top: 10px;
