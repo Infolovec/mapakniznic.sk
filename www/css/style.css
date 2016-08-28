@@ -58,6 +58,7 @@
 .menuPopup#listOfLibraries .button.button-dark.button-outline {
   background-color: #f9ffe6;
   border-color: #949494;
+  border-style: dotted;
 }
 .menuPopup#listOfLibraries .info ul li {
   padding: 3px 5px 3px 5px;
@@ -69,8 +70,8 @@
 
 .menuPopup#listOfLibraries .info ul li:nth-child(odd) {
   background-color: #e3e4bc;
-  border-top: 1px solid #939479;
-  border-bottom: 1px solid #939479;
+  border-top: 1px dotted #939479;
+  border-bottom: 1px dotted #939479;
 }
 
 .menuPopup#listOfLibraries .info ul li:hover {
@@ -139,5 +140,11 @@
 
 #mapHeader button#clearSearch {
   color: #2d2d2d;
+}
+
+#mapHeader button#clearSearch #searchResultCount {
+  font-size: 90%;
+  color: black;
+  font-weight: 400;
 }
 
