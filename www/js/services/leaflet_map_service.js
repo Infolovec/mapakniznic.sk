@@ -2,7 +2,7 @@ mapaKniznicApp.factory("leafletMap", function() {
   var service = {
     _markers: [],
     initialize: function(){
-      this._map = L.map('map')
+      this._map = L.map('map', {maxBounds: [[47.8878,16.8039], [48.3437,17.3340]]})
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         attribution: '&copy; prisp. <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,  © <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18,
