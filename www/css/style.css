@@ -24,10 +24,14 @@
   z-index: 3;
 }
 
+#sideMenu .list .item:hover {
+  background-color: #888a52;
+  color: white;
+}
+
 #sideMenu .list .item i {
   margin-right: 5px;
 }
-
 
 .libraryDetail, .menuPopup {
   position: absolute;
@@ -49,6 +53,7 @@
 .menuPopup .info {
   margin-left: 20px;
   margin-top: 12px;
+  margin-right: 20px;
 }
 
 .menuPopup .info h1 {

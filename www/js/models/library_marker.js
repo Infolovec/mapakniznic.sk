@@ -20,6 +20,7 @@ function LibraryMarker() {
     this._supportHightlightMarker = L.circleMarker([lat, lon], {
       radius: 0, 
       zIndex: 0,
+      weight: 6,
       color: '#feffd5',
       fillColor: '#feffd5'})
 
@@ -27,11 +28,14 @@ function LibraryMarker() {
       radius: 0, 
       zIndex: 0,
       color: '#feffd5',
+      weight: 4,
+      dashArray: '15, 8',
+      lineCap: 'square',
       fillColor: '#feffd5'})
   }
 
   this._showOnMouseOverMarker = function(){
-    this._onMouseOverMarker.setStyle({radius: 30, fillOpacity: 0.4, opacity: 0.8})
+    this._onMouseOverMarker.setStyle({radius: 30, fillOpacity: 0.3, opacity: 0.9})
   }
 
   this._hideOnMouseOverMarker = function(){
