@@ -1,7 +1,7 @@
 function LibraryMarker() {
   this.initialize = function(uid, lat, lon, defaultColor, labelText){
     
-    this._marker =  L.marker([lat, lon], {zIzndex: 1, icon: this._icon(defaultColor)})
+    this._marker =  L.marker([lat, lon], {zIndex: 1, icon: this._icon(defaultColor)})
 
     this._defaultColor = defaultColor
     this.setStyle('normal')
@@ -11,9 +11,9 @@ function LibraryMarker() {
 
     this._marker.bindLabel(labelText, {
       noHide: false,
-      className: this.uid,
+      className: this.uid + ' markerLabel',
       opacity: 0.9,
-      clickable: true,
+      clickable: true
     })   
 
     this._supportHightlightMarker = L.circleMarker([lat, lon], {

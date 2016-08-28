@@ -125,6 +125,10 @@
     font-size: 22px;
 }
 
+#map .markerLabel{
+  z-index: 999 !important;
+}
+
 #mapHeader.bar-header {
   background-color:rgb(209, 210, 169)
 }

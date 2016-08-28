@@ -1,4 +1,4 @@
-mapaKniznicApp.directive('topBarWithSearch', function($rootScope, uiState, removeDiacritics, libraries) {
+mapaKniznicApp.directive('topBarWithSearch', function($rootScope, uiState, libraries) {
   return {
     restrict: 'E',
     scope: {},
