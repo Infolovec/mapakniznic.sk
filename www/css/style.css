@@ -47,7 +47,7 @@
 
 .menuPopup {
   top: 44px;
-  background-color:rgba(254, 255, 213, 0.89);
+  background-color:rgba(255, 255, 255, 0.89);
 }
 
 .menuPopup .info {
@@ -61,31 +61,30 @@
 }
 
 .menuPopup#listOfLibraries .button.button-dark.button-outline {
-  background-color: #f9ffe6;
+  background-color: #f0f3e6;
   border-color: #949494;
   border-style: dotted;
 }
+
+.menuPopup#listOfLibraries .button.button-dark.button-outline:hover {
+  background-color: #eaead7;
+}
+
 .menuPopup#listOfLibraries .info ul li {
   padding: 3px 5px 3px 5px;
   cursor: pointer;
   color: #171717;
-  background-color: #f9ffe6;
 
 }
 
 .menuPopup#listOfLibraries .info ul li:nth-child(odd) {
-  background-color: #e3e4bc;
-  border-top: 1px dotted #939479;
-  border-bottom: 1px dotted #939479;
+  background-color: #eaead7;
+  border: 1px dotted #939479;
 }
 
 .menuPopup#listOfLibraries .info ul li:hover {
-  /* background-color: #d1d2a9; */
-  background-color: #585858;
-  color: #e3e4bc;
+  background-color: #d4d4af;
 }
-
-
 
 .libraryDetail .info {
   margin-top: 10px;

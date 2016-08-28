@@ -20,7 +20,7 @@ function LibraryMarker() {
     this._supportHightlightMarker = L.circleMarker([lat, lon], {
       radius: 0, 
       zIndex: 0,
-      weight: 6,
+      weight: 4,
       color: '#feffd5',
       fillColor: '#feffd5'})
 
