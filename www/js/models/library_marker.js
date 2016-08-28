@@ -13,7 +13,8 @@ function LibraryMarker() {
       noHide: false,
       className: this.uid + ' markerLabel',
       opacity: 0.9,
-      clickable: true
+      clickable: true,
+      offset: [22,-15]
     })   
 
     this._supportHightlightMarker = L.circleMarker([lat, lon], {
@@ -21,6 +22,20 @@ function LibraryMarker() {
       zIndex: 0,
       color: '#feffd5',
       fillColor: '#feffd5'})
+
+    this._onMouseOverMarker = L.circleMarker([lat, lon], {
+      radius: 0, 
+      zIndex: 0,
+      color: '#feffd5',
+      fillColor: '#feffd5'})
+  }
+
+  this._showOnMouseOverMarker = function(){
+    this._onMouseOverMarker.setStyle({radius: 30, fillOpacity: 0.4, opacity: 0.8})
+  }
+
+  this._hideOnMouseOverMarker = function(){
+    this._onMouseOverMarker.setStyle({radius: 0})
   }
 
   this.addTo = function(map){
@@ -28,6 +43,10 @@ function LibraryMarker() {
     this._supportHightlightMarker.on('click',this._markerClicked);
     this._marker.addTo(map)
     this._marker.on('click',this._markerClicked);
+    this._onMouseOverMarker.addTo(map)
+    var that = this
+    this._marker.on('mouseover', this._showOnMouseOverMarker.bind(this));
+    this._marker.on('mouseout', this._hideOnMouseOverMarker.bind(this));
   } 
 
   this.setStyle = function(style){
@@ -52,10 +71,6 @@ function LibraryMarker() {
 
   this.setClickCallback = function(callback){
     this._markerClicked = callback
-  }
-
-  this.click = function(){
-    this._markerClicked()
   }
 
   this._icon = function(iconSize){
