@@ -1,9 +1,6 @@
-<ion-view ng-click="changeSideMenuVisibility($event)">
+<ion-view ng-click="$broadcast('changeSideMenuVisibility', $event)">
 <div class="bar bar-header item-input-inset" id="mapHeader">
-  <button class="button button-outline icon ion-navicon-round" 
-  id="menuButton"
-  ng-class="showSideMenu ? 'active' : ''">
-  </button>
+  <side-menu-button></side-menu-button>
   <label class="item-input-wrapper">
     <i class="icon ion-ios-search placeholder-icon"></i>
     <input id="searchField" 
@@ -23,98 +20,8 @@
 
 	<ion-content scroll="false" data-tap-disabled="true">
       <div id="map"></div>
-      <div id="sideMenu" ng-show="showSideMenu">
-        <div class="list">
-          <div class="item" ng-click="openExternalLink('https://github.com/Infolovec/mapakniznic.sk/wiki/O-projekte-Mapa-kni%C5%BEn%C3%ADc')">
-            <i class="icon ion-information-circled"></i> O projekte
-          </div>
-          <div class="item" ng-click="openMenuPopup('listOfLibraries')">
-            <i class="icon ion-android-list"></i> Zoznam knižníc
-          </div>
-          <div class="item" ng-click="openExternalLink('https://github.com/Infolovec/mapakniznic.sk/wiki/Ako-zdie%C4%BEa%C5%A5-odkaz-na-kni%C5%BEnicu')">
-            <i class="icon ion-android-share-alt"></i> Zdieľať odkaz na knižnicu
-          </div>
-          <div class="item" ng-click="openExternalLink('https://github.com/Infolovec/mapakniznic.sk/wiki/Ako-prida%C5%A5-alebo-zmeni%C5%A5-%C3%BAdaje-o-kni%C5%BEnici')">
-            <i class="icon ion-android-create"></i> Pridať alebo opraviť údaje
-          </div>
-        </div>
-      </div>
-      <div class="libraryDetail" 
-      ng-repeat="library in libraries" 
-      ng-show="isDetailVisible(library)">
-          <button class="button button-clear closeLibraryDetail"
-          ng-click="hideLibraryDetail()">
-              <i class="icon ion-close-circled"></i>
-          </button>
-          <div class="info">
-            <img ng-src="{{library.iconURL()}}" class="libraryLogo">
-            <div style="margin-left: 65px;">
-              <div class="name">{{library.name}}</div>
-              <div class="address">{{library.address}}</div>
-              <div class="openingHours" ng-bind-html="library.openingHoursForHumans"></div>
-              <div class="libraryType">Typ knižnice: <abbr ng-attr-title="{{explanationFor(library.libraryType)}}">{{library.libraryType}}</abbr></div>
-              <div class="webpage" ng-show="library.hasWebContact()">
-                <button class="button button-small button-dark icon-left ion-home" ng-click="openExternalLink(library.website)" ng-show="library.website">
-                 Webstránka knižnice
-                </button>
-                <button class="button button-small button-dark icon-left ion-social-facebook" ng-click="openExternalLink(library.facebook)" ng-show="library.facebook">
-                 Facebook 
-                </button>
-                <button class="button button-small button-dark icon-left ion-social-twitter" ng-click="openExternalLink(library.twitter)" ng-show="library.twitter">
-                 Twitter 
-                </button>
-                <button class="button button-small button-dark icon-left ion-social-googleplus" ng-click="openExternalLink(library.googlePlus)" ng-show="library.googlePlus">
-                 Google+ 
-                </button>
-                <button class="button button-small button-dark icon-left ion-android-map" ng-click="openExternalLink(library.osmLink)">
-                 OpenStreetMap
-                </button>
-              </div>
-            </div>
-          </div>
-      </div>
-
-      <div id="listOfLibraries" 		
-       class="menuPopup" 		
-       ng-show="isMenuPopupVisible('listOfLibraries')">		
-            <button 		
-            class="button button-clear closeMenuPopup"		
-             ng-click="hideMenuPopup()">		
-               <i class="icon ion-close-circled"></i>		
-           </button>       		
-            <div class="info" style="height: 100%;">		
-              <h1>Zoznam knižníc v Bratislave</h1>	
-              <div style="margin-bottom: 10px">
-                <button ng-click="applyFilterListOfLibs(null)" 
-                ng-class="listOfLibsFilterEqualsTo(null) ? '' : 'button-outline'"
-                class="button button-dark button-small">
-                  Všetky
-                </button>
-                <button ng-click="applyFilterListOfLibs('verejná')" 
-                ng-class="listOfLibsFilterEqualsTo('verejná') ? '' : 'button-outline'"
-                class="button button-dark button-small">
-                  Verejné
-                </button>
-                <button ng-click="applyFilterListOfLibs('akademická')" 
-                ng-class="listOfLibsFilterEqualsTo('akademická') ? '' : 'button-outline'"
-                class="button button-dark button-small">
-                  Akademické
-                </button>
-                <button ng-click="applyFilterListOfLibs('špeciálna')" 
-                ng-class="listOfLibsFilterEqualsTo('špeciálna') ? '' : 'button-outline'"
-                class="button button-dark button-small">
-                  Špeciálne
-                </button>
-              </div>	
-              <ion-scroll direction="y" style="height: 100%;">
-                <ul>		
-                  <li ng-repeat="library in libraries | orderBy:'name' | filter:isLibraryMatchingFilter" 
-                  ng-click="library.marker.click()">
-                        {{library.name}}
-                  </li>
-                </ul>		
-              </ion-scroll>		
-           </div>		
-      </div>
+      <side-menu></side-menu>
+      <library-details libraries="libraries"></library-details>
+      <list-of-all-libs libraries="libraries"></list-of-all-libs>
 	</ion-content>
 </ion-view>

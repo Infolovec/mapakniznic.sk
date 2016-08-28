@@ -1,0 +1,34 @@
+<div class="libraryDetail" 
+      ng-repeat="library in libraries" 
+      ng-show="isDetailVisible(library)">
+  <button class="button button-clear closeLibraryDetail"
+    ng-click="hideLibraryDetail()">
+    <i class="icon ion-close-circled"></i>
+  </button>
+  <div class="info">
+    <img ng-src="{{library.iconURL()}}" class="libraryLogo">
+    <div style="margin-left: 65px;">
+      <div class="name">{{library.name}}</div>
+      <div class="address">{{library.address}}</div>
+      <div class="openingHours" ng-bind-html="library.openingHoursForHumans"></div>
+      <div class="libraryType">Typ knižnice: <abbr ng-attr-title="{{explanationFor(library.libraryType)}}">{{library.libraryType}}</abbr></div>
+      <div class="webpage" ng-show="library.hasWebContact()">
+        <button class="button button-small button-dark icon-left ion-home" ng-click="openExternalLink(library.website)" ng-show="library.website">
+          Webstránka knižnice
+        </button>
+        <button class="button button-small button-dark icon-left ion-social-facebook" ng-click="openExternalLink(library.facebook)" ng-show="library.facebook">
+          Facebook 
+        </button>
+        <button class="button button-small button-dark icon-left ion-social-twitter" ng-click="openExternalLink(library.twitter)" ng-show="library.twitter">
+          Twitter 
+        </button>
+        <button class="button button-small button-dark icon-left ion-social-googleplus" ng-click="openExternalLink(library.googlePlus)" ng-show="library.googlePlus">
+          Google+ 
+        </button>
+        <button class="button button-small button-dark icon-left ion-android-map" ng-click="openExternalLink(library.osmLink)">
+          OpenStreetMap
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

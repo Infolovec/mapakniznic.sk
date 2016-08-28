@@ -1,0 +1,42 @@
+<div id="listOfLibraries" 		
+  class="menuPopup" 		
+  ng-show="isVisible">		
+      <button 		
+      class="button button-clear closeMenuPopup"		
+        ng-click="hide()">		
+          <i class="icon ion-close-circled"></i>		
+      </button>       		
+      <div class="info" style="height: 100%;">		
+        <h1>Zoznam knižníc v Bratislave</h1>	
+        <div style="margin-bottom: 10px">
+          <button ng-click="applyFilterListOfLibs(null)" 
+          ng-class="listOfLibsFilterEqualsTo(null) ? '' : 'button-outline'"
+          class="button button-dark button-small">
+            Všetky
+          </button>
+          <button ng-click="applyFilterListOfLibs('verejná')" 
+          ng-class="listOfLibsFilterEqualsTo('verejná') ? '' : 'button-outline'"
+          class="button button-dark button-small">
+            Verejné
+          </button>
+          <button ng-click="applyFilterListOfLibs('akademická')" 
+          ng-class="listOfLibsFilterEqualsTo('akademická') ? '' : 'button-outline'"
+          class="button button-dark button-small">
+            Akademické
+          </button>
+          <button ng-click="applyFilterListOfLibs('špeciálna')" 
+          ng-class="listOfLibsFilterEqualsTo('špeciálna') ? '' : 'button-outline'"
+          class="button button-dark button-small">
+            Špeciálne
+          </button>
+        </div>	
+        <ion-scroll direction="y" style="height: 100%;">
+          <ul>		
+            <li ng-repeat="library in libraries | orderBy:'name' | filter:isLibraryMatchingFilter" 
+            ng-click="showLibraryDetail(library)">
+                  {{library.name}}
+            </li>
+          </ul>		
+        </ion-scroll>		
+      </div>		
+</div>
