@@ -67,7 +67,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
       $scope.showLibraryDetail($scope.searchFoundLibraries[0])
 
     updateLibraryMarkersAppearance()
-    $('#searchField').blur() // hide smartphone keyboard
+    document.getElementById('searchField').blur() // hide smartphone keyboard
   }
 
   // LIBRARY DETAIL /////////////////////////////////////////////
