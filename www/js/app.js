@@ -42,6 +42,10 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
   $scope.searchFoundLibraries = []
   $scope.libraries = []
 
+  $scope.openExternalLink = function(url){
+    $window.open(url, '_blank');
+  }
+
   $scope.clearSearch = function(){
     $scope.searchFoundLibraries = []
     $scope.search.query = ''
@@ -66,6 +70,8 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
     $('#searchField').blur() // hide smartphone keyboard
   }
 
+  // LIBRARY DETAIL /////////////////////////////////////////////
+
   $scope.visibleLibraryUID = null
   $scope.isDetailVisible = function(library){
     return($scope.visibleLibraryUID == library.uid)
@@ -83,10 +89,6 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
     manuallySelectedLibrary = null
     $location.path('/');
     updateLibraryMarkersAppearance()
-  }
-
-  $scope.openExternalLink = function(url){
-    $window.open(url, '_blank');
   }
 
   var manuallySelectedLibrary = null
@@ -147,6 +149,8 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
     }
   }
 
+  // SIDE MENU /////////////////////////////////////////////
+
   $scope.showSideMenu = false
   $scope.changeSideMenuVisibility = function(event){
     if (event.target.id == 'menuButton') 
@@ -158,7 +162,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
   $scope.explanationFor = function(libraryType){
       return 'TODO doplnit vysvetlenie typov kniznic'
   }
-
+  
   $scope.visibleMenuPopupID = null
    $scope.isMenuPopupVisible = function(popupID){
      return($scope.visibleMenuPopupID == popupID)
@@ -172,4 +176,22 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
      $scope.hideLibraryDetail()
      $scope.visibleMenuPopupID = popupID
    }  
+
+  // LIST OF ALL LIBRARIES /////////////////////////////////////////////
+
+  $scope.listOfAllLibsFilter = null
+  $scope.applyFilterListOfLibs = function(libType){
+    $scope.listOfAllLibsFilter = libType
+  }
+
+  $scope.listOfLibsFilterEqualsTo = function(libType){
+    return($scope.listOfAllLibsFilter == libType)
+  }
+
+  $scope.isLibraryMatchingFilter = function(library){
+    if($scope.listOfAllLibsFilter){
+      return(library.libraryType == $scope.listOfAllLibsFilter)
+    } else 
+      return true
+  }
 })
