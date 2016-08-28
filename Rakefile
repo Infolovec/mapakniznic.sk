@@ -52,9 +52,9 @@ task :'data' do
     libraries2 << lib 
   end
 
-  libraries_service_js = File.read './www/js/services/libraries_service.template.js'
+  libraries_service_js = File.read './www/js/services/raw_libraries_data_service.template.js'
   libraries_service_js.sub! 'DATA', libraries2.to_json
-  File.open('./www/js/services/libraries_service.js', 'w') {|f| f.write libraries_service_js}
+  File.open('./www/js/services/raw_libraries_data_service.js', 'w') {|f| f.write libraries_service_js}
 
   puts 'services/libraries_service.js successfully updated'
 end

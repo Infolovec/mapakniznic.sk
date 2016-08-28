@@ -37,7 +37,7 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
 
 })
 
-mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $location, $window, rawLibraryData, removeDiacritics) {
+mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $location, $window, rawLibraryDataService, removeDiacritics) {
   $scope.search = {query: ''}
   $scope.searchFoundLibraries = []
   $scope.libraries = []
@@ -118,7 +118,7 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
 
   var leafletMap = new LeafletMap()
   leafletMap.initialize()
-  rawLibraryData.getAll().forEach(function(rawLibraryDataEntry) {
+  rawLibraryDataService.getAll().forEach(function(rawLibraryDataEntry) {
     var library = new Library(removeDiacritics)
     library.load(rawLibraryDataEntry)
     
