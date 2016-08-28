@@ -62,6 +62,7 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap) {
 
   service.setSearchFoundLibraries = function(a){
     this._displayedLibraryDetail = null
+    this._listOfAllLibrariesVisible = false
     this._searchFoundLibraries = a
     if(this._searchFoundLibraries.length == 1)
       service.showLibraryDetail(this._searchFoundLibraries[0])
