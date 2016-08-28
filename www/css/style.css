@@ -55,15 +55,22 @@
   font-size: 18px;
 }
 
+.menuPopup#listOfLibraries .button.button-dark.button-outline {
+  background-color: #f9ffe6;
+  border-color: #949494;
+}
 .menuPopup#listOfLibraries .info ul li {
   padding: 3px 5px 3px 5px;
   cursor: pointer;
   color: #171717;
-  border-radius: 3px;
+  background-color: #f9ffe6;
+
 }
 
 .menuPopup#listOfLibraries .info ul li:nth-child(odd) {
   background-color: #e3e4bc;
+  border-top: 1px solid #939479;
+  border-bottom: 1px solid #939479;
 }
 
 .menuPopup#listOfLibraries .info ul li:hover {
