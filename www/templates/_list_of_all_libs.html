@@ -32,7 +32,7 @@
         </div>	
         <ion-scroll direction="y" style="height: 100%;">
           <ul>		
-            <li ng-repeat="library in libraries | orderBy:'name' | filter:isLibraryMatchingFilter" 
+            <li ng-repeat="library in libraries.all() | orderBy:'name' | filter:isLibraryMatchingFilter" 
             ng-click="showLibraryDetail(library)">
                   {{library.name}}
             </li>

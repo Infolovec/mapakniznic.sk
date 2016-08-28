@@ -1,6 +1,6 @@
-mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $location, $window, rawLibraryDataService, $rootScope, uiState, leafletMap, removeDiacritics) {
+mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $rootScope, uiState, leafletMap, libraries) {
   leafletMap.initialize()
-  $scope.libraries = []
+  libraries.load()
 
   $scope.checkSideMenuVisibility = function(clickEvent){
     $rootScope.$broadcast('changeSideMenuVisibility', clickEvent)
@@ -8,14 +8,14 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
 
   $scope.$on('updateLibraryMarkersAppearance', function(event) {
     if(uiState.searchFoundLibraries().length > 0){
-      $scope.libraries.forEach(function(library){
+      libraries.all().forEach(function(library){
         library.marker.setStyle('hide')
       })    
       uiState.searchFoundLibraries().forEach(function(library){
         library.marker.setStyle('highlight')
       })
     } else {
-      $scope.libraries.forEach(function(library){
+      libraries.all().forEach(function(library){
         library.marker.setStyle('normal')
       })          
     }
@@ -29,30 +29,12 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
     leafletMap.refreshMarkersAppearance(librariesToFitView);
   })
 
-  rawLibraryDataService.getAll().forEach(function(rawLibraryDataEntry) {
-    var library = new Library(removeDiacritics)
-    library.load(rawLibraryDataEntry)
-    
-    var libraryMarker = library.createMarker()
-    libraryMarker.setClickCallback(function(){
-        $timeout(function(){
-          uiState.showLibraryDetail(library)
-        })
-    })
-
-    leafletMap.addMarker(libraryMarker)
-    $scope.libraries.push(library)
-  })
-
   $scope.$broadcast('updateLibraryMarkersAppearance');
 
   if($stateParams.libraryName){
-    var preselectedLibrary = $scope.libraries.find(function(library){
-      return ($stateParams.libraryName == library.nameForURL)
-    })
+    var preselectedLibrary = libraries.findByNameForURL($stateParams.libraryName)
     if(preselectedLibrary)
-      preselectedLibrary.marker.click()
+      uiState.showLibraryDetail(preselectedLibrary)
   }
-
 
 })

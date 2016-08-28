@@ -1,9 +1,7 @@
-mapaKniznicApp.directive('topBarWithSearch', function($rootScope, uiState, removeDiacritics) {
+mapaKniznicApp.directive('topBarWithSearch', function($rootScope, uiState, removeDiacritics, libraries) {
   return {
     restrict: 'E',
-    scope: {
-      libraries: '=libraries'
-    },
+    scope: {},
     templateUrl: 'templates/_search.html',
     link: function($scope, element, attrs) {
       $scope.search = {query: ''}
@@ -23,10 +21,7 @@ mapaKniznicApp.directive('topBarWithSearch', function($rootScope, uiState, remov
       $scope.doSearch = function(){
         var results = []
         if($scope.search.query.length > 2){
-          results = $scope.libraries.filter(function(library){
-            var q = removeDiacritics.replace($scope.search.query.toLowerCase())
-            return(library.isMatchingSearchString(q))
-          })
+          results = libraries.search($scope.search.query)
         }
         
         uiState.setSearchFoundLibraries(results)

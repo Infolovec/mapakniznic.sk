@@ -1,18 +1,17 @@
-mapaKniznicApp.directive('libraryDetails', function($location, $window, uiState) {
+mapaKniznicApp.directive('libraryDetails', function($location, $window, uiState, libraries) {
   return {
     restrict: 'E',
-    scope: {
-      libraries: '=libraries'
-    },
+    scope: {},
     templateUrl: 'templates/_libraries.html',
     link: function($scope, element, attrs) {
+      $scope.libraries = libraries
+      
       $scope.isDetailVisible = function(library){
         return uiState.isLibraryDetailVisible(library)
       }   
 
       $scope.hideLibraryDetail = function(){
         uiState.hideLibraryDetail()
-        // TODO updateLibraryMarkersAppearance()
       }         
 
       $scope.openExternalLink = function(url){

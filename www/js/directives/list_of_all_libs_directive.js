@@ -1,11 +1,11 @@
-mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState) {
+mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState, libraries) {
   return {
     restrict: 'E',
-    scope: {
-      libraries: '=libraries'
-    },
+    scope: {},
     templateUrl: 'templates/_list_of_all_libs.html',
     link: function($scope, element, attrs) {  
+      $scope.libraries = libraries
+      
       $scope.hide = function(){
         uiState.hideListOfAllLibraries()
       }

@@ -1,5 +1,5 @@
 <div class="libraryDetail" 
-      ng-repeat="library in libraries" 
+      ng-repeat="library in libraries.all()" 
       ng-show="isDetailVisible(library)">
   <button class="button button-clear closeLibraryDetail"
     ng-click="hideLibraryDetail()">
