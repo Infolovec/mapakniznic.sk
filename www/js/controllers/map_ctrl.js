@@ -1,46 +1,17 @@
-mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $location, $window, rawLibraryDataService, removeDiacritics) {
-  $scope.search = {query: ''}
-  $scope.searchFoundLibraries = []
+mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $location, $window, rawLibraryDataService, $rootScope, uiState, leafletMap, removeDiacritics) {
+  leafletMap.initialize()
   $scope.libraries = []
 
-  $scope.$on('clearSearchResults', function(event) {
-    $scope.clearSearch()
- });  
-
-  $scope.clearSearch = function(){
-    $scope.searchFoundLibraries = []
-    $scope.search.query = ''
-    $scope.$broadcast('updateLibraryMarkersAppearance');
-    $scope.$broadcast('hideLibraryDetail');
-    manuallySelectedLibrary = null
+  $scope.checkSideMenuVisibility = function(clickEvent){
+    $rootScope.$broadcast('changeSideMenuVisibility', clickEvent)
   }
-
-  $scope.doSearch = function(){
-    $scope.$broadcast('hideLibraryDetail');
-    manuallySelectedLibrary = null
-    if($scope.search.query.length > 2){
-      $scope.searchFoundLibraries = $scope.libraries.filter(function(library){
-        var q = removeDiacritics.replace($scope.search.query.toLowerCase())
-        return(library.isMatchingSearchString(q))
-      })
-    } else 
-      $scope.searchFoundLibraries = []
-
-    if($scope.searchFoundLibraries.length == 1)
-      $scope.$broadcast('showLibraryDetail', $scope.searchFoundLibraries[0]);
-
-    $scope.$broadcast('updateLibraryMarkersAppearance')
-    document.getElementById('searchField').blur() // hide smartphone keyboard
-  }
-
-  var manuallySelectedLibrary = null
 
   $scope.$on('updateLibraryMarkersAppearance', function(event) {
-    if($scope.searchFoundLibraries.length > 0){
+    if(uiState.searchFoundLibraries().length > 0){
       $scope.libraries.forEach(function(library){
         library.marker.setStyle('hide')
       })    
-      $scope.searchFoundLibraries.forEach(function(library){
+      uiState.searchFoundLibraries().forEach(function(library){
         library.marker.setStyle('highlight')
       })
     } else {
@@ -49,31 +20,24 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $timeout, $l
       })          
     }
 
-    librariesToFitView = $scope.searchFoundLibraries
-    if(manuallySelectedLibrary){
-      manuallySelectedLibrary.marker.setStyle('highlight')
+    librariesToFitView = uiState.searchFoundLibraries()
+    if(uiState.currentlyDisplayedLibraryDetail()){
+      uiState.currentlyDisplayedLibraryDetail().marker.setStyle('highlight')
       librariesToFitView = null
     }
     
     leafletMap.refreshMarkersAppearance(librariesToFitView);
   })
 
-  var leafletMap = new LeafletMap()
-  leafletMap.initialize()
   rawLibraryDataService.getAll().forEach(function(rawLibraryDataEntry) {
     var library = new Library(removeDiacritics)
     library.load(rawLibraryDataEntry)
     
     var libraryMarker = library.createMarker()
     libraryMarker.setClickCallback(function(){
-      manuallySelectedLibrary = library
-      
         $timeout(function(){
-          $scope.$broadcast('showLibraryDetail', library);
+          uiState.showLibraryDetail(library)
         })
-
-      $scope.$broadcast('updateLibraryMarkersAppearance');
-      leafletMap.focusTo(libraryMarker)
     })
 
     leafletMap.addMarker(libraryMarker)

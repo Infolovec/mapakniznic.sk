@@ -1,4 +1,4 @@
-mapaKniznicApp.directive('libraryDetails', function($location, $window) {
+mapaKniznicApp.directive('libraryDetails', function($location, $window, uiState) {
   return {
     restrict: 'E',
     scope: {
@@ -6,24 +6,12 @@ mapaKniznicApp.directive('libraryDetails', function($location, $window) {
     },
     templateUrl: 'templates/_libraries.html',
     link: function($scope, element, attrs) {
-      $scope.visibleLibraryUID = null
       $scope.isDetailVisible = function(library){
-        return($scope.visibleLibraryUID == library.uid)
-      }
-
-      $scope.$on('showLibraryDetail', function(event, library) {
-          $scope.visibleLibraryUID = library.uid
-          $location.path('/'+library.nameForURL);
-      });
-
-      $scope.$on('hideLibraryDetail', function(event) {
-        $scope.hideLibraryDetail()
-      });      
+        return uiState.isLibraryDetailVisible(library)
+      }   
 
       $scope.hideLibraryDetail = function(){
-        $scope.visibleLibraryUID = null
-        manuallySelectedLibrary = null
-        $location.path('/');
+        uiState.hideLibraryDetail()
         // TODO updateLibraryMarkersAppearance()
       }         
 

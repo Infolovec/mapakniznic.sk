@@ -1,4 +1,4 @@
-mapaKniznicApp.directive('listOfAllLibs', function($rootScope) {
+mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState) {
   return {
     restrict: 'E',
     scope: {
@@ -6,15 +6,13 @@ mapaKniznicApp.directive('listOfAllLibs', function($rootScope) {
     },
     templateUrl: 'templates/_list_of_all_libs.html',
     link: function($scope, element, attrs) {  
-      $scope.$on('showListOfAllLibraries', function() {
-        $scope.isVisible = true 
-      });   
-
       $scope.hide = function(){
-        $scope.isVisible = false  
+        uiState.hideListOfAllLibraries()
       }
 
-      $scope.isVisible = false  
+      $scope.isVisible = function(){
+        return(uiState.listOfAllLibrariesIsVisible())
+      }  
 
       $scope.listOfAllLibsFilter = null
       $scope.applyFilterListOfLibs = function(libType){
@@ -33,9 +31,8 @@ mapaKniznicApp.directive('listOfAllLibs', function($rootScope) {
       } 
 
       $scope.showLibraryDetail = function(library){
-        $scope.isVisible = false  
-        library.marker.click()
-        $rootScope.$broadcast('clearSearchResults')
+        var doClearSearchResults = true
+        uiState.showLibraryDetail(library, doClearSearchResults)
       }
     }    
   };

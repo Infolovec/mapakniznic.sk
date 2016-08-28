@@ -1,0 +1,18 @@
+<div class="bar bar-header item-input-inset" id="mapHeader">
+  <side-menu-button></side-menu-button>
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input id="searchField" 
+    type="search" 
+    placeholder="Nájdi knižnicu"
+    ng-model="search.query"
+    ng-model-options="{ debounce: 800 }"
+    ng-change="doSearch()">
+  </label>
+  <button ng-show="search.query.length > 0" 
+    class="button button-clear" 
+    id="clearSearch" 
+    ng-click="clearSearch()">
+    <span>Výsledkov: {{searchFoundLibraries().length}}</span> <i class="icon ion-close-circled"></i>
+  </button>
+</div>

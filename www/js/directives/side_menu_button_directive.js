@@ -1,4 +1,4 @@
-mapaKniznicApp.directive('sideMenuButton', function() {
+mapaKniznicApp.directive('sideMenuButton', function(uiState) {
   return {
     restrict: 'E',
     scope: {
@@ -6,13 +6,12 @@ mapaKniznicApp.directive('sideMenuButton', function() {
     template: `
     <button class="button button-outline icon ion-navicon-round" 
       id="menuButton"
-      ng-class="buttonIsPressed ? 'active' : ''">
+      ng-class="buttonIsPressed() ? 'active' : ''">
     </button>`,
     link: function($scope, element, attrs) {
-      $scope.buttonIsPressed = false
-      $scope.$on('changeSideMenuButtonAppearance', function(broadcastEvent, isPressed) {
-        $scope.buttonIsPressed = isPressed
-      });
+      $scope.buttonIsPressed = function(){
+        return(uiState.sideMenuIsVisible())
+      }
     }    
   };
 });
