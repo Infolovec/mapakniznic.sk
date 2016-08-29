@@ -66,3 +66,10 @@ task :'update-data' do
     Rake::Task["release"].execute
   end
 end
+
+task 'update-data-periodically' do
+  while true do
+    Rake::Task["update-data"].execute
+    sleep 5*60
+  end
+end
