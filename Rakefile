@@ -1,3 +1,6 @@
+require 'uri'
+require 'json'
+
 task :release do
   html = File.read './www/index-dev.html'
   now = Time.now.to_i
@@ -5,13 +8,10 @@ task :release do
   html2 = html.gsub('?version', "?version=#{now}")
   File.open('./www/index.html', 'wb'){|f| f.write html2}
 
-  puts 'www/index.html successfully refreshed'
+  puts 'rake release: www/index.html successfully refreshed'
 end
 
-task :'data' do
-  require 'uri'
-  require 'json'
-
+task :'update-data' do
   # https://docs.google.com/spreadsheets/d/1DM8i_Rx0ZzmVN6VaJA1et8ZQsSghIx7fZj2iy93j3zI/edit#gid=1209775770
 
   library_nodes = []
@@ -54,7 +54,15 @@ task :'data' do
 
   libraries_service_js = File.read './www/js/services/raw_libraries_data_service.template.js'
   libraries_service_js.sub! 'DATA', libraries2.to_json
-  File.open('./www/js/services/raw_libraries_data_service.js', 'w') {|f| f.write libraries_service_js}
 
-  puts 'services/libraries_service.js successfully updated'
+  v1 = File.read './www/js/services/raw_libraries_data_service.js'
+  v2 = libraries_service_js
+
+  if(v1 == v2)
+    puts 'OSM data not changed'
+  else 
+    puts 'OSM data has changed: services/libraries_service.js updated'
+    File.open('./www/js/services/raw_libraries_data_service.js', 'w') {|f| f.write libraries_service_js}
+    Rake::Task["release"].execute
+  end
 end
