@@ -33,7 +33,9 @@ function Library(removeDiacritics) {
       this.googlePlus = '//'+this.googlePlus    
 
     this.openingHours = rawLibraryData.tags.opening_hours
-    this.address = rawLibraryData.tags['addr:street'] + ' ' + rawLibraryData.tags['addr:streetnumber']
+    this.address = rawLibraryData.tags['addr:street']
+    if(rawLibraryData.tags['addr:streetnumber'])
+      this.address += ' ' + rawLibraryData.tags['addr:streetnumber']
 
     this._setOpeningHoursStatus()
 
