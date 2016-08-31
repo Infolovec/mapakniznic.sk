@@ -62,7 +62,7 @@ function Library(removeDiacritics) {
   }
 
   this._openingHoursInSVK = function(){
-    return(this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi").replace("Sa", "So").replace("Su", "Ne"))
+    return(this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi").replace("Sa", "So").replace("Su", "Ne").replace("off", "zatvorené"))
   }
 
   this.createMarker = function(){

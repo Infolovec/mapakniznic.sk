@@ -80,3 +80,17 @@ task 'update-data-periodically' do
     sleep 5*60
   end
 end
+
+# /etc/supervisor/conf.d/mapakniznic.sk.data-update.conf 
+# [program:mapakniznic.sk-data-update]
+# command=rake update-data-periodically
+# autostart=true
+# autorestart=true
+# startsecs=1
+# startretries=1
+# user=USER
+# directory=/home/USER/repos/mapakniznic.sk
+# environment=LANG="en_US.UTF-8",LANGUAGE="en_US.UTF-8",LC_ALL="en_US.UTF-8"
+# logfile_maxbytes=1000000
+# logfile_backups=3
+# redirect_stderr=true
