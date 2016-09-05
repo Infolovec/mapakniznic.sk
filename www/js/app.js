@@ -23,7 +23,7 @@ var mapaKniznicApp = angular.module('mapaKniznicApp', ['ionic', 'txx.diacritics'
   });
 })
 
-mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
+mapaKniznicApp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
 
     .state('map', {
@@ -34,6 +34,8 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider) {
   })
 
   $urlRouterProvider.otherwise('/');
+
+  $locationProvider.html5Mode(true);
 
 })
 
