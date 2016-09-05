@@ -1,5 +1,7 @@
 require 'uri'
 require 'json'
+require "i18n"
+I18n.config.available_locales = :en
 
 task :release do
   html = File.read './www/index-dev.html'
@@ -9,6 +11,8 @@ task :release do
   File.open('./www/index.html', 'wb'){|f| f.write html2}
 
   $stdout << "rake release: www/index.html successfully refreshed\n"
+
+  Rake::Task["sitemap"].execute
 end
 
 task :'update-data' do
@@ -50,6 +54,7 @@ task :'update-data' do
     libraries2 = []
     libraries1['elements'].each do |lib|
       lib['library_type'] = osm_url_to_library_type["#{lib['type']}/#{lib['id']}"]
+      lib['url_name'] = I18n.transliterate(lib['tags']['name']).downcase.gsub!(/[^a-z0-9]/,'-').gsub!(/(-)+/,'-')
       libraries2 << lib 
     end
 
@@ -94,3 +99,14 @@ end
 # logfile_maxbytes=1000000
 # logfile_backups=3
 # redirect_stderr=true
+
+task :sitemap do  
+  raw = File.read 'www/js/services/raw_libraries_data_service.js'
+  lib_url_names = raw.scan(/url_name\"\:\"([\w\d\-]+)\"/).flatten
+  sitemap = lib_url_names.collect do |library_url_name|
+    "http://mapakniznic.sk/#{library_url_name}"
+  end.join("\n")
+
+  File.open('./www/sitemap.txt', 'wb'){|f| f.write sitemap}
+  $stdout << "www/sitemap.txt written"
+end

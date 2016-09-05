@@ -34,7 +34,6 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider, $locationProv
   })
 
   $urlRouterProvider.otherwise('/');
-
   $locationProvider.html5Mode(true);
 
 })
