@@ -54,7 +54,7 @@ task :'update-data' do
     libraries2 = []
     libraries1['elements'].each do |lib|
       lib['library_type'] = osm_url_to_library_type["#{lib['type']}/#{lib['id']}"]
-      lib['url_name'] = I18n.transliterate(lib['tags']['name']).downcase.gsub!(/[^a-z0-9]/,'-').gsub!(/(-)+/,'-')
+      lib['url_name'] = I18n.transliterate(lib['tags']['name']).downcase.gsub(/[^a-z0-9]/,'-').gsub(/(-)+/,'-')
       libraries2 << lib 
     end
 
