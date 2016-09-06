@@ -99,22 +99,15 @@
   margin-top: 10px;
 }
 
+.libraryDetail .info table {
+  line-height: 16px; 
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
+
 .libraryDetail .info .libraryType abbr {
   border-bottom: 1px black dotted;
   cursor: help;
-}
-
-.libraryDetail .info .address, .libraryDetail .info .openingHours {
-  margin-bottom: -4px;
-}
-
-.libraryDetail .info .address {
-  margin-top: 5px;
-}
-
-
-.libraryDetail .info .webpage{
-  margin-top: 7px;
 }
 
 .libraryDetail .info button {
