@@ -104,11 +104,22 @@
   cursor: help;
 }
 
-.libraryDetail .info .webpage {
-  margin-top: 5px;
-  margin-bottom: 5px;
+.libraryDetail .info .address, .libraryDetail .info .openingHours {
+  margin-bottom: -4px;
 }
 
+.libraryDetail .info .address {
+  margin-top: 5px;
+}
+
+
+.libraryDetail .info .webpage{
+  margin-top: 7px;
+}
+
+.libraryDetail .info .webpage button {
+  margin-bottom: 5px;
+}
 .libraryDetail .info .webpage button:hover{
   background-color: black;
 }
@@ -116,16 +127,25 @@
 .libraryDetail .info .status.isOpen {
   color: green;
   font-weight: 900;
+  font-size: 80%;
 }
 
 .libraryDetail .info .status.isClosed {
   color: red;
   font-weight: 900;
+  font-size: 80%;
 }
 
 .libraryDetail .info .name {
   font-size: 120%;
   font-weight: 500;
+}
+
+.libraryDetail .info span.descKey {
+  font-size: 80%;
+  font-weight: 700;
+  color: #565648;
+  margin-right: 3px;
 }
 
 .libraryDetail .button.closeLibraryDetail, .menuPopup .button.closeMenuPopup {
@@ -175,4 +195,3 @@
   font-size: 90%;
   font-weight: 400;
 }
-

@@ -8,27 +8,43 @@
   <div class="info">
     <img ng-src="{{library.iconURL()}}" class="libraryLogo">
     <div style="margin-left: 65px;">
+
       <div class="name">{{library.name}}</div>
-      <div class="address">{{library.address}}</div>
       <div class="openingHours" ng-bind-html="library.openingHoursForHumans"></div>
-      <div class="libraryType">Typ knižnice: <abbr ng-attr-title="{{explanationFor(library.libraryType)}}">{{library.libraryType}}</abbr></div>
-      <div class="webpage" ng-show="library.hasWebContact()">
-        <button class="button button-small button-dark icon-left ion-home" ng-click="openExternalLink(library.website)" ng-show="library.website">
-          Webstránka knižnice
-        </button>
-        <button class="button button-small button-dark icon-left ion-social-facebook" ng-click="openExternalLink(library.facebook)" ng-show="library.facebook">
-          Facebook 
-        </button>
-        <button class="button button-small button-dark icon-left ion-social-twitter" ng-click="openExternalLink(library.twitter)" ng-show="library.twitter">
-          Twitter 
-        </button>
-        <button class="button button-small button-dark icon-left ion-social-googleplus" ng-click="openExternalLink(library.googlePlus)" ng-show="library.googlePlus">
-          Google+ 
-        </button>
-        <button class="button button-small button-dark icon-left ion-android-map" ng-click="openExternalLink(library.osmLink)">
-          OpenStreetMap
-        </button>
+      <div class="address"><span class="descKey">ADRESA</span> {{library.address}}</div>
+      
+      <div class="openingHours">
+        <span class="descKey">OTV. HODINY</span>
+        {{library.openingHoursInSVK}}
       </div>
+      <div class="libraryType">
+        <span class="descKey">TYP KNIŽNICE</span>
+        <abbr ng-attr-title="{{explanationFor(library.libraryType)}}">{{library.libraryType}}</abbr>
+      </div>
+      <div class="webpage" ng-show="library.hasWebContact()">
+        <div>
+          <button class="button button-small button-dark icon-left ion-home" ng-click="openExternalLink(library.website)" ng-show="library.website">
+            Webstránka knižnice
+          </button>
+          <button class="button button-small button-dark icon-left ion-social-facebook" ng-click="openExternalLink(library.facebook)" ng-show="library.facebook">
+            Facebook 
+          </button>
+          <button class="button button-small button-dark icon-left ion-social-twitter" ng-click="openExternalLink(library.twitter)" ng-show="library.twitter">
+            Twitter 
+          </button>
+          <button class="button button-small button-dark icon-left ion-social-googleplus" ng-click="openExternalLink(library.googlePlus)" ng-show="library.googlePlus">
+            Google+ 
+          </button>
+          <button class="button button-small button-dark icon-left ion-android-map" ng-click="openExternalLink(library.osmLink)">
+            OpenStreetMap
+          </button>
+        </div>
+      </div>
+      <!--<div class="shareLinkToLibrary">
+        <button class="button button-small icon-left ion-android-share-alt" ng-click="">
+          Zdieľať odkaz na knižnicu
+        </button>
+      </div>-->
     </div>
   </div>
 </div>

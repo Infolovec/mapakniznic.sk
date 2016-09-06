@@ -40,14 +40,15 @@ function Library(removeDiacritics) {
     this._setOpeningHoursStatus()
 
     if(this._openingHoursStatus == 'open'){
-      this.openingHoursForHumans = 'Knižnica je <span class="status isOpen">otvorená</span><br />'
-      this.openingHoursForHumans += this._openingHoursInSVK()
+      this.openingHoursForHumans = 'Knižnica je <span class="status isOpen">OTVORENÁ</span><br />'
     } else if(this._openingHoursStatus == 'closed'){
-      this.openingHoursForHumans = 'Knižnica je <span class="status isClosed">zatvorená</span><br />'
-      this.openingHoursForHumans += this._openingHoursInSVK()
-    } else {
-      this.openingHoursForHumans = 'Otváracie hodiny nie sú známe'
+      this.openingHoursForHumans = 'Knižnica je <span class="status isClosed">ZATVORENÁ</span><br />'    
     }
+
+    if(this.openingHours)
+      this.openingHoursInSVK = this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi").replace("Sa", "So").replace("Su", "Ne").replace("off", "zatvorené")
+    else
+      this.openingHoursInSVK = 'nie sú známe'
   }
 
   this.iconURL = function(){
@@ -61,10 +62,6 @@ function Library(removeDiacritics) {
 
   this.hasWebContact = function(){
     return(this.website || this.facebook || this.twitter || this.googlePlus )
-  }
-
-  this._openingHoursInSVK = function(){
-    return(this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi").replace("Sa", "So").replace("Su", "Ne").replace("off", "zatvorené"))
   }
 
   this.createMarker = function(){
