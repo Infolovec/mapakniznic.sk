@@ -1,4 +1,4 @@
-mapaKniznicApp.directive('libraryDetails', function($location, $window, uiState, libraries) {
+mapaKniznicApp.directive('libraryDetails', function($location, $window, uiState, libraries, Socialshare) {
   return {
     restrict: 'E',
     scope: {},
@@ -20,6 +20,16 @@ mapaKniznicApp.directive('libraryDetails', function($location, $window, uiState,
 
       $scope.explanationFor = function(libraryType){
           return 'TODO doplnit vysvetlenie typov kniznic'
+      }
+
+      $scope.socialShare = function(provider, library){
+        var url = 'http://mapakniznic.sk/' + library.nameForURL
+        Socialshare.share({
+          'provider': provider,
+          'attrs': {
+            'socialshareUrl': url
+          }
+        });
       }
     }    
   };

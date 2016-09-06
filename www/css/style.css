@@ -117,10 +117,11 @@
   margin-top: 7px;
 }
 
-.libraryDetail .info .webpage button {
+.libraryDetail .info button {
   margin-bottom: 5px;
+  background-color: #5c5d4d;
 }
-.libraryDetail .info .webpage button:hover{
+.libraryDetail .info button:hover{
   background-color: black;
 }
 

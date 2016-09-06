@@ -24,7 +24,7 @@
       <div class="webpage" ng-show="library.hasWebContact()">
         <div>
           <button class="button button-small button-dark icon-left ion-home" ng-click="openExternalLink(library.website)" ng-show="library.website">
-            Webstránka knižnice
+            Web knižnice
           </button>
           <button class="button button-small button-dark icon-left ion-social-facebook" ng-click="openExternalLink(library.facebook)" ng-show="library.facebook">
             Facebook 
@@ -40,11 +40,24 @@
           </button>
         </div>
       </div>
-      <!--<div class="shareLinkToLibrary">
-        <button class="button button-small icon-left ion-android-share-alt" ng-click="">
+      <div class="sharyLibrary">
+        <!--<button class="button button-small button-dark icon-left ion-android-share-alt" ng-click="toggleshowShareLibraryDetails()">
           Zdieľať odkaz na knižnicu
-        </button>
-      </div>-->
+        </button>-->
+        <span class="descKey">ZDIEĽAŤ ODKAZ NA KNIŽNICU</span>
+        <div>
+
+          <button class="button button-small button-dark icon-left ion-link">
+            URL
+          </button>          
+          <button ng-click="socialShare('facebook', library)" 
+          class="button button-small button-dark icon ion-social-facebook" >
+          </button>
+          <button ng-click="socialShare('twitter', library)" 
+          class="button button-small button-dark icon ion-social-twitter">
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
