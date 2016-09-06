@@ -9,13 +9,13 @@
     <img ng-src="{{library.iconURL()}}" class="libraryLogo">
     <div style="margin-left: 65px;">
 
-      <div class="name">{{library.name}}</div>
+      <div class="name" ng-bind-html="library.name | niceDashes"></div>
       <div class="openingHours" ng-bind-html="library.openingHoursForHumans"></div>
       <div class="address"><span class="descKey">ADRESA</span> {{library.address}}</div>
       
       <div class="openingHours">
         <span class="descKey">OTV. HODINY</span>
-        {{library.openingHoursInSVK}}
+        <span ng-bind-html="library.openingHoursInSVK"></span>
       </div>
       <div class="libraryType">
         <span class="descKey">TYP KNIŽNICE</span>

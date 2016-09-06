@@ -46,7 +46,7 @@ function Library(removeDiacritics) {
     }
 
     if(this.openingHours)
-      this.openingHoursInSVK = this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi").replace("Sa", "So").replace("Su", "Ne").replace("off", "zatvorené")
+      this.openingHoursInSVK = this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi").replace("Sa", "So").replace("Su", "Ne").replace("off", "zatvorené").replace(/\-/g, '&ndash;')
     else
       this.openingHoursInSVK = 'nie sú známe'
   }

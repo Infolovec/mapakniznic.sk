@@ -55,3 +55,9 @@ mapaKniznicApp.controller('headCtrl', function($scope, $stateParams, metaInfoSer
   $scope.metaInfo = metaInfoService
 })
 
+mapaKniznicApp.filter('niceDashes',function() {
+  return function(input) {
+    if (input) 
+      return input.replace(/\ \-\ /g, '&mdash;');  
+    }
+});
