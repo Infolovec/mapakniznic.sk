@@ -116,11 +116,11 @@ task :sitemap do
     page = static_libpage_template.clone
     title ="#{ library['tags']['name']} | mapakniznic.sk"
     page.gsub! 'TITLE', title
-    desc = "#{library['tags']['name']}, #{library['tags']['addr:street']} "
+    desc = "#{library['tags']['addr:street']} "
     if library['tags']['addr:streetnumber']
       desc << library['tags']['addr:streetnumber']
     end
-    desc << ', Bratislava'
+    desc << ', Bratislava. '
 
     page.gsub! 'DESCRIPTION', desc
 
