@@ -127,25 +127,26 @@
 .libraryDetail .info .status.isOpen {
   color: green;
   font-weight: 900;
-  font-size: 80%;
 }
 
 .libraryDetail .info .status.isClosed {
   color: red;
   font-weight: 900;
-  font-size: 80%;
 }
 
 .libraryDetail .info .name {
+  font-family: 'News Cycle', sans-serif;
+  font-weight: 700;
   font-size: 120%;
-  font-weight: 500;
+  text-transform: uppercase;
 }
 
 .libraryDetail .info span.descKey {
-  font-size: 80%;
-  font-weight: 700;
+  font-family: 'News Cycle', sans-serif;
+  font-size: 85%;
   color: #565648;
   margin-right: 3px;
+  font-weight: 700;
 }
 
 .libraryDetail .button.closeLibraryDetail, .menuPopup .button.closeMenuPopup {

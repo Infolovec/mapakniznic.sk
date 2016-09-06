@@ -40,9 +40,9 @@ function Library(removeDiacritics) {
     this._setOpeningHoursStatus()
 
     if(this._openingHoursStatus == 'open'){
-      this.openingHoursForHumans = 'Knižnica je <span class="status isOpen">OTVORENÁ</span><br />'
+      this.openingHoursForHumans = 'Knižnica je <span class="status isOpen">otvorená</span><br />'
     } else if(this._openingHoursStatus == 'closed'){
-      this.openingHoursForHumans = 'Knižnica je <span class="status isClosed">ZATVORENÁ</span><br />'    
+      this.openingHoursForHumans = 'Knižnica je <span class="status isClosed">zatvorená</span><br />'    
     }
 
     if(this.openingHours)
