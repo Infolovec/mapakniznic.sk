@@ -121,8 +121,17 @@
   margin-bottom: 5px;
   background-color: #5c5d4d;
 }
+
 .libraryDetail .info button:hover{
   background-color: black;
+}
+
+.libraryDetail .info .sharyLibrary button{
+  background-color: #8d8e7a;
+}
+
+.libraryDetail .info .sharyLibrary button:hover{
+  background-color: #5c5d4d;
 }
 
 .libraryDetail .info .status.isOpen {
