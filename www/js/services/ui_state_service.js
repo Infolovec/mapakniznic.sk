@@ -1,4 +1,4 @@
-mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap) {
+mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap, metaInfoService) {
   var service = {
     _sideMenuIsVisible: false,
     _displayedLibraryDetail: null,
@@ -38,6 +38,7 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap) {
     
     this._displayedLibraryDetail = library
     $location.path('/'+this._displayedLibraryDetail.nameForURL);
+    metaInfoService.update(library)
     $rootScope.$broadcast('updateLibraryMarkersAppearance');
     leafletMap.focusTo(library.marker)
   }
@@ -49,6 +50,7 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap) {
   service.hideLibraryDetail = function(){
     this._displayedLibraryDetail = null
     $rootScope.$broadcast('updateLibraryMarkersAppearance');
+    metaInfoService.reset()
     $location.path('/');
   }
 
@@ -74,6 +76,7 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap) {
     this._displayedLibraryDetail = null
     $rootScope.$broadcast('updateLibraryMarkersAppearance');
     $rootScope.$broadcast('clearSearchQuery');
+    metaInfoService.reset()
     $location.path('/');    
   }
 
