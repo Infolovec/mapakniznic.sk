@@ -41,10 +41,8 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider, $locationProv
 mapaKniznicApp.factory('metaInfoService', function() {
    var service = {
      title: 'Mapa knižníc (v Bratislave)',
-     desc: 'Aby si každý čitateľ prostredníctvom mapy našiel svoju knižnicu, bibliobox, letnú čitáreň či knižnú búdku, ktorú chce navštíviť.',
      update: function(library){
        this.title = library.name + ' | mapakniznic.sk'
-       this.desc = library.name + ', ' + library.address
      },
      reset: function(){
        this.title = 'Mapa knižníc (v Bratislave)'

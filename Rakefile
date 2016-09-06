@@ -60,6 +60,7 @@ task :'update-data' do
 
     libraries_service_js = File.read './www/js/services/raw_libraries_data_service.template.js'
     libraries_service_js.sub! 'DATA', libraries2.to_json
+    File.open('./www/for_bots/libraries.json', 'w'){|f| f.write libraries2.to_json}
 
     v1 = File.read './www/js/services/raw_libraries_data_service.js'
     v2 = libraries_service_js
@@ -101,12 +102,30 @@ end
 # redirect_stderr=true
 
 task :sitemap do  
-  raw = File.read 'www/js/services/raw_libraries_data_service.js'
-  lib_url_names = raw.scan(/url_name\"\:\"([\w\d\-]+)\"/).flatten
-  sitemap = lib_url_names.collect do |library_url_name|
+  libraries  = JSON.parse File.read('./www/for_bots/libraries.json')
+  sitemap = libraries.collect do |library|
+    library_url_name = library['url_name']
     "http://mapakniznic.sk/#{library_url_name}"
   end.join("\n")
 
-  File.open('./www/sitemap.txt', 'wb'){|f| f.write sitemap}
-  $stdout << "www/sitemap.txt written"
+  File.open('./www/sitemap.txt', 'w'){|f| f.write sitemap}
+  $stdout << "www/sitemap.txt written\n"
+
+  static_libpage_template = File.read './www/for_bots/page.template.html'
+  libraries.each do |library|
+    page = static_libpage_template.clone
+    title ="#{ library['tags']['name']} | mapakniznic.sk"
+    page.gsub! 'TITLE', title
+    desc = "#{library['tags']['name']}, #{library['tags']['addr:street']} "
+    if library['tags']['addr:streetnumber']
+      desc << library['tags']['addr:streetnumber']
+    end
+    desc << ', Bratislava'
+
+    page.gsub! 'DESCRIPTION', desc
+
+    File.open("./www/for_bots/#{library['url_name']}.html", 'w'){|f| f.write page}
+  end
+
+  puts "static html pages written to www/for_bots/"
 end
