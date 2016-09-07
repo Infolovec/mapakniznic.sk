@@ -23,7 +23,7 @@ mapaKniznicApp.directive('libraryDetails', function($location, $window, uiState,
       }
 
       $scope.socialShare = function(provider, library){
-        var url = 'http://mapakniznic.sk/' + library.nameForURL
+        var url = 'https://mapakniznic.sk/' + library.nameForURL
         if(provider == 'copyURL'){
           if (!clipboard.supported ) {
             $ionicPopup.show({
