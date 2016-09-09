@@ -105,7 +105,7 @@ task :sitemap do
   libraries  = JSON.parse File.read('./www/for_bots/libraries.json')
   sitemap = libraries.collect do |library|
     library_url_name = library['url_name']
-    "http://mapakniznic.sk/#{library_url_name}"
+    "https://mapakniznic.sk/#{library_url_name}"
   end.join("\n")
 
   File.open('./www/sitemap.txt', 'w'){|f| f.write sitemap}

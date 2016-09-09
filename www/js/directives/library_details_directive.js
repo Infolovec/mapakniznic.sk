@@ -37,7 +37,8 @@ mapaKniznicApp.directive('libraryDetails', function($location, $window, uiState,
           } else {
             clipboard.copyText(url);
             $ionicPopup.show({
-              title: 'URL odkaz na knižnicu bol skopírovaný do schránky (clipboardu)',
+              title: 'Zdieľanie odkazu na knižnice',
+              template: 'URL odkaz na knižnicu bol skopírovaný do schránky (clipboardu).',
               buttons: [
                 { text: 'OK', type: 'button-dark' },
               ]
