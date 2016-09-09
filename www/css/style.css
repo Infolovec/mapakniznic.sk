@@ -99,6 +99,16 @@
   margin-top: 10px;
 }
 
+.libraryDetail .info .openingHours img.closed {
+  height: 15px;
+  vertical-align: -3px;
+}
+
+.libraryDetail .info .openingHours img.open {
+  height: 19px;
+  vertical-align: -5px;
+}
+
 .libraryDetail .info table {
   line-height: 16px; 
   margin-top: 3px;
