@@ -1,6 +1,9 @@
 require 'uri'
 require 'json'
-require "i18n"
+require 'hashdiff'
+require 'i18n'
+require 'fileutils'
+
 I18n.config.available_locales = :en
 
 task :release do
@@ -60,6 +63,10 @@ task :'update-data' do
 
     libraries_service_js = File.read './www/js/services/raw_libraries_data_service.template.js'
     libraries_service_js.sub! 'DATA', libraries2.to_json
+
+    if(File.exists?('./www/for_bots/libraries.json'))
+      FileUtils.cp './www/for_bots/libraries.json', './www/for_bots/libraries.json.old'
+    end
     File.open('./www/for_bots/libraries.json', 'w'){|f| f.write libraries2.to_json}
 
     v1 = File.read './www/js/services/raw_libraries_data_service.js'
@@ -71,6 +78,7 @@ task :'update-data' do
       $stdout << "OSM data has changed: services/libraries_service.js updated \n"
       File.open('./www/js/services/raw_libraries_data_service.js', 'w') {|f| f.write libraries_service_js}
       Rake::Task["release"].execute
+      Rake::Task["changelog"].execute
     end
   rescue => e
     $stdout << "update data task failed due to #{e}\n"
@@ -128,4 +136,40 @@ task :sitemap do
   end
 
   puts "static html pages written to www/for_bots/"
+end
+
+task :changelog do
+  h_old = JSON.parse File.read('./www/for_bots/libraries.json.old')
+  h_new = JSON.parse File.read('./www/for_bots/libraries.json')
+
+  changelog_path = './www/for_bots/changelog.txt'
+  if File.exists?(changelog_path)
+    current_changelog = File.read(changelog_path)
+  else
+    current_changelog = ''
+  end
+
+  diffs = HashDiff.diff(h_old, h_new)
+
+  File.open(changelog_path, 'w') do |f|
+    f.puts "====== #{Time.now} ======="
+
+    diffs.each do |diff|
+      library_order_id = diff[1].match(/\d+/)[0].to_i
+      if library_order_id
+        lib = h_new[library_order_id]
+        if lib
+          f.puts "https://mapakniznic.sk/#{lib['url_name']}"
+        end
+      end
+
+      f.puts diff
+    end
+
+    f.puts "\n"
+    f.write current_changelog
+  end
+
+  $stdout << "updated changelog ./www/for_bots/changelog.txt \n"
+  STDOUT.flush
 end
