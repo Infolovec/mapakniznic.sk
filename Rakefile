@@ -159,7 +159,7 @@ task :changelog do
       if library_order_id
         lib = h_new[library_order_id]
         if lib
-          f.puts "https://mapakniznic.sk/#{lib['url_name']}"
+          f.puts "https://mapakniznic.sk/#{lib['url_name']}\n"
         end
       end
 
