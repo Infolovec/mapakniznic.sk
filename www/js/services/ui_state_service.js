@@ -54,10 +54,6 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap, me
     $location.path('/');
   }
 
-  service.isLibraryDetailVisible = function(library){
-    return(this._displayedLibraryDetail && library && this._displayedLibraryDetail.uid == library.uid)
-  }
-
   service.searchFoundLibraries = function(){
     return(this._searchFoundLibraries)
   }

@@ -1,13 +1,15 @@
-mapaKniznicApp.directive('libraryDetails', function($location, $window, uiState, libraries, Socialshare, clipboard, $ionicPopup) {
+mapaKniznicApp.directive('libraryDetail', function($location, $window, uiState, libraries, Socialshare, clipboard, $ionicPopup) {
   return {
     restrict: 'E',
     scope: {},
-    templateUrl: 'templates/_libraries.html',
+    templateUrl: 'templates/_library_detail.html',
     link: function($scope, element, attrs) {
-      $scope.libraries = libraries
+      $scope.library = function(){
+        return uiState.currentlyDisplayedLibraryDetail()
+      }
       
-      $scope.isDetailVisible = function(library){
-        return uiState.isLibraryDetailVisible(library)
+      $scope.isDetailVisible = function(){
+        return ($scope.library())
       }   
 
       $scope.hideLibraryDetail = function(){
