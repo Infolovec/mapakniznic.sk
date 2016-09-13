@@ -60,10 +60,6 @@ function Library(removeDiacritics) {
     return(this._searchName.indexOf(q) > -1 || q.indexOf(this._searchName) > -1)
   }
 
-  this.hasWebContact = function(){
-    return(this.website || this.facebook || this.twitter || this.googlePlus )
-  }
-
   this.createMarker = function(){
     var openingHoursColor = this._openingHoursColor()
 
