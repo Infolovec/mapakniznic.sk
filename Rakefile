@@ -57,6 +57,7 @@ task :'update-data' do
     libraries2 = []
     libraries1['elements'].each do |lib|
       lib['library_type'] = osm_url_to_library_type["#{lib['type']}/#{lib['id']}"]
+      lib['url_id'] = "#{lib['type'][0]}#{lib['id']}"
       lib['url_name'] = I18n.transliterate(lib['tags']['name']).downcase.gsub(/[^a-z0-9]/,'-').gsub(/(-)+/,'-')
       libraries2 << lib 
     end
@@ -112,8 +113,8 @@ end
 task :sitemap do  
   libraries  = JSON.parse File.read('./www/for_bots/libraries.json')
   sitemap = libraries.collect do |library|
-    library_url_name = library['url_name']
-    "https://mapakniznic.sk/#{library_url_name}"
+    library_url = library['url_id']
+    "https://mapakniznic.sk/#{library_url}"
   end.join("\n")
 
   File.open('./www/sitemap.txt', 'w'){|f| f.write sitemap}
@@ -132,7 +133,7 @@ task :sitemap do
 
     page.gsub! 'DESCRIPTION', desc
 
-    File.open("./www/for_bots/#{library['url_name']}.html", 'w'){|f| f.write page}
+    File.open("./www/for_bots/#{library['url_id']}.html", 'w'){|f| f.write page}
   end
 
   puts "static html pages written to www/for_bots/"

@@ -31,8 +31,8 @@ mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $rootScope, 
 
   $scope.$broadcast('updateLibraryMarkersAppearance');
 
-  if($stateParams.libraryName){
-    var preselectedLibrary = libraries.findByNameForURL($stateParams.libraryName)
+  if($stateParams.libraryUrlID){
+    var preselectedLibrary = libraries.findLibraryByUrlID($stateParams.libraryUrlID)
     if(preselectedLibrary)
       uiState.showLibraryDetail(preselectedLibrary)
   }

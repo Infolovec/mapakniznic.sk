@@ -37,7 +37,8 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap, me
     this._listOfAllLibrariesVisible = false
     
     this._displayedLibraryDetail = library
-    $location.path('/'+this._displayedLibraryDetail.nameForURL);
+    $location.path('/'+this._displayedLibraryDetail.url_id);
+    $location.hash(this._displayedLibraryDetail.url_name)
     metaInfoService.update(library)
     $rootScope.$broadcast('updateLibraryMarkersAppearance');
     leafletMap.focusTo(library.marker)
@@ -52,6 +53,7 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap, me
     $rootScope.$broadcast('updateLibraryMarkersAppearance');
     metaInfoService.reset()
     $location.path('/');
+    $location.hash('')
   }
 
   service.searchFoundLibraries = function(){
@@ -73,7 +75,8 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap, me
     $rootScope.$broadcast('updateLibraryMarkersAppearance');
     $rootScope.$broadcast('clearSearchQuery');
     metaInfoService.reset()
-    $location.path('/');    
+    $location.path('/');   
+    $location.hash('') 
   }
 
   return service

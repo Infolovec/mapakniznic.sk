@@ -22,9 +22,9 @@ mapaKniznicApp.factory("libraries", function(rawLibraryDataService, leafletMap, 
     return(this._libraries)
   }
 
-  service.findByNameForURL = function(nameForURL){
+  service.findLibraryByUrlID = function(libraryUrlID){
     return this._libraries.find(function(library){
-      return (nameForURL == library.nameForURL)
+      return (library.url_id == libraryUrlID)
     })
   }
 

@@ -26,13 +26,12 @@ var mapaKniznicApp = angular.module('mapaKniznicApp', ['ionic', 'txx.diacritics'
 mapaKniznicApp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
 
-    .state('map', {
-    url: "/:libraryName",
+  .state('map', {
+    url: "/:libraryUrlID",
     controller: 'mapCtrl',
     templateUrl: "templates/map.html",
-    reloadOnSearch: false // do not reload controller on libraryName change
+    reloadOnSearch: false // do not reload controller on libraryUrlID change
   })
-
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true);
 

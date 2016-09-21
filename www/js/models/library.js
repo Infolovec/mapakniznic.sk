@@ -16,7 +16,8 @@ function Library(removeDiacritics) {
     this.name = rawLibraryData.tags.name
     this.short_name = rawLibraryData.tags.short_name
     this._searchName = removeDiacritics.replace((this.name + this.short_name).toLowerCase())
-    this.nameForURL =   rawLibraryData.url_name
+    this.url_id = rawLibraryData.url_id
+    this.url_name = rawLibraryData.url_name
     this.libraryType = rawLibraryData.library_type
     
     this.website = rawLibraryData.tags.website
