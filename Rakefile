@@ -129,7 +129,7 @@ task :sitemap do
     if library['tags']['addr:street']
       desc << library['tags']['addr:street']
       if library['tags']['addr:streetnumber']
-        desc << " library['tags']['addr:streetnumber']"
+        desc << " #{library['tags']['addr:streetnumber']}"
       end
       desc << ", "
     end
