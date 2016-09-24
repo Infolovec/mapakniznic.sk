@@ -5,8 +5,8 @@ https://www.openstreetmap.org/node/3603768044	vedecká knižnica
 https://www.openstreetmap.org/way/406004026	vedecká knižnica
 https://www.openstreetmap.org/node/4350775477	verejná knižnica
 https://www.openstreetmap.org/node/4350775476	verejná knižnica
-https://www.openstreetmap.org/way/39391536	verejná knižnica
-https://www.openstreetmap.org/way/38530570	verejná knižnica
+https://www.openstreetmap.org/way/39391536	verejná knižnica; bibliobox
+https://www.openstreetmap.org/way/38530570	verejná knižnica; bibliobox
 https://www.openstreetmap.org/way/39391542	verejná knižnica
 https://www.openstreetmap.org/node/432375991	letná čitáreň
 https://www.openstreetmap.org/way/60803917	verejná knižnica
@@ -24,15 +24,15 @@ https://www.openstreetmap.org/node/4350852337	verejná knižnica
 https://www.openstreetmap.org/node/4350852338	verejná knižnica
 https://www.openstreetmap.org/node/4350852335	verejná knižnica
 https://www.openstreetmap.org/node/4350852339	verejná knižnica
-https://www.openstreetmap.org/node/4350865684	verejná knižnica
-https://www.openstreetmap.org/node/532365844	verejná knižnica
+https://www.openstreetmap.org/node/4350865684	verejná knižnica; bibliobox
+https://www.openstreetmap.org/node/532365844	verejná knižnica; bibliobox
 https://www.openstreetmap.org/node/1880042878	verejná knižnica
-https://www.openstreetmap.org/node/4350865685	verejná knižnica
+https://www.openstreetmap.org/node/4350865685	verejná knižnica; bibliobox
 https://www.openstreetmap.org/node/626819425	verejná knižnica
-https://www.openstreetmap.org/node/2798705821	verejná knižnica
-https://www.openstreetmap.org/node/530593394	verejná knižnica
-https://www.openstreetmap.org/node/569205208	verejná knižnica
-https://www.openstreetmap.org/node/569211086	verejná knižnica
+https://www.openstreetmap.org/node/2798705821	verejná knižnica; bibliobox
+https://www.openstreetmap.org/node/530593394	verejná knižnica; bibliobox
+https://www.openstreetmap.org/node/569205208	verejná knižnica; bibliobox
+https://www.openstreetmap.org/node/569211086	verejná knižnica; bibliobox
 https://www.openstreetmap.org/node/569211080	verejná knižnica
 https://www.openstreetmap.org/node/4350888021	špeciálna knižnica
 https://www.openstreetmap.org/node/4350888022	špeciálna knižnica
@@ -82,3 +82,8 @@ https://www.openstreetmap.org/node/4369833756	akademická knižnica
 https://www.openstreetmap.org/node/4369833747	akademická knižnica
 https://www.openstreetmap.org/node/4369833748	akademická knižnica
 https://www.openstreetmap.org/node/4369833746	akademická knižnica
+https://www.openstreetmap.org/node/4416064247	letná čitáreň
+https://www.openstreetmap.org/node/4416064248	knižná búdka
+https://www.openstreetmap.org/node/4416064245	knižná búdka
+https://www.openstreetmap.org/node/4416064244	knižná búdka
+https://www.openstreetmap.org/node/4416064246	knižná búdka

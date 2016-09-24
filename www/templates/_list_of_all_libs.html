@@ -14,20 +14,35 @@
           class="button button-dark button-small">
             Všetky
           </button>
-          <button ng-click="applyFilterListOfLibs('verejná')" 
-          ng-class="listOfLibsFilterEqualsTo('verejná') ? '' : 'button-outline'"
+          <button ng-click="applyFilterListOfLibs('verejná knižnica')" 
+          ng-class="listOfLibsFilterEqualsTo('verejná knižnica') ? '' : 'button-outline'"
           class="button button-dark button-small">
-            Verejné
+            Verejná
           </button>
-          <button ng-click="applyFilterListOfLibs('akademická')" 
-          ng-class="listOfLibsFilterEqualsTo('akademická') ? '' : 'button-outline'"
+          <button ng-click="applyFilterListOfLibs('akademická knižnica')" 
+          ng-class="listOfLibsFilterEqualsTo('akademická knižnica') ? '' : 'button-outline'"
           class="button button-dark button-small">
-            Akademické
+            Akademická
           </button>
-          <button ng-click="applyFilterListOfLibs('špeciálna')" 
-          ng-class="listOfLibsFilterEqualsTo('špeciálna') ? '' : 'button-outline'"
+          <button ng-click="applyFilterListOfLibs('špeciálna knižnica')" 
+          ng-class="listOfLibsFilterEqualsTo('špeciálna knižnica') ? '' : 'button-outline'"
           class="button button-dark button-small">
-            Špeciálne
+            Špeciálna
+          </button>
+          <button ng-click="applyFilterListOfLibs('knižná búdka')" 
+          ng-class="listOfLibsFilterEqualsTo('knižná búdka') ? '' : 'button-outline'"
+          class="button button-dark button-small">
+            Knižná búdka
+          </button>
+          <button ng-click="applyFilterListOfLibs('bibliobox')" 
+          ng-class="listOfLibsFilterEqualsTo('bibliobox') ? '' : 'button-outline'"
+          class="button button-dark button-small">
+            Bibliobox
+          </button>
+          <button ng-click="applyFilterListOfLibs('letná čitáreň')" 
+          ng-class="listOfLibsFilterEqualsTo('letná čitáreň') ? '' : 'button-outline'"
+          class="button button-dark button-small">
+            Letná čitáreň
           </button>
         </div>	
         <ion-scroll direction="y" style="height: 100%;">

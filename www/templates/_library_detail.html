@@ -12,7 +12,7 @@
       <div class="openingHours" ng-bind-html="library().openingHoursForHumans"></div>
 
       <table>
-        <tr>
+        <tr ng-show="library().address">
           <td><span class="descKey">ADRESA</span></td>  
           <td>{{library().address}}</td> 
         </tr>

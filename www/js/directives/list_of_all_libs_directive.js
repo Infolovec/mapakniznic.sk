@@ -25,7 +25,7 @@ mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState, librarie
 
       $scope.isLibraryMatchingFilter = function(library){
         if($scope.listOfAllLibsFilter){
-          return(library.libraryType == $scope.listOfAllLibsFilter)
+          return(library.libraryType.indexOf($scope.listOfAllLibsFilter) > -1)
         } else 
           return true
       } 
