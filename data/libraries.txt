@@ -1,84 +1,84 @@
-https://www.openstreetmap.org/relation/207552	vedecká
-https://www.openstreetmap.org/way/117107101	vedecká
-https://www.openstreetmap.org/node/2869340735	vedecká
-https://www.openstreetmap.org/node/3603768044	vedecká
-https://www.openstreetmap.org/way/406004026	vedecká
-https://www.openstreetmap.org/node/4350775477	verejná
-https://www.openstreetmap.org/node/4350775476	verejná
-https://www.openstreetmap.org/way/39391536	verejná
-https://www.openstreetmap.org/way/38530570	verejná
-https://www.openstreetmap.org/way/39391542	verejná
-https://www.openstreetmap.org/node/432375991	verejná
-https://www.openstreetmap.org/way/60803917	verejná
-https://www.openstreetmap.org/node/727230101	verejná
-https://www.openstreetmap.org/node/381152137	verejná
-https://www.openstreetmap.org/node/464689692	verejná
-https://www.openstreetmap.org/node/4350797122	verejná
-https://www.openstreetmap.org/node/4350852334	verejná
-https://www.openstreetmap.org/node/3257221661	verejná
-https://www.openstreetmap.org/node/3257221662	verejná
-https://www.openstreetmap.org/node/3743529534	verejná
-https://www.openstreetmap.org/node/2407209009	verejná
-https://www.openstreetmap.org/node/4350852336	verejná
-https://www.openstreetmap.org/node/4350852337	verejná
-https://www.openstreetmap.org/node/4350852338	verejná
-https://www.openstreetmap.org/node/4350852335	verejná
-https://www.openstreetmap.org/node/4350852339	verejná
-https://www.openstreetmap.org/node/4350865684	verejná
-https://www.openstreetmap.org/node/532365844	verejná
-https://www.openstreetmap.org/node/1880042878	verejná
-https://www.openstreetmap.org/node/4350865685	verejná
-https://www.openstreetmap.org/node/626819425	verejná
-https://www.openstreetmap.org/node/2798705821	verejná
-https://www.openstreetmap.org/node/530593394	verejná
-https://www.openstreetmap.org/node/569205208	verejná
-https://www.openstreetmap.org/node/569211086	verejná
-https://www.openstreetmap.org/node/569211080	verejná
-https://www.openstreetmap.org/node/4350888021	špeciálna
-https://www.openstreetmap.org/node/4350888022	špeciálna
-https://www.openstreetmap.org/node/4350888024	špeciálna
-https://www.openstreetmap.org/node/4350888023	špeciálna
-https://www.openstreetmap.org/node/4350888025	špeciálna
-https://www.openstreetmap.org/node/4350948592	verejná
-https://www.openstreetmap.org/node/4350948591	verejná
-https://www.openstreetmap.org/node/4350948590	verejná
-https://www.openstreetmap.org/way/69025977	verejná
-https://www.openstreetmap.org/node/4350948596	verejná
-https://www.openstreetmap.org/node/4350948593	verejná
-https://www.openstreetmap.org/node/675327038	verejná
-https://www.openstreetmap.org/node/4350948595	verejná
-https://www.openstreetmap.org/node/3655493963	verejná
-https://www.openstreetmap.org/node/4350948589	verejná
-https://www.openstreetmap.org/node/4350948597	verejná
-https://www.openstreetmap.org/node/4350948594	verejná
-https://www.openstreetmap.org/node/4350948588	verejná
-https://www.openstreetmap.org/node/269903221	verejná
-https://www.openstreetmap.org/node/4369112185	akademická
-https://www.openstreetmap.org/node/4369116792	akademická
-https://www.openstreetmap.org/node/4369116790	akademická
-https://www.openstreetmap.org/node/4369116794	akademická
-https://www.openstreetmap.org/node/4369116791	akademická
-https://www.openstreetmap.org/node/4369116795	akademická
-https://www.openstreetmap.org/node/4369112188	akademická
-https://www.openstreetmap.org/node/4369116789	akademická
-https://www.openstreetmap.org/node/4369116793	akademická
-https://www.openstreetmap.org/node/4369116796	akademická
-https://www.openstreetmap.org/node/4369112186	akademická
-https://www.openstreetmap.org/node/4369112187	akademická
-https://www.openstreetmap.org/node/4369112184	akademická
-https://www.openstreetmap.org/node/4369833749	akademická
-https://www.openstreetmap.org/node/4369833754	akademická
-https://www.openstreetmap.org/node/4369833750	akademická
-https://www.openstreetmap.org/node/4369833751	akademická
-https://www.openstreetmap.org/node/4369833753	akademická
-https://www.openstreetmap.org/node/4369833752	akademická
-https://www.openstreetmap.org/node/4369833758	akademická
-https://www.openstreetmap.org/node/4369833759	akademická
-https://www.openstreetmap.org/node/4369833755	akademická
-https://www.openstreetmap.org/node/4369833745	akademická
-https://www.openstreetmap.org/node/4369833757	akademická
-https://www.openstreetmap.org/node/4369833760	akademická
-https://www.openstreetmap.org/node/4369833756	akademická
-https://www.openstreetmap.org/node/4369833747	akademická
-https://www.openstreetmap.org/node/4369833748	akademická
-https://www.openstreetmap.org/node/4369833746	akademická
+https://www.openstreetmap.org/relation/207552	vedecká knižnica
+https://www.openstreetmap.org/way/117107101	vedecká knižnica
+https://www.openstreetmap.org/node/2869340735	vedecká knižnica
+https://www.openstreetmap.org/node/3603768044	vedecká knižnica
+https://www.openstreetmap.org/way/406004026	vedecká knižnica
+https://www.openstreetmap.org/node/4350775477	verejná knižnica
+https://www.openstreetmap.org/node/4350775476	verejná knižnica
+https://www.openstreetmap.org/way/39391536	verejná knižnica
+https://www.openstreetmap.org/way/38530570	verejná knižnica
+https://www.openstreetmap.org/way/39391542	verejná knižnica
+https://www.openstreetmap.org/node/432375991	letná čitáreň
+https://www.openstreetmap.org/way/60803917	verejná knižnica
+https://www.openstreetmap.org/node/727230101	verejná knižnica
+https://www.openstreetmap.org/node/381152137	verejná knižnica
+https://www.openstreetmap.org/node/464689692	verejná knižnica
+https://www.openstreetmap.org/node/4350797122	verejná knižnica
+https://www.openstreetmap.org/node/4350852334	verejná knižnica
+https://www.openstreetmap.org/node/3257221661	verejná knižnica
+https://www.openstreetmap.org/node/3257221662	verejná knižnica
+https://www.openstreetmap.org/node/3743529534	verejná knižnica
+https://www.openstreetmap.org/node/2407209009	verejná knižnica
+https://www.openstreetmap.org/node/4350852336	verejná knižnica
+https://www.openstreetmap.org/node/4350852337	verejná knižnica
+https://www.openstreetmap.org/node/4350852338	verejná knižnica
+https://www.openstreetmap.org/node/4350852335	verejná knižnica
+https://www.openstreetmap.org/node/4350852339	verejná knižnica
+https://www.openstreetmap.org/node/4350865684	verejná knižnica
+https://www.openstreetmap.org/node/532365844	verejná knižnica
+https://www.openstreetmap.org/node/1880042878	verejná knižnica
+https://www.openstreetmap.org/node/4350865685	verejná knižnica
+https://www.openstreetmap.org/node/626819425	verejná knižnica
+https://www.openstreetmap.org/node/2798705821	verejná knižnica
+https://www.openstreetmap.org/node/530593394	verejná knižnica
+https://www.openstreetmap.org/node/569205208	verejná knižnica
+https://www.openstreetmap.org/node/569211086	verejná knižnica
+https://www.openstreetmap.org/node/569211080	verejná knižnica
+https://www.openstreetmap.org/node/4350888021	špeciálna knižnica
+https://www.openstreetmap.org/node/4350888022	špeciálna knižnica
+https://www.openstreetmap.org/node/4350888024	špeciálna knižnica
+https://www.openstreetmap.org/node/4350888023	špeciálna knižnica
+https://www.openstreetmap.org/node/4350888025	špeciálna knižnica
+https://www.openstreetmap.org/node/4350948592	verejná knižnica
+https://www.openstreetmap.org/node/4350948591	verejná knižnica
+https://www.openstreetmap.org/node/4350948590	verejná knižnica
+https://www.openstreetmap.org/way/69025977	verejná knižnica
+https://www.openstreetmap.org/node/4350948596	verejná knižnica
+https://www.openstreetmap.org/node/4350948593	verejná knižnica
+https://www.openstreetmap.org/node/675327038	verejná knižnica
+https://www.openstreetmap.org/node/4350948595	verejná knižnica
+https://www.openstreetmap.org/node/3655493963	verejná knižnica
+https://www.openstreetmap.org/node/4350948589	verejná knižnica
+https://www.openstreetmap.org/node/4350948597	verejná knižnica
+https://www.openstreetmap.org/node/4350948594	verejná knižnica
+https://www.openstreetmap.org/node/4350948588	verejná knižnica
+https://www.openstreetmap.org/node/269903221	verejná knižnica
+https://www.openstreetmap.org/node/4369112185	akademická knižnica
+https://www.openstreetmap.org/node/4369116792	akademická knižnica
+https://www.openstreetmap.org/node/4369116790	akademická knižnica
+https://www.openstreetmap.org/node/4369116794	akademická knižnica
+https://www.openstreetmap.org/node/4369116791	akademická knižnica
+https://www.openstreetmap.org/node/4369116795	akademická knižnica
+https://www.openstreetmap.org/node/4369112188	akademická knižnica
+https://www.openstreetmap.org/node/4369116789	akademická knižnica
+https://www.openstreetmap.org/node/4369116793	akademická knižnica
+https://www.openstreetmap.org/node/4369116796	akademická knižnica
+https://www.openstreetmap.org/node/4369112186	akademická knižnica
+https://www.openstreetmap.org/node/4369112187	akademická knižnica
+https://www.openstreetmap.org/node/4369112184	akademická knižnica
+https://www.openstreetmap.org/node/4369833749	akademická knižnica
+https://www.openstreetmap.org/node/4369833754	akademická knižnica
+https://www.openstreetmap.org/node/4369833750	akademická knižnica
+https://www.openstreetmap.org/node/4369833751	akademická knižnica
+https://www.openstreetmap.org/node/4369833753	akademická knižnica
+https://www.openstreetmap.org/node/4369833752	akademická knižnica
+https://www.openstreetmap.org/node/4369833758	akademická knižnica
+https://www.openstreetmap.org/node/4369833759	akademická knižnica
+https://www.openstreetmap.org/node/4369833755	akademická knižnica
+https://www.openstreetmap.org/node/4369833745	akademická knižnica
+https://www.openstreetmap.org/node/4369833757	akademická knižnica
+https://www.openstreetmap.org/node/4369833760	akademická knižnica
+https://www.openstreetmap.org/node/4369833756	akademická knižnica
+https://www.openstreetmap.org/node/4369833747	akademická knižnica
+https://www.openstreetmap.org/node/4369833748	akademická knižnica
+https://www.openstreetmap.org/node/4369833746	akademická knižnica

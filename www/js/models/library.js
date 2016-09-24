@@ -65,7 +65,7 @@ function Library(removeDiacritics) {
     var openingHoursColor = this._openingHoursColor()
 
     this.marker =  new LibraryMarker()
-    this.marker.initialize(this.uid, this.lat, this.lon, openingHoursColor, this.name)
+    this.marker.initialize(this.uid, this.libraryType, this.lat, this.lon, openingHoursColor, this.name)
 
     return this.marker
   }
