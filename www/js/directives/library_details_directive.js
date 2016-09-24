@@ -19,11 +19,7 @@ mapaKniznicApp.directive('libraryDetail', function($location, $window, uiState, 
       $scope.openExternalLink = function(url){
         $window.open(url, '_blank');
       }  
-
-      $scope.explanationFor = function(libraryType){
-          return 'TODO doplnit vysvetlenie typov kniznic'
-      }
-
+      
       $scope.socialShare = function(provider, library){
         var url = 'https://mapakniznic.sk/' + library.url_id
         if(provider == 'copyURL'){
