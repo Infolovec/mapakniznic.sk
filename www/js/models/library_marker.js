@@ -93,6 +93,7 @@ function LibraryMarker() {
       'vedecká knižnica': this._libraryBuildingImg(),
       'akademická knižnica': this._libraryBuildingImg(),
       'verejná knižnica': this._libraryBuildingImg(),
+      'školská knižnica': this._libraryBuildingImg(),
       'letná čitáreň': this._summerReadImg(),
       'bibliobox': this._biblioboxImg(),
       'knižná búdka': this._bookBoxImg()

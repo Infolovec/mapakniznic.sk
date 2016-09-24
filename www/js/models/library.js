@@ -15,7 +15,6 @@ function Library(removeDiacritics) {
     this.osmLink = 'https://www.openstreetmap.org/' + this.type + '/' + this.osmID
     this.name = rawLibraryData.tags.name
     this.short_name = rawLibraryData.tags.short_name
-    this._searchName = removeDiacritics.replace((this.name + this.short_name).toLowerCase())
     this.url_id = rawLibraryData.url_id
     this.url_name = rawLibraryData.url_name
     this.libraryType = rawLibraryData.library_type
@@ -37,6 +36,8 @@ function Library(removeDiacritics) {
     this.address = rawLibraryData.tags['addr:street']
     if(rawLibraryData.tags['addr:streetnumber'])
       this.address += ' ' + rawLibraryData.tags['addr:streetnumber']
+
+    this._searchName = removeDiacritics.replace((this.name + this.short_name + this.address).toLowerCase())
 
     this._setOpeningHoursStatus()
 
