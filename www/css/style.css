@@ -7,12 +7,24 @@
   height: 44px;
 }
 
+#logo.embedded {
+  top: 5px;
+}
+
+#logo.embedded:hover {
+  cursor:pointer;
+}
+
 #map {
   position: absolute;
   top: 44px;
   bottom: 0;
   width: 100%;
   z-index: 0;
+}
+
+#map.embedded {
+  top: 0;
 }
 
 .bar #menuButton {
@@ -45,7 +57,6 @@
 .libraryDetail, .menuPopup {
   position: absolute;
   bottom: 0;
-  min-height: 20%;
   width: 100%;
   z-index: 2;  
   background-color:rgba(254, 255, 213, 0.92);
@@ -114,11 +125,6 @@
   line-height: 16px; 
   margin-top: 3px;
   margin-bottom: 5px;
-}
-
-.libraryDetail .info .libraryType abbr {
-  border-bottom: 1px black dotted;
-  cursor: help;
 }
 
 .libraryDetail .info button {

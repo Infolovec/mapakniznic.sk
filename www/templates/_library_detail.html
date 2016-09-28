@@ -1,6 +1,8 @@
 <div class="libraryDetail" 
       ng-show="isDetailVisible()">
-  <button class="button button-clear closeLibraryDetail"
+  <button 
+    ng-hide="inEmbeddedMode()"
+    class="button button-clear closeLibraryDetail"
     ng-click="hideLibraryDetail()">
     <i class="icon ion-close-circled"></i>
   </button>
@@ -26,7 +28,7 @@
         </tr>
       </table>
       
-      <div class="webpage">
+      <div class="webpage" ng-hide="inEmbeddedMode()">
         <div>
           <button class="button button-small button-dark icon-left ion-home" ng-click="openExternalLink(library().website)" ng-show="library().website">
             Web knižnice
@@ -45,7 +47,7 @@
           </button>
         </div>
       </div>
-      <div class="sharyLibrary">
+      <div class="sharyLibrary" ng-hide="inEmbeddedMode()">
         <span class="descKey">ZDIEĽAŤ ODKAZ NA KNIŽNICU</span>
         <div>
           <button ng-click="socialShare('copyURL', library())" 

@@ -32,7 +32,13 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider, $locationProv
     templateUrl: "templates/map.html",
     reloadOnSearch: false // do not reload controller on libraryUrlID change
   })
-  $urlRouterProvider.otherwise('/');
+  .state('embeddedMap', {
+    url: "/embed/:libraryUrlID",
+    controller: 'embeddedMapCtrl',
+    templateUrl: "templates/embedded_map.html",
+    reloadOnSearch: false // do not reload controller on libraryUrlID change
+  })
+  $urlRouterProvider.otherwise('/hu');
   $locationProvider.html5Mode(true);
 
 })

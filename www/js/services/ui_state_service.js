@@ -17,6 +17,14 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap, me
     return(this._sideMenuIsVisible)
   }
 
+  service.enableEmbeddedMode = function(){
+    this._embededModeEnabled = true
+  }
+
+  service.inEmbeddedMode = function(){
+    return this._embededModeEnabled
+  }
+
   service.listOfAllLibrariesIsVisible = function(){
     return(this._listOfAllLibrariesVisible)
   }
@@ -42,6 +50,13 @@ mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap, me
     metaInfoService.update(library)
     $rootScope.$broadcast('updateLibraryMarkersAppearance');
     leafletMap.focusTo(library.marker)
+  }
+
+  service.showLibraryDetailInEmbeddedMode = function(library){
+    leafletMap.focusTo(library.marker)
+    library.marker.setStyle('highlight')
+    this._displayedLibraryDetail = library
+    $rootScope.$broadcast('updateLibraryMarkersAppearance');
   }
 
   service.currentlyDisplayedLibraryDetail = function(){

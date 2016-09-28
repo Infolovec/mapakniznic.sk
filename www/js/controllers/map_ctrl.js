@@ -1,6 +1,7 @@
 mapaKniznicApp.controller('mapCtrl', function($scope, $stateParams, $rootScope, uiState, leafletMap, libraries) {
   leafletMap.initialize()
   libraries.load()
+  
 
   $scope.checkSideMenuVisibility = function(clickEvent){
     $rootScope.$broadcast('changeSideMenuVisibility', clickEvent)

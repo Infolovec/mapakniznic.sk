@@ -1,21 +1,23 @@
 mapaKniznicApp.factory("libraries", function(rawLibraryDataService, leafletMap, $timeout, uiState, removeDiacritics) {
   var service = {_libraries: []}
 
-  service.load = function(){
+  service.load = function(libraryUrlID){
     rawLibraryDataService.getAll().forEach(function(rawLibraryDataEntry) {
       var library = new Library(removeDiacritics)
       library.load(rawLibraryDataEntry)
-      
-      var libraryMarker = library.createMarker()
-      libraryMarker.setClickCallback(function(){
-          $timeout(function(){
-            uiState.showLibraryDetail(library)
-          })
-      })
+      if(libraryUrlID == null || (libraryUrlID && libraryUrlID == library.url_id)){
+        var libraryMarker = library.createMarker()
+        libraryMarker.setClickCallback(function(){
+            $timeout(function(){
+              uiState.showLibraryDetail(library)
+            })
+        })
 
-      leafletMap.addMarker(libraryMarker)
-      service._libraries.push(library)
+        leafletMap.addMarker(libraryMarker)
+        service._libraries.push(library)
+      }
     })
+
   }
 
   service.all = function(){

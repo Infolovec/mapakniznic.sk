@@ -12,6 +12,10 @@ mapaKniznicApp.directive('libraryDetail', function($location, $window, uiState, 
         return ($scope.library())
       }   
 
+      $scope.inEmbeddedMode = function(){
+        return uiState.inEmbeddedMode()
+      }
+
       $scope.hideLibraryDetail = function(){
         uiState.hideLibraryDetail()
       }         
