@@ -17,31 +17,37 @@
           <button ng-click="applyFilterListOfLibs('verejná knižnica')" 
           ng-class="listOfLibsFilterEqualsTo('verejná knižnica') ? '' : 'button-outline'"
           class="button button-dark button-small">
+            <img ng-src="{{libTypeIcon('verejná knižnica')}}"></img>
             Verejná
           </button>
           <button ng-click="applyFilterListOfLibs('akademická knižnica')" 
           ng-class="listOfLibsFilterEqualsTo('akademická knižnica') ? '' : 'button-outline'"
           class="button button-dark button-small">
+            <img ng-src="{{libTypeIcon('akademická knižnica')}}"></img>
             Akademická
           </button>
           <button ng-click="applyFilterListOfLibs('špeciálna knižnica')" 
           ng-class="listOfLibsFilterEqualsTo('špeciálna knižnica') ? '' : 'button-outline'"
           class="button button-dark button-small">
+            <img ng-src="{{libTypeIcon('špeciálna knižnica')}}"></img>
             Špeciálna
           </button>
           <button ng-click="applyFilterListOfLibs('knižná búdka')" 
           ng-class="listOfLibsFilterEqualsTo('knižná búdka') ? '' : 'button-outline'"
           class="button button-dark button-small">
+            <img ng-src="{{libTypeIcon('knižná búdka')}}"></img>
             Knižná búdka
           </button>
           <button ng-click="applyFilterListOfLibs('bibliobox')" 
           ng-class="listOfLibsFilterEqualsTo('bibliobox') ? '' : 'button-outline'"
           class="button button-dark button-small">
+            <img ng-src="{{libTypeIcon('bibliobox')}}"></img>
             Bibliobox
           </button>
           <button ng-click="applyFilterListOfLibs('letná čitáreň')" 
           ng-class="listOfLibsFilterEqualsTo('letná čitáreň') ? '' : 'button-outline'"
           class="button button-dark button-small">
+            <img ng-src="{{libTypeIcon('letná čitáreň')}}"></img>
             Letná čitáreň
           </button>
         </div>	

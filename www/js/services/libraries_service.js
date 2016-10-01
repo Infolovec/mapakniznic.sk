@@ -1,4 +1,4 @@
-mapaKniznicApp.factory("libraries", function(rawLibraryDataService, leafletMap, $timeout, uiState, removeDiacritics) {
+mapaKniznicApp.service("libraries", function(rawLibraryDataService, leafletMap, $timeout, uiState, removeDiacritics, Library) {
   var service = {_libraries: []}
 
   service.load = function(libraryUrlID){

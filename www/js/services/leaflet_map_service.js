@@ -1,4 +1,4 @@
-mapaKniznicApp.factory("leafletMap", function() {
+mapaKniznicApp.service("leafletMap", function() {
   var service = {
     _markers: [],
     initialize: function(){

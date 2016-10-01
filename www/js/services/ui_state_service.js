@@ -1,4 +1,4 @@
-mapaKniznicApp.factory("uiState", function($rootScope, $location, leafletMap, metaInfoService) {
+mapaKniznicApp.service("uiState", function($rootScope, $location, leafletMap, metaInfoService) {
   var service = {
     _sideMenuIsVisible: false,
     _displayedLibraryDetail: null,

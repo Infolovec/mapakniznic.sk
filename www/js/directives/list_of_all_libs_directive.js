@@ -1,4 +1,4 @@
-mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState, libraries) {
+mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState, libraries, libraryIcons) {
   return {
     restrict: 'E',
     scope: {},
@@ -33,6 +33,10 @@ mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState, librarie
       $scope.showLibraryDetail = function(library){
         var doClearSearchResults = true
         uiState.showLibraryDetail(library, doClearSearchResults)
+      }
+
+      $scope.libTypeIcon = function(libType){
+        return libraryIcons.getImage(libType, 'rgb(151, 152, 121)')
       }
     }    
   };
