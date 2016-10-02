@@ -56,7 +56,7 @@ mapaKniznicApp.factory('Library', function(LibraryMarker){
       }
 
       if(this.openingHours)
-        this.openingHoursInSVK = this.openingHours.replace("Mo", "Po").replace("Tu", "Ut").replace("We", "St").replace("Th", "Št").replace("Fr", "Pi").replace("Sa", "So").replace("Su", "Ne").replace("off", "zatvorené").replace("24/7", "nonstop otvorené").replace(/\-/g, '&ndash;')
+        this.openingHoursInSVK = this.openingHours.replace(/Mo/g, "Po").replace(/Tu/g, "Ut").replace(/We/g, "St").replace(/Th/g, "Št").replace(/Fr/g, "Pi").replace(/Sa/g, "So").replace(/Su/g, "Ne").replace(/off/g, "zatvorené").replace("24/7", "nonstop otvorené").replace(/\-/g, '&ndash;')
       else
         this.openingHoursInSVK = 'nie sú známe'
     }
