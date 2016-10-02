@@ -45,12 +45,12 @@ mapaKniznicApp.config(function($stateProvider, $urlRouterProvider, $locationProv
 
 mapaKniznicApp.factory('metaInfoService', function() {
    var service = {
-     title: 'Mapa knižníc (v Bratislave)',
+     title: 'Mapa knižníc',
      update: function(library){
        this.title = library.name + ' | mapakniznic.sk'
      },
      reset: function(){
-       this.title = 'Mapa knižníc (v Bratislave)'
+       this.title = 'Mapa knižníc'
      }
    }
    return service

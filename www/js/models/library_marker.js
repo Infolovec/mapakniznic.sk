@@ -61,6 +61,8 @@ mapaKniznicApp.factory('LibraryMarker', function(libraryIcons){
 
     this.updateAppearance = function(mapZoom){
       var iconSize = mapZoom * 2.5 - 11
+      if(iconSize < 19)
+        iconSize = 19
 
       if(this._style == 'highlight'){
         this._supportHightlightMarker.setStyle({radius: 30, fillOpacity: 0.6, opacity: 0.9})
