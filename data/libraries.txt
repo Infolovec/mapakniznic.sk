@@ -87,3 +87,5 @@ https://www.openstreetmap.org/node/4416064248	knižná búdka
 https://www.openstreetmap.org/node/4416064245	knižná búdka
 https://www.openstreetmap.org/node/4416064244	knižná búdka
 https://www.openstreetmap.org/node/4416064246	knižná búdka
+https://www.openstreetmap.org/way/47704751	verejná knižnica
+https://www.openstreetmap.org/way/61154453	verejná knižnica

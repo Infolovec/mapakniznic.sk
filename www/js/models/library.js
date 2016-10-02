@@ -37,6 +37,8 @@ mapaKniznicApp.factory('Library', function(LibraryMarker){
       this.address = rawLibraryData.tags['addr:street']
       if(rawLibraryData.tags['addr:streetnumber'])
         this.address += ' ' + rawLibraryData.tags['addr:streetnumber']
+      this.address += ', '+ rawLibraryData.tags['addr:city']
+      this.note = rawLibraryData.tags['note']
 
       this._searchName = removeDiacritics.replace((this.name + this.short_name + this.address).toLowerCase())
 

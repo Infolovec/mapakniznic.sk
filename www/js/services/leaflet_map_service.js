@@ -2,11 +2,11 @@ mapaKniznicApp.service("leafletMap", function() {
   var service = {
     _markers: [],
     initialize: function(){
-      this._map = L.map('map', {maxBounds: [[47.8878,16.8039], [48.3437,17.3340]]})
+      this._map = L.map('map', {})
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         attribution: '&copy; prisp. <a href="http://openstreetmap.org">OpenStreetMap</a>, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,  © <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18,
-        minZoom: 10,
+        minZoom: 8,
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoicGV0ZXJ2b2p0ZWsiLCJhIjoiY2lpc3V5eGNrMDA5dHc5bTAwejVuamZpYiJ9.Af2Lk6oEDNcJqGZ4Obbq_A'
       }).addTo(this._map);
