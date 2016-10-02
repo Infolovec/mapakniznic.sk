@@ -34,10 +34,14 @@ mapaKniznicApp.factory('Library', function(LibraryMarker){
         this.googlePlus = '//'+this.googlePlus    
 
       this.openingHours = rawLibraryData.tags.opening_hours
-      this.address = rawLibraryData.tags['addr:street']
+      this.address = ''
+      if(rawLibraryData.tags['addr:street'])
+        this.address += rawLibraryData.tags['addr:street']
       if(rawLibraryData.tags['addr:streetnumber'])
         this.address += ' ' + rawLibraryData.tags['addr:streetnumber']
-      this.address += ', '+ rawLibraryData.tags['addr:city']
+      if(this.address.length > 0)
+        this.address += ', '
+      this.address += rawLibraryData.tags['addr:city']
       this.city = rawLibraryData.tags['addr:city']
       this.note = rawLibraryData.tags['note']
 
