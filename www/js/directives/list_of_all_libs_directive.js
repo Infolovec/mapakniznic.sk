@@ -14,29 +14,31 @@ mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState, librarie
         return(uiState.listOfAllLibrariesIsVisible())
       }  
 
-      $scope.listOfAllLibsFilter = null
-      $scope.applyFilterListOfLibs = function(libType){
-        $scope.listOfAllLibsFilter = libType
-      }
-
-      $scope.listOfLibsFilterEqualsTo = function(libType){
-        return($scope.listOfAllLibsFilter == libType)
-      }
-
-      $scope.isLibraryMatchingFilter = function(library){
-        if($scope.listOfAllLibsFilter){
-          return(library.libraryType.indexOf($scope.listOfAllLibsFilter) > -1)
-        } else 
-          return true
-      } 
-
       $scope.showLibraryDetail = function(library){
         var doClearSearchResults = true
         uiState.showLibraryDetail(library, doClearSearchResults)
       }
 
-      $scope.libTypeIcon = function(libType){
-        return libraryIcons.getImage(libType, 'rgb(151, 152, 121)')
+      $scope.libTypes = [
+        {value: 'all', name: 'Všetky typy'},
+        {value: 'verejná knižnica', name: 'Verejná knižnica'},
+        {value: 'akademická knižnica', name: 'Akademická knižnica'},
+        {value: 'špeciálna knižnica', name: 'Špeciálna knižnica'},
+        {value: 'knižná búdka', name: 'Knižná búdka'},
+        {value: 'bibliobox', name: 'Bibliobox'},
+        {value: 'letná čitáreň', name: 'Letná čitáreň'}
+      ]
+
+      $scope.libLocations = [
+        {value: 'all', name: 'Všetky lokality'},
+        {value: 'Banská Bystrica', name: 'Banská Bystrica'},
+        {value: 'Bratislava', name: 'Bratislava'},
+        {value: 'Košice', name: 'Košice'}
+      ]
+      
+      $scope.selected = {
+        libType: $scope.libTypes[0].value,
+        libLocation: $scope.libLocations[0].value,
       }
     }    
   };

@@ -9,55 +9,24 @@
       <div class="info" style="height: 100%;">		
         <h1>Zoznam knižníc</h1>	
         <div style="margin-bottom: 10px">
-          <button ng-click="applyFilterListOfLibs(null)" 
-          ng-class="listOfLibsFilterEqualsTo(null) ? '' : 'button-outline'"
-          class="button button-dark button-small">
-            Všetky
-          </button>
-          <button ng-click="applyFilterListOfLibs('verejná knižnica')" 
-          ng-class="listOfLibsFilterEqualsTo('verejná knižnica') ? '' : 'button-outline'"
-          class="button button-dark button-small">
-            <img ng-src="{{libTypeIcon('verejná knižnica')}}"></img>
-            Verejná
-          </button>
-          <button ng-click="applyFilterListOfLibs('akademická knižnica')" 
-          ng-class="listOfLibsFilterEqualsTo('akademická knižnica') ? '' : 'button-outline'"
-          class="button button-dark button-small">
-            <img ng-src="{{libTypeIcon('akademická knižnica')}}"></img>
-            Akademická
-          </button>
-          <button ng-click="applyFilterListOfLibs('špeciálna knižnica')" 
-          ng-class="listOfLibsFilterEqualsTo('špeciálna knižnica') ? '' : 'button-outline'"
-          class="button button-dark button-small">
-            <img ng-src="{{libTypeIcon('špeciálna knižnica')}}"></img>
-            Špeciálna
-          </button>
-          <button ng-click="applyFilterListOfLibs('knižná búdka')" 
-          ng-class="listOfLibsFilterEqualsTo('knižná búdka') ? '' : 'button-outline'"
-          class="button button-dark button-small">
-            <img ng-src="{{libTypeIcon('knižná búdka')}}"></img>
-            Knižná búdka
-          </button>
-          <button ng-click="applyFilterListOfLibs('bibliobox')" 
-          ng-class="listOfLibsFilterEqualsTo('bibliobox') ? '' : 'button-outline'"
-          class="button button-dark button-small">
-            <img ng-src="{{libTypeIcon('bibliobox')}}"></img>
-            Bibliobox
-          </button>
-          <button ng-click="applyFilterListOfLibs('letná čitáreň')" 
-          ng-class="listOfLibsFilterEqualsTo('letná čitáreň') ? '' : 'button-outline'"
-          class="button button-dark button-small">
-            <img ng-src="{{libTypeIcon('letná čitáreň')}}"></img>
-            Letná čitáreň
-          </button>
+          <select class="button button-dark button-outline button-small" 
+          ng-model="selected.libType" required 
+          ng-options='option.value as option.name for option in libTypes'>
+          </select>
+          <select class="button button-dark button-outline button-small" 
+          ng-model="selected.libLocation" required 
+          ng-options='option.value as option.name for option in libLocations'>
+          </select>
         </div>	
+        <p> Výsledkov: {{libraries.filter(selected.libType,selected.libLocation).length}}</p>
         <ion-scroll direction="y" style="height: 100%;">
           <ul>		
-            <li ng-repeat="library in libraries.all() | orderBy:'name' | filter:isLibraryMatchingFilter" 
+            <li ng-repeat="library in libraries.filter(selected.libType,selected.libLocation) | orderBy:'name'" 
             ng-click="showLibraryDetail(library)">
                   {{library.name}}
             </li>
           </ul>		
         </ion-scroll>		
+        
       </div>		
 </div>

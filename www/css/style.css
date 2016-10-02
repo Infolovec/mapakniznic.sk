@@ -85,15 +85,7 @@
   border-color: #949494;
   border-style: dotted;
   margin-bottom: 5px;
-}
-
-.menuPopup#listOfLibraries .button.button-dark.button-outline:hover {
-  background-color: #eaead7;
-}
-
-.menuPopup#listOfLibraries button img {
-  width: 15px;
-  vertical-align: text-bottom;
+  height: 25px;
 }
 
 .menuPopup#listOfLibraries .info ul li {
