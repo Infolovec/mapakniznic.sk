@@ -26,7 +26,7 @@
           <td><span class="descKey">TYP</span></td>  
           <td>{{library().libraryType}}</td> 
         </tr>
-        <tr ng-show="library().note">
+        <tr ng-show="library().note && !inEmbeddedMode()">
           <td><span class="descKey">POZNÁMKA</span></td>  
           <td>{{library().note}}</td> 
         </tr>
