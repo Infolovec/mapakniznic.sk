@@ -29,12 +29,11 @@ mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState, librarie
         {value: 'letná čitáreň', name: 'Letná čitáreň'}
       ]
 
-      $scope.libLocations = [
-        {value: 'all', name: 'Všetky lokality'},
-        {value: 'Banská Bystrica', name: 'Banská Bystrica'},
-        {value: 'Bratislava', name: 'Bratislava'},
-        {value: 'Košice', name: 'Košice'}
-      ]
+      $scope.libLocations = [{value: 'all', name: 'Všetky lokality'}]
+
+      libraries.allLocations().forEach(function(location){
+        $scope.libLocations.push({value: location, name: location})
+      })
       
       $scope.selected = {
         libType: $scope.libTypes[0].value,

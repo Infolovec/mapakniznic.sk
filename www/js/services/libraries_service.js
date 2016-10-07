@@ -24,6 +24,18 @@ mapaKniznicApp.service("libraries", function(rawLibraryDataService, leafletMap, 
     return(this._libraries)
   }
 
+  Array.prototype.getUnique = function() {
+    var o = {}, a = [], i, e;
+    for (i = 0; e = this[i]; i++) {o[e] = 1};
+    for (e in o) {a.push (e)};
+    return a;
+  }
+
+  service.allLocations = function(){
+    var allLocations = this._libraries.map(function(l){return l.city})
+    return allLocations.getUnique().sort()
+  }
+
   service.filter = function(libType, libLocation){
     return service.all().filter(function(library){
       var libTypeMatch = libType == 'all' || library.libraryType.indexOf(libType) > -1
