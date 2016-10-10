@@ -82,7 +82,7 @@ https://www.openstreetmap.org/node/4369833756	akademická knižnica
 https://www.openstreetmap.org/node/4369833747	akademická knižnica
 https://www.openstreetmap.org/node/4369833748	akademická knižnica
 https://www.openstreetmap.org/node/4369833746	akademická knižnica
-https://www.openstreetmap.org/node/4416064247	letná čitáreň
+https://www.openstreetmap.org/node/4416064247	letná čitáreň; knižná búdka
 https://www.openstreetmap.org/node/4416064248	knižná búdka
 https://www.openstreetmap.org/node/4416064245	knižná búdka
 https://www.openstreetmap.org/node/4416064244	knižná búdka
@@ -91,3 +91,5 @@ https://www.openstreetmap.org/way/47704751	špeciálna knižnica
 https://www.openstreetmap.org/way/61154453	špeciálna knižnica
 https://www.openstreetmap.org/node/1709565458	verejná knižnica
 https://www.openstreetmap.org/node/4437334762	verejná knižnica
+https://www.openstreetmap.org/node/4440453811	knižná búdka
+https://www.openstreetmap.org/node/4440453812	knižná búdka
