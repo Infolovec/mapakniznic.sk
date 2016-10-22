@@ -134,7 +134,7 @@ task :sitemap do
       desc << ", "
     end
 
-    desc << 'Bratislava'
+    desc << library['tags']['addr:city']
 
     page.gsub! 'DESCRIPTION', desc
 
