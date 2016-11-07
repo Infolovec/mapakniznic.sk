@@ -179,3 +179,15 @@ task :changelog do
   $stdout << "updated changelog ./www/for_bots/changelog.txt \n"
   STDOUT.flush
 end
+
+# snk = slovenska narodna kniznica
+# http://www.snk.sk/sk/informacie-pre/kniznice-a-knihovnikov/adresar-kniznic.html
+task :'snk-to-osm' do
+  require './snk-to-osm-data-matching-scripts/snk_library.rb'
+  require './snk-to-osm-data-matching-scripts/snk_collection.rb'
+
+  # csv is exported from xls, we take first tab from xls (all libraries)
+  snk_collection = SnkCollection.new './data/snk-adresar_kniznic_2016-11-02.csv'
+  library_filter = {:lib_type => 'mestská', :kraj => 'Trnavský'}
+  snk_collection.load_osm_data library_filter
+end
