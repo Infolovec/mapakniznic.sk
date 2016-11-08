@@ -187,13 +187,16 @@ task 'snk-to-osm' do
   require './snk-to-osm-data-matching-scripts/snk_collection.rb'
 
   # csv is exported from xls, we take first tab from xls (all libraries)
-  library_filter = {:okres => 'Lučenec', :lib_type => ['obecná NZ', 'obecná PZ', 'mestská','RKK']}
+  library_filter = {:okres => 'Lučenec', :lib_type => ['obecná NZ', 'obecná PZ', 'mestská','RKK', 'regionálna']}
   snk_collection = SnkCollection.new './data/snk-adresar_kniznic_2016-11-02.csv', library_filter
   snk_collection.load_osm_data
-  File.open('./tmp/output.osc', 'w'){|f| f.write snk_collection.to_osm_change_xml}
-  puts "OSC file written to ./tmp/output.osc"
+  File.open('./tmp/matched_libraries_to_create_update_or_delete.osc', 'w'){|f| f.write snk_collection.to_osm_change_xml}
+  puts "OSC file written to ./tmp/matched_libraries_to_create_update_or_delete.osc"
   File.open('./tmp/output.html', 'w'){|f| f.write snk_collection.to_html}
   puts "HTML file written to ./tmp/output.html"
+  osm = snk_collection.osm_of_all_amenity_libraries
+  File.open('./tmp/unmatched_amenity_libraries_in_bbox.osm', 'w'){|f| f.write osm}
+  puts "OSM file written to ./tmp/unmatched_amenity_libraries_in_bbox.osm"
 end
 
 task 'okresy-bbox' do
