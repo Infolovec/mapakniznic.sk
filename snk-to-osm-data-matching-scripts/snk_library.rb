@@ -46,7 +46,9 @@ class SnkLibrary
 
   def is_matching library_filter
     library_filter.each do |k, v|
-      if self.send(k) != v
+      if v.class == String && self.send(k) != v
+        return false
+      elsif !v.include?(self.send(k))
         return false
       end
     end
