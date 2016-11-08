@@ -37,20 +37,35 @@ class SnkLibrary
   end
 
   def to_overpass_query
-    <<-STRING
-      <query type="node">
-        <has-kv k="addr:street" v="#{self.street}"/>
-        <has-kv k="addr:streetnumber" v="#{self.addressnumber}"/>
-        <has-kv k="addr:city" v="#{self.city}"/>
-      </query>
-      <print mode="meta"/>
-      <query type="way">
-        <has-kv k="addr:street" v="#{self.street}"/>
-        <has-kv k="addr:streetnumber" v="#{self.addressnumber}"/>
-        <has-kv k="addr:city" v="#{self.city}"/>
-      </query>
-      <print mode="meta" geometry=\"center\"/>
-    STRING
+    if(self.street)
+      <<-STRING
+        <query type="node">
+          <has-kv k="addr:street" v="#{self.street}"/>
+          <has-kv k="addr:streetnumber" v="#{self.addressnumber}"/>
+          <has-kv k="addr:city" v="#{self.city}"/>
+        </query>
+        <print mode="meta"/>
+        <query type="way">
+          <has-kv k="addr:street" v="#{self.street}"/>
+          <has-kv k="addr:streetnumber" v="#{self.addressnumber}"/>
+          <has-kv k="addr:city" v="#{self.city}"/>
+        </query>
+        <print mode="meta" geometry=\"center\"/>
+      STRING
+    else
+      <<-STRING
+        <query type="node">
+          <has-kv k="addr:housenumber" v="#{self.addressnumber}"/>
+          <has-kv k="addr:city" v="#{self.city}"/>
+        </query>
+        <print mode="meta"/>
+        <query type="way">
+          <has-kv k="addr:housenumber" v="#{self.addressnumber}"/>
+          <has-kv k="addr:city" v="#{self.city}"/>
+        </query>
+        <print mode="meta" geometry=\"center\"/>
+      STRING
+    end
   end
 
   def add_osm_data osm_hash
