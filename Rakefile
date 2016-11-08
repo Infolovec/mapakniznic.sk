@@ -182,7 +182,7 @@ end
 
 # snk = slovenska narodna kniznica
 # http://www.snk.sk/sk/informacie-pre/kniznice-a-knihovnikov/adresar-kniznic.html
-task :'snk-to-osm' do
+task 'snk-to-osm' do
   require './snk-to-osm-data-matching-scripts/snk_library.rb'
   require './snk-to-osm-data-matching-scripts/snk_collection.rb'
 
@@ -194,4 +194,30 @@ task :'snk-to-osm' do
   puts "OSC file written to ./tmp/output.osc"
   File.open('./tmp/output.html', 'w'){|f| f.write snk_collection.to_html}
   puts "HTML file written to ./tmp/output.html"
+end
+
+task 'okresy-bbox' do
+  f = File.read './data/sk-okresy-polygons.geojson'
+  j = JSON.parse f
+  out = {}
+  j['features'].each do |okres|
+    okres_name = okres['properties']['TXT'][6..-1]
+    max_lat = 0.0
+    min_lat = 90.0
+    max_lon = 0.0
+    min_lon = 180.0
+    okres['geometry']['coordinates'][0].each do |lon, lat|
+      min_lat = lat if lat < min_lat
+      max_lat = lat if max_lat < lat
+      min_lon = lon if lon < min_lon
+      max_lon = lon if max_lon < lon      
+    end
+    min_lat -= 0.1
+    max_lat += 0.1
+    min_lon -= 0.1
+    max_lon += 0.1
+
+    out[okres_name] = "#{min_lat.round(4)},#{min_lon.round(4)},#{max_lat.round(4)},#{max_lon.round(4)}"
+  end
+  puts out
 end
