@@ -188,7 +188,7 @@ task :'snk-to-osm' do
 
   # csv is exported from xls, we take first tab from xls (all libraries)
   snk_collection = SnkCollection.new './data/snk-adresar_kniznic_2016-11-02.csv'
-  library_filter = {:lib_type => 'mestská', :kraj => 'Prešovský'}
+  library_filter = {:okres => 'Lučenec'}
   snk_collection.load_osm_data library_filter
   change_xml = snk_collection.to_osm_change_xml
   File.open('./tmp/output.osc', 'w'){|f| f.write change_xml}

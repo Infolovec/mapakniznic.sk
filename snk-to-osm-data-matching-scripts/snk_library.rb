@@ -88,7 +88,7 @@ class SnkLibrary
       'addr:housenumber' => t['addr:housenumber'],
       'website' => self.website,
       'contact:phone' => self.phone.gsub(',', ';'),
-      'contact:email' => self.email,
+      'contact:email' => self.email.strip,
       'fixme' => 'yes'
     }
 
