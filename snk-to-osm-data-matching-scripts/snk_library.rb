@@ -29,7 +29,14 @@ class SnkLibrary
 
   def to_html
     html = "<tr>"
-    html << "<td>#{self.name}<br />obec: #{self.city}<br />ulica: #{self.street}<br />cislo: #{self.addressnumber}</td>"
+    html << <<-STRING
+    <td>#{self.name}<br />
+    obec: #{self.city}<br />
+    ulica: #{self.street}<br />
+    cislo: #{self.addressnumber}<br />
+    stav: #{self.lib_status}
+    </td>
+    STRING
     if osm_address_found?
       html << "<td style=\"background-color: #18ff18\">Adresa najdena v OSM</td>"
       if osm_library_found?
@@ -100,7 +107,12 @@ class SnkLibrary
     return osm_address_found? && @osm_hash['tags']['amenity'] && @osm_hash['tags']['amenity'] == 'library'
   end
 
+  def is_working?
+    self.lib_status == 'Fungujúca'
+  end
+
   def to_osm_change_create_xml
+    return unless is_working?
     return unless osm_address_found?
     return if osm_library_found?
 

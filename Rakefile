@@ -187,7 +187,7 @@ task :'snk-to-osm' do
   require './snk-to-osm-data-matching-scripts/snk_collection.rb'
 
   # csv is exported from xls, we take first tab from xls (all libraries)
-  library_filter = {:okres => 'Lučenec', :lib_type => ['obecná NZ', 'obecná PZ', 'mestská']}
+  library_filter = {:okres => 'Lučenec', :lib_type => ['obecná NZ', 'obecná PZ', 'mestská','RKK']}
   snk_collection = SnkCollection.new './data/snk-adresar_kniznic_2016-11-02.csv', library_filter
   snk_collection.load_osm_data
   File.open('./tmp/output.osc', 'w'){|f| f.write snk_collection.to_osm_change_xml}
