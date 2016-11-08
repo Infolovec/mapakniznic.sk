@@ -27,6 +27,23 @@ class SnkLibrary
     out
   end
 
+  def to_html
+    html = "<tr>"
+    html << "<td>#{self.name}<br />obec: #{self.city}<br />ulica: #{self.street}<br />cislo: #{self.addressnumber}</td>"
+    if osm_address_found?
+      html << "<td style=\"background-color: #18ff18\">Adresa najdena v OSM</td>"
+      if osm_library_found?
+        html << "<td style=\"background-color: #18ff18\">Kniznica najdena v OSM</td>"
+      else
+        html << "<td style=\"background-color: yellow\">Este nie je v OSM ako kniznica</td>"
+      end
+    else
+      html << "<td style=\"background-color: grey\">Adresa nenajdena v OSM</td><td></td>"
+    end
+
+    html << "</tr>"
+  end
+
   def is_matching library_filter
     library_filter.each do |k, v|
       if self.send(k) != v
@@ -73,14 +90,17 @@ class SnkLibrary
     @osm_hash = osm_hash
   end
 
-  def osm_match_found?
+  def osm_address_found?
     return @osm_hash
   end
 
+  def osm_library_found?
+    return osm_address_found? && @osm_hash['tags']['amenity'] && @osm_hash['tags']['amenity'] == 'library'
+  end
+
   def to_osm_change_create_xml
-    return unless osm_match_found?
-    isExistingLibraryInOSM = @osm_hash['tags']['amenity'] && @osm_hash['tags']['amenity'] == 'library'
-    return if isExistingLibraryInOSM
+    return unless osm_address_found?
+    return if osm_library_found?
 
     if(@osm_hash['type'] == 'node')
       lat = @osm_hash['lat']
