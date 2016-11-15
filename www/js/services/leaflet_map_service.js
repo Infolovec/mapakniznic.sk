@@ -20,7 +20,6 @@ mapaKniznicApp.service("leafletMap", function() {
 
     addMarker: function(libraryMarker){
       this._markers.push(libraryMarker)
-      libraryMarker.addTo(this._map)
     },
 
     refreshMarkersAppearance: function(librariesToFitView){
@@ -48,6 +47,10 @@ mapaKniznicApp.service("leafletMap", function() {
           paddingBottomRight: L.point(window.innerWidth/4, window.innerHeight/2),
           maxZoom: maxZoom
         });
+    },
+
+    getMap: function(){
+      return this._map
     }
   }
   return service

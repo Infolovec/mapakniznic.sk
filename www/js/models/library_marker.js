@@ -1,4 +1,4 @@
-mapaKniznicApp.factory('LibraryMarker', function(libraryIcons){
+mapaKniznicApp.factory('LibraryMarker', function(libraryIcons, leafletMap){
   return function (){
     this.initialize = function(uid, libraryType, lat, lon, defaultColor, labelText){
       
@@ -41,6 +41,13 @@ mapaKniznicApp.factory('LibraryMarker', function(libraryIcons){
         fillOpacity: 1.0,
         color: this._defaultColor,
         fillColor: this._defaultColor})
+
+      this._supportHightlightMarker.on('click',this._markerClicked);
+      this._marker.on('click',this._markerClicked);
+      this._onRemoteZoomMarker.on('click',this._markerClicked);
+      var that = this
+      this._marker.on('mouseover', this._showOnMouseOverMarker.bind(this));
+      this._marker.on('mouseout', this._hideOnMouseOverMarker.bind(this));
     }
 
     this._showOnMouseOverMarker = function(){
@@ -51,39 +58,29 @@ mapaKniznicApp.factory('LibraryMarker', function(libraryIcons){
       this._onMouseOverMarker.setStyle({radius: 0})
     }
 
-    this.addTo = function(map){
-      this._map = map
-      this._supportHightlightMarker.on('click',this._markerClicked);
-      this._marker.on('click',this._markerClicked);
-      this._onRemoteZoomMarker.on('click',this._markerClicked);
-      var that = this
-      this._marker.on('mouseover', this._showOnMouseOverMarker.bind(this));
-      this._marker.on('mouseout', this._hideOnMouseOverMarker.bind(this));
-    } 
-
     this.setStyle = function(style){
       this._style = style
     }
 
     this.showRemoteZoomMarkers = function(){
-      if(!this._showingRemoteZoomMarker){
-        this._map.removeLayer(this._supportHightlightMarker)
-        this._map.removeLayer(this._marker)
-        this._map.removeLayer(this._onMouseOverMarker)
-        this._onRemoteZoomMarker.addTo(this._map)
+      if(this._showingMarkerOn != 'removeZoom'){
+        leafletMap.getMap().removeLayer(this._supportHightlightMarker)
+        leafletMap.getMap().removeLayer(this._marker)
+        leafletMap.getMap().removeLayer(this._onMouseOverMarker)
+        this._onRemoteZoomMarker.addTo(leafletMap.getMap())
         
-        this._showingRemoteZoomMarker = true
+        this._showingMarkerOn = 'removeZoom'
       }
     }
 
     this.showCloseZoomMarkers = function(){
-      if(this._showingRemoteZoomMarker){
-        this._map.removeLayer(this._onRemoteZoomMarker)
-        this._supportHightlightMarker.addTo(this._map)
-        this._marker.addTo(this._map)
-        this._onMouseOverMarker.addTo(this._map)
+      if(this._showingMarkerOn != 'closeZoom'){
+        leafletMap.getMap().removeLayer(this._onRemoteZoomMarker)
+        this._supportHightlightMarker.addTo(leafletMap.getMap())
+        this._marker.addTo(leafletMap.getMap())
+        this._onMouseOverMarker.addTo(leafletMap.getMap())
         
-        this._showingRemoteZoomMarker = false
+        this._showingMarkerOn = 'closeZoom'
       }
     }
 
