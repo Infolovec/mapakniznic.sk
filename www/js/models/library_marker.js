@@ -34,6 +34,13 @@ mapaKniznicApp.factory('LibraryMarker', function(libraryIcons){
         dashArray: '15, 8',
         lineCap: 'square',
         fillColor: '#feffd5'})
+
+      this._onRemoteZoomMarker = L.circleMarker([lat, lon], {
+        radius: 3, 
+        opacity: 1.0,
+        fillOpacity: 1.0,
+        color: this._defaultColor,
+        fillColor: this._defaultColor})
     }
 
     this._showOnMouseOverMarker = function(){
@@ -45,11 +52,10 @@ mapaKniznicApp.factory('LibraryMarker', function(libraryIcons){
     }
 
     this.addTo = function(map){
-      this._supportHightlightMarker.addTo(map)
+      this._map = map
       this._supportHightlightMarker.on('click',this._markerClicked);
-      this._marker.addTo(map)
       this._marker.on('click',this._markerClicked);
-      this._onMouseOverMarker.addTo(map)
+      this._onRemoteZoomMarker.on('click',this._markerClicked);
       var that = this
       this._marker.on('mouseover', this._showOnMouseOverMarker.bind(this));
       this._marker.on('mouseout', this._hideOnMouseOverMarker.bind(this));
@@ -59,22 +65,50 @@ mapaKniznicApp.factory('LibraryMarker', function(libraryIcons){
       this._style = style
     }
 
-    this.updateAppearance = function(mapZoom){
-      var iconSize = mapZoom * 2.5 - 11
-      if(iconSize < 19)
-        iconSize = 19
-
-      if(this._style == 'highlight'){
-        this._supportHightlightMarker.setStyle({radius: 30, fillOpacity: 0.6, opacity: 0.9})
+    this.showRemoteZoomMarkers = function(){
+      if(!this._showingRemoteZoomMarker){
+        this._map.removeLayer(this._supportHightlightMarker)
+        this._map.removeLayer(this._marker)
+        this._map.removeLayer(this._onMouseOverMarker)
+        this._onRemoteZoomMarker.addTo(this._map)
         
-      } else if(this._style == 'normal'){
-        this._supportHightlightMarker.setStyle({radius: 0})
-      } else if(this._style == 'hide'){
-        iconSize = 0
-        this._supportHightlightMarker.setStyle({radius: 0})
+        this._showingRemoteZoomMarker = true
       }
+    }
 
-      this._marker.setIcon(this._icon(iconSize))  
+    this.showCloseZoomMarkers = function(){
+      if(this._showingRemoteZoomMarker){
+        this._map.removeLayer(this._onRemoteZoomMarker)
+        this._supportHightlightMarker.addTo(this._map)
+        this._marker.addTo(this._map)
+        this._onMouseOverMarker.addTo(this._map)
+        
+        this._showingRemoteZoomMarker = false
+      }
+    }
+
+    this.updateAppearance = function(mapZoom){
+      if(mapZoom > 12){
+        
+        var iconSize = mapZoom * 2.5 - 11
+        if(iconSize < 19)
+          iconSize = 19
+
+        if(this._style == 'highlight'){
+          this._supportHightlightMarker.setStyle({radius: 30, fillOpacity: 0.6, opacity: 0.9})
+          
+        } else if(this._style == 'normal'){
+          this._supportHightlightMarker.setStyle({radius: 0})
+        } else if(this._style == 'hide'){
+          iconSize = 0
+          this._supportHightlightMarker.setStyle({radius: 0})
+        }
+
+        this._marker.setIcon(this._icon(iconSize))  
+        this.showCloseZoomMarkers()
+      } else {
+        this.showRemoteZoomMarkers()
+      }
     }
 
     this.setClickCallback = function(callback){
