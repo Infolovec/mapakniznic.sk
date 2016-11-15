@@ -20,6 +20,7 @@ mapaKniznicApp.service("leafletMap", function() {
 
     addMarker: function(libraryMarker){
       this._markers.push(libraryMarker)
+      libraryMarker.onMapInitialized()
     },
 
     refreshMarkersAppearance: function(librariesToFitView){

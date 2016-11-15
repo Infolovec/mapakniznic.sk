@@ -41,13 +41,6 @@ mapaKniznicApp.factory('LibraryMarker', function(libraryIcons, leafletMap){
         fillOpacity: 1.0,
         color: this._defaultColor,
         fillColor: this._defaultColor})
-
-      this._supportHightlightMarker.on('click',this._markerClicked);
-      this._marker.on('click',this._markerClicked);
-      this._onRemoteZoomMarker.on('click',this._markerClicked);
-      var that = this
-      this._marker.on('mouseover', this._showOnMouseOverMarker.bind(this));
-      this._marker.on('mouseout', this._hideOnMouseOverMarker.bind(this));
     }
 
     this._showOnMouseOverMarker = function(){
@@ -60,6 +53,15 @@ mapaKniznicApp.factory('LibraryMarker', function(libraryIcons, leafletMap){
 
     this.setStyle = function(style){
       this._style = style
+    }
+
+    this.onMapInitialized = function(){
+      this._supportHightlightMarker.on('click',this._markerClicked);
+      this._marker.on('click',this._markerClicked);
+      this._onRemoteZoomMarker.on('click',this._markerClicked);
+      var that = this
+      this._marker.on('mouseover', this._showOnMouseOverMarker.bind(this));
+      this._marker.on('mouseout', this._hideOnMouseOverMarker.bind(this));
     }
 
     this.showRemoteZoomMarkers = function(){
