@@ -14,7 +14,7 @@ class SnkCollection
       library =  SnkLibrary.new(library_raw_data)
       if library.is_matching(lib_filter)
         @libraries << library
-        if(library.street)
+        if(library.using_street_addressing)
           address_search_key = [library.city, library.street, library.addressnumber]
         else
           address_search_key = [library.city, library.addressnumber]
@@ -67,9 +67,18 @@ class SnkCollection
   end
 
   def to_osm_unmatched_amenity_libraries
+    xml = '<?xml version="1.0" encoding="UTF-8"?><osm version="0.6" generator="CGImap 0.0.2">'
+    
     @unmatched_osm_libraries.each do |osm_hash|
-      puts osm_hash
+      if(osm_hash['type'] == 'node')
+        xml << "<node id=\"#{osm_hash['id']}\" version=\"#{osm_hash['version']}\"></node>"
+      else
+        xml << "<way id=\"#{osm_hash['id']}\" version=\"#{osm_hash['version']}\"></way>"
+      end
     end
+
+    xml << "</osm>"
+    xml
   end
 
   def to_osm_change_xml
@@ -78,7 +87,7 @@ class SnkCollection
       <osmChange version="0.6" generator="Ruby">\n
     STRING
     xml << "\t<create>\n"
-    xml << @libraries.map {|l| l.to_osm_change_create_xml}.compact.join("\n")
+    xml << @libraries.map {|l| l.to_osc_create_xml}.compact.join("\n")
     xml << "\n\t</create>\n"
     xml << "</osmChange>"
 
@@ -119,7 +128,7 @@ class SnkCollection
         <query type="way">
           <has-kv k="amenity" v="library"/>
         </query>
-        <print mode="meta" geometry=\"center\" />
+        <print mode="meta" />
       </osm-script>
     STRING
   end

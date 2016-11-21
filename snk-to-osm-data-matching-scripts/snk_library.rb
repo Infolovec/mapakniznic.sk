@@ -1,7 +1,7 @@
 class SnkLibrary
   attr_accessor :name, :lib_type, :lib_status, :address, 
   :postcode, :street, :addressnumber, :city, :okres, :kraj,
-  :person, :phone, :website, :email
+  :person, :phone, :website, :email, :using_street_addressing
 
   @@uid_counter_for_new_osm_points = -1
 
@@ -10,10 +10,15 @@ class SnkLibrary
     self.postcode, self.city, self.okres, self.kraj, 
     self.person, self.phone, self.website, self.email = csv_line.split ';'
 
+
+
     a2 = self.address.split(' ')
     self.street = a2[0..-2].join(' ')
+
+    self.using_street_addressing = true
     if(self.street == self.city)
       # obec nepouziva nazvy ulic
+      self.using_street_addressing = false
       self.street = nil
     end
     self.addressnumber = a2.last
@@ -116,9 +121,41 @@ class SnkLibrary
     self.lib_status == 'Fungujúca'
   end
 
-  def to_osm_change_create_xml
+  def to_osc_modify_xml
     return unless is_working?
-    return unless osm_address_found?
+    return unless osm_name_found?
+
+    library_tags_from_osm = @osm_hash_from_name_search['tags']
+    library_tags_from_snk = to_osm_tags_hash
+    merged_tags = library_tags_from_snk.merge library_tags_from_snk
+    merged_tags['name'] = self.name
+    merged_tags['note'] ||= ''
+    merged_tags['note'] << ' | updating existing amenity:library'
+
+    version = @osm_hash_from_name_search['version'] + 1
+    uid = @osm_hash_from_name_search['id']
+
+    
+    if(@osm_hash_from_name_search['type'] == 'node')
+      lat = @osm_hash_from_name_search['lat']
+      lon = @osm_hash_from_name_search['lon']
+      xml = "\t<node id=\"#{uid}\" lat=\"#{lat}\" lon=\"#{lon}\" version=\"#{version}\">\n"
+      merged_tags.each do |k,v|
+        if v && v.length > 0
+          xml += "\t\t<tag k=\"#{k}\" v=\"#{v}\"/>\n"
+        end
+      end
+      xml += "\t</node>\n"    
+    else 
+      raise "TODO!!! merge way data and produce osc way modify tag"
+    end
+
+    xml
+  end
+
+  def to_osc_create_xml
+    return unless is_working?
+    return unless osm_address_found? 
     return if osm_name_found?
 
     if(@osm_hash_from_address_search['type'] == 'node')
@@ -129,26 +166,16 @@ class SnkLibrary
       lon = @osm_hash_from_address_search['center']['lon']        
     end
 
-    t = @osm_hash_from_address_search['tags']
-
-    kvs = {
-      'amenity' => 'library',
-      'name' => self.name,
-      'addr:city' => self.city,
-      'addr:postcode' => self.postcode,
-      'addr:street' => t['addr:street'],
-      'addr:streetnumber' => t['addr:streetnumber'],
-      'addr:conscriptionnumber' =>  t['addr:conscriptionnumber'],
-      'addr:housenumber' => t['addr:housenumber'],
-      'website' => self.website,
-      'contact:phone' => self.phone.gsub(',', ';'),
-      'contact:email' => self.email.strip,
-      'fixme' => 'yes'
-    }
+    library_tags_from_osm = @osm_hash_from_address_search['tags']
+    library_tags_from_snk = to_osm_tags_hash
+    merged_tags = library_tags_from_snk.merge library_tags_from_snk
+    merged_tags['name'] = self.name
+    merged_tags['note'] ||= ''
+    merged_tags['note'] << ' | creating new library via address matching'
 
     @@uid_counter_for_new_osm_points -= 1
     xml = "\t<node id=\"#{@@uid_counter_for_new_osm_points}\" lat=\"#{lat}\" lon=\"#{lon}\" version=\"1\">\n"
-    kvs.each do |k,v|
+    merged_tags.each do |k,v|
       if v && v.length > 0
         xml += "\t\t<tag k=\"#{k}\" v=\"#{v}\"/>\n"
       end
@@ -156,5 +183,33 @@ class SnkLibrary
     xml += "\t</node>\n"
 
     return xml
+  end
+
+  def to_osm_tags_hash
+    h = {
+      'amenity' => 'library',
+      'name' => self.name,
+      'addr:city' => self.city,
+      'addr:postcode' => self.postcode,
+      'fixme' => 'yes'
+    }
+
+    if self.using_street_addressing
+      h['addr:street'] = self.street
+      h['addr:streetnumber'] = self.addressnumber
+      h['addr:housenumber'] = self.addressnumber
+    else
+      h['addr:place'] = self.city
+      h['addr:conscriptionnumber'] = self.addressnumber
+      h['addr:housenumber'] = self.addressnumber
+      h['note'] = 'overit ci addr:city == addr:place'
+
+    end
+
+    h['website'] = self.website if self.website
+    h['contact:phone'] = self.phone.gsub(',', ';') if self.phone
+    h['contact:email'] = self.email.strip if self.email
+    
+    h
   end
 end
