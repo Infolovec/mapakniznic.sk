@@ -89,6 +89,9 @@ class SnkCollection
     xml << "\t<create>\n"
     xml << @libraries.map {|l| l.to_osc_create_xml}.compact.join("\n")
     xml << "\n\t</create>\n"
+    xml << "\t<modify>\n"
+    xml << @libraries.map {|l| l.to_osc_modify_xml}.compact.join("\n")
+    xml << "\n\t</modify>\n"
     xml << "</osmChange>"
 
     xml

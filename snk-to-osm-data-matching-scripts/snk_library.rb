@@ -129,7 +129,7 @@ class SnkLibrary
     library_tags_from_snk = to_osm_tags_hash
     merged_tags = library_tags_from_snk.merge library_tags_from_snk
     merged_tags['name'] = self.name
-    merged_tags['note'] ||= ''
+    merged_tags['note'] ||= ' '
     merged_tags['note'] << ' | updating existing amenity:library'
 
     version = @osm_hash_from_name_search['version'] + 1
@@ -147,7 +147,7 @@ class SnkLibrary
       end
       xml += "\t</node>\n"    
     else 
-      raise "TODO!!! merge way data and produce osc way modify tag"
+      raise "TODO - implement osc modify for <way>"
     end
 
     xml
@@ -170,7 +170,7 @@ class SnkLibrary
     library_tags_from_snk = to_osm_tags_hash
     merged_tags = library_tags_from_snk.merge library_tags_from_snk
     merged_tags['name'] = self.name
-    merged_tags['note'] ||= ''
+    merged_tags['note'] ||= ' '
     merged_tags['note'] << ' | creating new library via address matching'
 
     @@uid_counter_for_new_osm_points -= 1
@@ -202,7 +202,7 @@ class SnkLibrary
       h['addr:place'] = self.city
       h['addr:conscriptionnumber'] = self.addressnumber
       h['addr:housenumber'] = self.addressnumber
-      h['note'] = 'overit ci addr:city == addr:place'
+      h['note'] = ' overit ci addr:city == addr:place'
 
     end
 
