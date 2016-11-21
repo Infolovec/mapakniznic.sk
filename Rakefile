@@ -191,11 +191,15 @@ task 'snk-to-osm' do
   snk_collection = SnkCollection.new './data/snk-adresar_kniznic_2016-11-02.csv', library_filter
   snk_collection.load_osm_data
 
-  osc_file = "./tmp/#{library_filter[:okres]}_matched_libraries_to_create_update_or_delete.osc"
-  File.open(osc_file, 'w'){|f| f.write snk_collection.to_osm_change_xml}
-  puts "OSC file written to #{osc_file}"
+  osc_file = "./tmp/#{library_filter[:okres]}_create.osc"
+  File.open(osc_file, 'w'){|f| f.write snk_collection.to_osc_create_xml}
+  puts "OSC written to #{osc_file}"
 
-  osm_file = "./tmp/#{library_filter[:okres]}_unmatched_amenity_libraries.osm"
+  osc_file = "./tmp/#{library_filter[:okres]}_modify.osc"
+  File.open(osc_file, 'w'){|f| f.write snk_collection.to_osc_modify_xml}
+  puts "OSC written to #{osc_file}"
+
+  osm_file = "./tmp/#{library_filter[:okres]}_unmatched.osm"
   File.open(osm_file, 'w'){|f| f.write snk_collection.to_osm_unmatched_amenity_libraries}
   puts "OSM file written to #{osm_file}"
 

@@ -81,7 +81,7 @@ class SnkCollection
     xml
   end
 
-  def to_osm_change_xml
+  def to_osc_create_xml
     xml = <<-STRING
 <?xml version="1.0" encoding="UTF-8"?>
       <osmChange version="0.6" generator="Ruby">\n
@@ -89,6 +89,16 @@ class SnkCollection
     xml << "\t<create>\n"
     xml << @libraries.map {|l| l.to_osc_create_xml}.compact.join("\n")
     xml << "\n\t</create>\n"
+    xml << "</osmChange>"
+
+    xml
+  end
+
+  def to_osc_modify_xml
+    xml = <<-STRING
+<?xml version="1.0" encoding="UTF-8"?>
+      <osmChange version="0.6" generator="Ruby">\n
+    STRING
     xml << "\t<modify>\n"
     xml << @libraries.map {|l| l.to_osc_modify_xml}.compact.join("\n")
     xml << "\n\t</modify>\n"

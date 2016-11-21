@@ -129,8 +129,6 @@ class SnkLibrary
     library_tags_from_snk = to_osm_tags_hash
     merged_tags = library_tags_from_snk.merge library_tags_from_snk
     merged_tags['name'] = self.name
-    merged_tags['note'] ||= ' '
-    merged_tags['note'] << ' | updating existing amenity:library'
 
     version = @osm_hash_from_name_search['version'] + 1
     uid = @osm_hash_from_name_search['id']
@@ -170,8 +168,6 @@ class SnkLibrary
     library_tags_from_snk = to_osm_tags_hash
     merged_tags = library_tags_from_snk.merge library_tags_from_snk
     merged_tags['name'] = self.name
-    merged_tags['note'] ||= ' '
-    merged_tags['note'] << ' | creating new library via address matching'
 
     @@uid_counter_for_new_osm_points -= 1
     xml = "\t<node id=\"#{@@uid_counter_for_new_osm_points}\" lat=\"#{lat}\" lon=\"#{lon}\" version=\"1\">\n"
@@ -191,7 +187,7 @@ class SnkLibrary
       'name' => self.name,
       'addr:city' => self.city,
       'addr:postcode' => self.postcode,
-      'fixme' => 'yes'
+      'note' => '  '
     }
 
     if self.using_street_addressing
@@ -202,7 +198,7 @@ class SnkLibrary
       h['addr:place'] = self.city
       h['addr:conscriptionnumber'] = self.addressnumber
       h['addr:housenumber'] = self.addressnumber
-      h['note'] = ' overit ci addr:city == addr:place'
+      h['note'] << 'overit ci addr:city == addr:place'
 
     end
 
