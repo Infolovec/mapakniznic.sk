@@ -38,14 +38,15 @@ class SnkLibrary
     </td>
     STRING
     if osm_address_found?
-      html << "<td style=\"background-color: #18ff18\">Adresa najdena v OSM</td>"
-      if osm_library_found?
-        html << "<td style=\"background-color: #18ff18\">Kniznica najdena v OSM</td>"
-      else
-        html << "<td style=\"background-color: yellow\">Este nie je v OSM ako kniznica</td>"
-      end
+      html << "<td style=\"background-color: #18ff18\">Najdena v OSM ako adresa</td>"
     else
-      html << "<td style=\"background-color: grey\">Adresa nenajdena v OSM</td><td></td>"
+      html << "<td style=\"background-color: grey\">Nenajdena v OSM ako adresa</td>"
+    end
+
+    if osm_name_found?
+      html << "<td style=\"background-color: #18ff18\">Najdena v OSM ako kniznica</td>"
+    else
+      html << "<td style=\"background-color: grey\">Nenajdena v OSM ako kniznica</td>"
     end
 
     html << "</tr>"
@@ -94,17 +95,21 @@ class SnkLibrary
     end
   end
 
-  def add_osm_data osm_hash
-    # todo deal with multiple osm matched per single snk library
-    @osm_hash = osm_hash
+  def add_osm_data_from_address_search osm_hash
+    # todo deal with multiple address matches
+    @osm_hash_from_address_search = osm_hash
   end
 
   def osm_address_found?
-    return @osm_hash
+    return @osm_hash_from_address_search
   end
 
-  def osm_library_found?
-    return osm_address_found? && @osm_hash['tags']['amenity'] && @osm_hash['tags']['amenity'] == 'library'
+  def add_osm_data_from_name_search osm_hash
+    @osm_hash_from_name_search = osm_hash
+  end
+
+  def osm_name_found?
+    return @osm_hash_from_name_search
   end
 
   def is_working?
@@ -114,17 +119,17 @@ class SnkLibrary
   def to_osm_change_create_xml
     return unless is_working?
     return unless osm_address_found?
-    return if osm_library_found?
+    return if osm_name_found?
 
-    if(@osm_hash['type'] == 'node')
-      lat = @osm_hash['lat']
-      lon = @osm_hash['lon']
+    if(@osm_hash_from_address_search['type'] == 'node')
+      lat = @osm_hash_from_address_search['lat']
+      lon = @osm_hash_from_address_search['lon']
     else
-      lat = @osm_hash['center']['lat']
-      lon = @osm_hash['center']['lon']        
+      lat = @osm_hash_from_address_search['center']['lat']
+      lon = @osm_hash_from_address_search['center']['lon']        
     end
 
-    t = @osm_hash['tags']
+    t = @osm_hash_from_address_search['tags']
 
     kvs = {
       'amenity' => 'library',
