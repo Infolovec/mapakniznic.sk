@@ -182,12 +182,20 @@ end
 
 # snk = slovenska narodna kniznica
 # http://www.snk.sk/sk/informacie-pre/kniznice-a-knihovnikov/adresar-kniznic.html
-task 'snk-to-osm' do
+task 'snk-to-osm', :okres do |t, args|
   require './snk-to-osm-data-matching-scripts/snk_library.rb'
   require './snk-to-osm-data-matching-scripts/snk_collection.rb'
 
-  # csv is exported from xls, we take first tab from xls (all libraries)
-  library_filter = {:okres => 'Lučenec', :lib_type => ['obecná NZ', 'obecná PZ', 'mestská','RKK', 'regionálna']}
+  okres =  args[:okres]
+  if okres == nil
+    puts "usage: rake snk-to-osm[<okres>]"
+    puts "example: rake snk-to-osm[Lučenec]"
+    exit 1
+  end
+
+  puts "processing okres: #{okres}"
+  library_filter = {:okres => okres, :lib_type => ['obecná NZ', 'obecná PZ', 'mestská','RKK', 'regionálna']}
+# csv is exported from xls, we take first tab from xls (all libraries)
   snk_collection = SnkCollection.new './data/snk-adresar_kniznic_2016-11-02.csv', library_filter
   snk_collection.load_osm_data
 
