@@ -179,3 +179,65 @@ task :changelog do
   $stdout << "updated changelog ./www/for_bots/changelog.txt \n"
   STDOUT.flush
 end
+
+# snk = slovenska narodna kniznica
+# http://www.snk.sk/sk/informacie-pre/kniznice-a-knihovnikov/adresar-kniznic.html
+task 'snk-to-osm', :okres do |t, args|
+  require './snk-to-osm-data-matching-scripts/snk_library.rb'
+  require './snk-to-osm-data-matching-scripts/snk_collection.rb'
+
+  okres =  args[:okres]
+  if okres == nil
+    puts "usage: rake snk-to-osm[<okres>]"
+    puts "example: rake snk-to-osm[Lučenec]"
+    exit 1
+  end
+
+  puts "processing okres: #{okres}"
+  library_filter = {:okres => okres, :lib_type => ['obecná NZ', 'obecná PZ', 'mestská','RKK', 'regionálna']}
+# csv is exported from xls, we take first tab from xls (all libraries)
+  snk_collection = SnkCollection.new './data/snk-adresar_kniznic_2016-11-02.csv', library_filter
+  snk_collection.load_osm_data
+
+  osc_file = "./tmp/#{library_filter[:okres]}_create.osc"
+  File.open(osc_file, 'w'){|f| f.write snk_collection.to_osc_create_xml}
+  puts "OSC written to #{osc_file}"
+
+  osc_file = "./tmp/#{library_filter[:okres]}_modify.osc"
+  File.open(osc_file, 'w'){|f| f.write snk_collection.to_osc_modify_xml}
+  puts "OSC written to #{osc_file}"
+
+  osm_file = "./tmp/#{library_filter[:okres]}_unmatched.osm"
+  File.open(osm_file, 'w'){|f| f.write snk_collection.to_osm_unmatched_amenity_libraries}
+  puts "OSM file written to #{osm_file}"
+
+  html_file = "./tmp/#{library_filter[:okres]}_info.html"
+  File.open(html_file, 'w'){|f| f.write snk_collection.to_html}
+  puts "HTML file written to #{html_file}"
+end
+
+task 'okresy-bbox' do
+  f = File.read './data/sk-okresy-polygons.geojson'
+  j = JSON.parse f
+  out = {}
+  j['features'].each do |okres|
+    okres_name = okres['properties']['TXT'][6..-1]
+    max_lat = 0.0
+    min_lat = 90.0
+    max_lon = 0.0
+    min_lon = 180.0
+    okres['geometry']['coordinates'][0].each do |lon, lat|
+      min_lat = lat if lat < min_lat
+      max_lat = lat if max_lat < lat
+      min_lon = lon if lon < min_lon
+      max_lon = lon if max_lon < lon      
+    end
+    min_lat -= 0.1
+    max_lat += 0.1
+    min_lon -= 0.1
+    max_lon += 0.1
+
+    out[okres_name] = "#{min_lat.round(4)},#{min_lon.round(4)},#{max_lat.round(4)},#{max_lon.round(4)}"
+  end
+  puts out
+end
