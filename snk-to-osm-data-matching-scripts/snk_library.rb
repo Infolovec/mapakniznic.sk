@@ -6,11 +6,11 @@ class SnkLibrary
   @@uid_counter_for_new_osm_points = -1
 
   def initialize csv_line
+    @snk_osm_diff = {}
+
     self.name, self.lib_type, self.lib_status, self.address, 
     self.postcode, self.city, self.okres, self.kraj, 
     self.person, self.phone, self.website, self.email = csv_line.split ';'
-
-
 
     a2 = self.address.split(' ')
     self.street = a2[0..-2].join(' ')
@@ -22,6 +22,8 @@ class SnkLibrary
       self.street = nil
     end
     self.addressnumber = a2.last
+
+    self.website = nil if self.website && self.website.length == 0
   end
 
   def to_s
@@ -39,7 +41,9 @@ class SnkLibrary
     obec: #{self.city}<br />
     ulica: #{self.street}<br />
     cislo: #{self.addressnumber}<br />
-    stav: #{self.lib_status}
+    stav: #{self.lib_status}<br />
+    telefon: #{self.phone}<br />
+    web: #{self.website}
     </td>
     STRING
     if osm_address_found?
@@ -49,7 +53,11 @@ class SnkLibrary
     end
 
     if osm_name_found?
-      html << "<td style=\"background-color: #18ff18\">Najdena v OSM ako kniznica</td>"
+      if no_changes_between_snk_and_osm
+        html << "<td style=\"background-color: #18ff18\">Najdena v OSM ako kniznica, ziadne nove zmeny </td>"
+      else
+        html << "<td style=\"background-color: yellow\">Najdena v OSM ako kniznica, v SNK su odlisne udaje. <br>#{@snk_osm_diff}</td>"
+      end
     else
       html << "<td style=\"background-color: grey\">Nenajdena v OSM ako kniznica</td>"
     end
@@ -127,10 +135,14 @@ class SnkLibrary
 
     library_tags_from_osm = @osm_hash_from_name_search['tags']
     library_tags_from_snk = to_osm_tags_hash
-    merged_tags = library_tags_from_snk.merge library_tags_from_snk
+    resolve_snk_osm_diff(library_tags_from_osm, library_tags_from_snk)
+
+    return if no_changes_between_snk_and_osm
+
+    merged_tags = library_tags_from_snk.merge library_tags_from_osm
     merged_tags['name'] = self.name
 
-    version = @osm_hash_from_name_search['version'] + 1
+    version = @osm_hash_from_name_search['version']
     uid = @osm_hash_from_name_search['id']
 
     
@@ -207,5 +219,20 @@ class SnkLibrary
     h['contact:email'] = self.email.strip if self.email
     
     h
+  end
+
+  def resolve_snk_osm_diff osm, snk
+    
+    @snk_osm_diff['name'] = {:osm => osm['name'], :snk => snk['name']} if osm['name'] != snk['name']
+    @snk_osm_diff['addr:city'] = {:osm => osm['addr:city'], :snk => snk['addr:city']} if osm['addr:city'] != snk['addr:city']
+
+    @snk_osm_diff['website'] = {:osm => osm['website'], :snk => snk['website']} if osm['website'] != snk['website']
+    @snk_osm_diff['contact:phone'] = {:osm => osm['contact:phone'], :snk => snk['contact:phone']} if osm['contact:phone'] != snk['contact:phone']
+    @snk_osm_diff['contact:email'] = {:osm => osm['contact:email'], :snk => snk['contact:email']}  if osm['contact:email'] != snk['contact:email']
+  
+  end
+
+  def no_changes_between_snk_and_osm
+    @snk_osm_diff.empty?
   end
 end
