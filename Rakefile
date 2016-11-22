@@ -146,7 +146,7 @@ task :sitemap do
 end
 
 task :changelog do
-  unless File.exists('./www/for_bots/libraries.json.old')
+  unless File.exist?('./www/for_bots/libraries.json.old')
     puts "not updating changelog, no previous history"
     exit 0
   end
