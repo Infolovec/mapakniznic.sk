@@ -46,6 +46,7 @@ class SnkLibrary
     web: #{self.website}
     </td>
     STRING
+
     if osm_address_found?
       html << "<td style=\"background-color: #18ff18\">Najdena v OSM ako adresa</td>"
     else
@@ -62,6 +63,12 @@ class SnkLibrary
       html << "<td style=\"background-color: grey\">Nenajdena v OSM ako kniznica</td>"
     end
 
+    html << "<td>"
+    to_osm_tags_hash.each do |k,v|
+      html << "#{k}<br/>"
+      html << "\"#{v}\"<br/>"
+    end
+    html << "</td>"
     html << "</tr>"
   end
 
