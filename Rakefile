@@ -193,7 +193,6 @@ task 'snk-to-osm', :okres do |t, args|
   okres =  args[:okres]
   if okres == nil
     puts "usage: rake snk-to-osm[<okres>]"
-    puts "example: rake snk-to-osm[Lučenec]"
     exit 1
   end
 
