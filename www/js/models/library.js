@@ -35,13 +35,20 @@ mapaKniznicApp.factory('Library', function(LibraryMarker){
 
       this.openingHours = rawLibraryData.tags.opening_hours
       this.address = ''
-      if(rawLibraryData.tags['addr:street'])
+
+      if(rawLibraryData.tags['addr:street']){
         this.address += rawLibraryData.tags['addr:street']
-      if(rawLibraryData.tags['addr:streetnumber'])
-        this.address += ' ' + rawLibraryData.tags['addr:streetnumber']
-      if(this.address.length > 0)
-        this.address += ', '
-      this.address += rawLibraryData.tags['addr:city']
+        if(rawLibraryData.tags['addr:streetnumber'])
+          this.address += ' ' + rawLibraryData.tags['addr:streetnumber']
+        if(this.address.length > 0)
+          this.address += ', '
+        this.address += rawLibraryData.tags['addr:city']
+
+      } else if (rawLibraryData.tags['addr:conscriptionnumber']){
+        this.address = rawLibraryData.tags['addr:city'] + ' ' + rawLibraryData.tags['addr:conscriptionnumber']
+      } else 
+        this.address = rawLibraryData.tags['addr:city']
+
       this.city = rawLibraryData.tags['addr:city']
       this.note = rawLibraryData.tags['note']
 

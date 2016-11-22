@@ -50,8 +50,8 @@ task :'update-data' do
 
     request_xml += '</osm-script>'
 
-    request_url = URI.escape('http://overpass-api.de/api/interpreter?data=' + request_xml)
-    json_response = `curl #{request_url}`
+    File.open('./tmp/query.osm', 'w'){|f| f.write request_xml}
+    json_response = `curl -X POST -d @tmp/query.osm http://overpass-api.de/api/interpreter`
 
     libraries1 = JSON.parse json_response
     libraries2 = []
@@ -145,6 +145,10 @@ task :sitemap do
 end
 
 task :changelog do
+  unless File.exists('./www/for_bots/libraries.json.old')
+    puts "not updating changelog, no previous history"
+    exit 0
+  end
   h_old = JSON.parse File.read('./www/for_bots/libraries.json.old')
   h_new = JSON.parse File.read('./www/for_bots/libraries.json')
 
