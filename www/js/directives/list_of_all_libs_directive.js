@@ -1,4 +1,4 @@
-mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState, libraries, libraryIcons) {
+mapaKniznicApp.directive('listOfAllLibs', function($rootScope, uiState, libraries) {
   return {
     restrict: 'E',
     scope: {},
