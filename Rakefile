@@ -80,7 +80,7 @@ task :'update-data' do
       $stdout << "OSM data has changed: services/libraries_service.js updated \n"
       File.open('./www/js/services/raw_libraries_data_service.js', 'w') {|f| f.write libraries_service_js}
       Rake::Task["release"].execute
-      Rake::Task["changelog"].execute
+      # Rake::Task["changelog"].execute
     end
   rescue => e
     $stdout << "update data task failed due to #{e}\n"
