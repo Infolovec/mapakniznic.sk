@@ -164,7 +164,15 @@ class SnkLibrary
       end
       xml += "\t</node>\n"    
     else 
-      raise "TODO - implement osc modify for <way>"
+       xml = "\t<way id=\"#{uid}\" version=\"#{version}\">\n"
+       xml += "\t\t<tag k=\"amenity\" v=\"library\"/>\n"
+       xml += "\t\t<tag k=\"name\" v=\"#{merged_tags['name']}\"/>\n"
+       xml += "\t\t<tag k=\"note\" v=\" tento bod zmazat a rucne updatnut existujucu way\"/>\n"
+       @osm_hash_from_name_search['nodes'].each do |nodeID|
+        xml += "<nd ref=\"#{nodeID}\"/>"
+       end
+       
+      xml += "\t</way>\n" 
     end
 
     xml
