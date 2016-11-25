@@ -35,9 +35,13 @@ class SnkLibrary
   end
 
   def to_html
+    c = 'white'
+    if self.lib_status != 'Fungujúca'
+      c = 'yellow'
+    end
     html = "<tr>"
     html << <<-STRING
-    <td>#{self.name}<br />
+    <td style=\"background-color: #{c}\">#{self.name}<br />
     obec: #{self.city}<br />
     ulica: #{self.street}<br />
     cislo: #{self.addressnumber}<br />
