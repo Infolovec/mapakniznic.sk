@@ -657,3 +657,4 @@ https://www.openstreetmap.org/node/4520472623	verejná knižnica
 https://www.openstreetmap.org/node/4520472624	verejná knižnica
 https://www.openstreetmap.org/way/60745764	verejná knižnica
 https://www.openstreetmap.org/way/118277779	verejná knižnica
+https://www.openstreetmap.org/node/1504014291 verejná knižnica
