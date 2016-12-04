@@ -106,6 +106,7 @@
 
 .libraryDetail .info {
   margin-top: 10px;
+  -webkit-user-select: auto;
 }
 
 .libraryDetail .info .openingHours img.closed {
