@@ -19,6 +19,8 @@ mapaKniznicApp.factory('Library', function(LibraryMarker){
       this.url_id = rawLibraryData.url_id
       this.url_name = rawLibraryData.url_name
       this.libraryType = rawLibraryData.library_type
+      this.email = rawLibraryData.tags['contact:email']
+      this.phoneNo = rawLibraryData.tags['contact:phone']
       
       this.website = rawLibraryData.tags.website
       if(this.website && this.website.indexOf('http') < 0)

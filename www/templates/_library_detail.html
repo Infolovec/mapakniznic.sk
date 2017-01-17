@@ -30,6 +30,14 @@
           <td><span class="descKey">POZNÁMKA</span></td>  
           <td>{{library().note}}</td> 
         </tr>
+        <tr ng-show="library().phoneNo && !inEmbeddedMode()">
+          <td><span class="descKey">TELEFÓN</span></td>  
+          <td>{{library().phoneNo}}</td> 
+        </tr>
+        <tr ng-show="library().email && !inEmbeddedMode()">
+          <td><span class="descKey">EMAIL</span></td>  
+          <td>{{library().email}}</td> 
+        </tr>
       </table>
       
       <div class="webpage" ng-hide="inEmbeddedMode()">
