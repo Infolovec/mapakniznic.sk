@@ -22,7 +22,7 @@ mapaKniznicApp.factory('Library', function(LibraryMarker){
       this.email = rawLibraryData.tags['contact:email']
       this.phoneNo = rawLibraryData.tags['contact:phone']
       
-      this.website = rawLibraryData.tags.website
+      this.website = rawLibraryData.tags.website || rawLibraryData.tags['contact:website']
       if(this.website && this.website.indexOf('http') < 0)
         this.website = 'http://'+this.website
       this.facebook = rawLibraryData.tags['contact:facebook']
