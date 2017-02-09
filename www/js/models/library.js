@@ -40,8 +40,11 @@ mapaKniznicApp.factory('Library', function(LibraryMarker){
 
       if(rawLibraryData.tags['addr:street']){
         this.address += rawLibraryData.tags['addr:street']
-        if(rawLibraryData.tags['addr:streetnumber'])
+        if(rawLibraryData.tags['addr:housenumber'])
+          this.address += ' ' + rawLibraryData.tags['addr:housenumber']
+        else if(rawLibraryData.tags['addr:streetnumber'])
           this.address += ' ' + rawLibraryData.tags['addr:streetnumber']
+          
         if(this.address.length > 0)
           this.address += ', '
         this.address += rawLibraryData.tags['addr:city']
