@@ -54,11 +54,13 @@ task :'update-data' do
     File.open('./tmp/query.osm', 'w'){|f| f.write request_xml}
     json_response = `curl -X POST -d @tmp/query.osm http://overpass-api.de/api/interpreter`
 
+    infogate_libraries = File.read('./data/infogate-libraries.txt')
     libraries1 = JSON.parse json_response
     libraries2 = []
     libraries1['elements'].each do |lib|
       lib['library_type'] = osm_url_to_library_type["#{lib['type']}/#{lib['id']}"]
       lib['url_id'] = "#{lib['type'][0]}#{lib['id']}"
+      lib['is_in_infogate'] = infogate_libraries.include?(lib['url_id'])
       lib['url_name'] = I18n.transliterate(lib['tags']['name']).downcase.gsub(/[^a-z0-9]/,'-').gsub(/(-)+/,'-')
       libraries2 << lib 
     end

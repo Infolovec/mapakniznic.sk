@@ -57,6 +57,9 @@
           <button class="button button-small button-dark icon-left ion-android-map" ng-click="openExternalLink(library().osmLink)">
             OpenStreetMap
           </button>
+          <button class="button button-small button-dark icon-left ion-bookmark" ng-click="openExternalLink('https://www.infogate.sk')" ng-show="library().isInInfogate">
+            InfoGate
+          </button>
         </div>
       </div>
       <div class="sharyLibrary" ng-hide="inEmbeddedMode()">

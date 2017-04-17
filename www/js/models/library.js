@@ -17,6 +17,7 @@ mapaKniznicApp.factory('Library', function(LibraryMarker){
       this.name = rawLibraryData.tags.name
       this.short_name = rawLibraryData.tags.short_name
       this.url_id = rawLibraryData.url_id
+      this.isInInfogate = rawLibraryData.is_in_infogate
       this.url_name = rawLibraryData.url_name
       this.libraryType = rawLibraryData.library_type
       this.email = rawLibraryData.tags['contact:email']
