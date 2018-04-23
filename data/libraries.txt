@@ -964,3 +964,4 @@ https://www.openstreetmap.org/node/5418015812	verejná knižnica
 https://www.openstreetmap.org/node/4517270860	verejná knižnica
 https://www.openstreetmap.org/node/4159167675	verejná knižnica
 https://www.openstreetmap.org/node/5418023715	verejná knižnica
+https://www.openstreetmap.org/node/2288795498	akademická knižnica
