@@ -136,8 +136,9 @@ task :sitemap do
       end
       desc << ", "
     end
-
-    desc << library['tags']['addr:city']
+    if library['tags']['addr:city']
+      desc << library['tags']['addr:city']
+    end
 
     page.gsub! 'DESCRIPTION', desc
 
